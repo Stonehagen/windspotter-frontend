@@ -6,7 +6,6 @@ import Forecast from './Forecast';
 const App = () => {
   return (
     <BrowserRouter basename="/">
-      <p>Hello Windspotter</p>
       <Routes>
         <Route
           path="/forecast/:spotName"
