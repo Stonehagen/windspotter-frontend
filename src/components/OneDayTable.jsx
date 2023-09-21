@@ -4,6 +4,7 @@ import ClearDay from '../assets/weather/ClearDay.svg?react';
 import PartlyCloudyDay from '../assets/weather/PartlyCloudyDay.svg?react';
 import MostlyCloudyDay from '../assets/weather/MostlyCloudyDay.svg?react';
 import Cloudy from '../assets/weather/Cloudy.svg?react';
+import Raindrop from '../assets/weather/Raindrop2.svg?react';
 
 import { getColorGradeWind, getColorGradeTemp } from '../methods/getColorGrade';
 import getWindSpeed from '../methods/getWindSpeed';
@@ -24,6 +25,30 @@ const OneDayTable = ({ dayArray, index }) => {
     } else {
       return <Cloudy />;
     }
+  };
+
+  const getRaindrops = (rain) => {
+    if (rain < 0.1) {
+      return;
+    }
+    if (rain < 1) {
+      return <Raindrop />;
+    }
+    if (rain < 3) {
+      return (
+        <>
+          <Raindrop />
+          <Raindrop />
+        </>
+      );
+    }
+    return (
+      <>
+        <Raindrop />
+        <Raindrop />
+        <Raindrop />
+      </>
+    );
   };
 
   const createTableRow = (timeframe) => {
@@ -53,6 +78,10 @@ const OneDayTable = ({ dayArray, index }) => {
               max {`${getWindSpeed(timeframe.wsMax, windUnit)} ${windUnit}`}
             </div>
           </div>
+          <div className="clouds">
+            {getWeatherIcon(timeframe.clouds)}
+            <div className="raindrops">{getRaindrops(timeframe.rain)}</div>
+          </div>
         </td>
         <td
           className="temp"
@@ -60,10 +89,6 @@ const OneDayTable = ({ dayArray, index }) => {
         >
           {timeframe.t.toFixed(0)}˚C
         </td>
-        <td className="clouds">
-          {getWeatherIcon(timeframe.clouds)}
-        </td>
-        <td>{timeframe.rain.toFixed(2)}</td>
       </tr>
     );
   };
@@ -73,13 +98,6 @@ const OneDayTable = ({ dayArray, index }) => {
       <thead>
         <tr>
           <th colSpan={7}>{getPrettyDate(dayArray[0].time)}</th>
-        </tr>
-        <tr className="windHeading">
-          <th>h</th>
-          <th>wind</th>
-          <th>temp</th>
-          <th>cloud</th>
-          <th>rain</th>
         </tr>
       </thead>
       <tbody>{dayArray.map((timeframe) => createTableRow(timeframe))}</tbody>

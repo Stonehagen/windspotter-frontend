@@ -44,6 +44,7 @@ table .windSpeeds {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  width: 90px;
 }
 
 table .wind {
@@ -53,6 +54,19 @@ table .wind {
 
 table .windGust {
   font-weight: 600;
+}
+
+table .clouds {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0 0 10px;
+  align-self: flex-start;
+}
+
+table .raindrops {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 table .temp {
