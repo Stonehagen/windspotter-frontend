@@ -1,12 +1,12 @@
 table {
-  border-spacing: 0 1px;
+  border-spacing: 0 5px;
   width: 100%;
 }
 
 table td {
   color: #213547;
   padding: 0 5px;
-  height: 80px;
+  height: 70px;
 }
 
 table .windHeading {
@@ -24,6 +24,19 @@ table .time div {
   font-size: 0.9em;
   opacity: 0.7;
   rotate: -90deg;
+}
+
+table .windForecast {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px 0 0 20px;
+  padding: 0;
+}
+
+table .windDirection {
+  margin: 0 10px 0 0;
 }
 
 table .windSpeeds {
@@ -44,6 +57,7 @@ table .windGust {
 
 table .temp {
   font-size: 1.3em;
+  border-radius: 0 20px 20px 0;
 }
 
 @media (prefers-color-scheme: dark) {
