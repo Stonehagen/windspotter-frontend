@@ -3,6 +3,7 @@ import chroma from 'chroma-js';
 const maxMeterPerSecond = 33;
 const minTemperature = -40;
 const maxTemperature = 50;
+const maxRain = 20;
 
 const colorScaleWind = [
   '#AEF1F9',
@@ -37,6 +38,7 @@ const colorScaleTemp = [
   '#84445A',
 ];
 
+const colorScaleRain = ['#ffffff', '#304164'];
 
 export const getColorGradeWind = chroma
   .scale(colorScaleWind)
@@ -46,3 +48,6 @@ export const getColorGradeTemp = chroma
   .scale(colorScaleTemp)
   .domain([minTemperature, maxTemperature]);
 
+  export const getColorGradeRain = chroma
+  .scale(colorScaleRain)
+  .domain([0, maxRain]);

@@ -7,7 +7,7 @@ import Cloudy from '../assets/weather/Cloudy.svg?react';
 import Raindrop from '../assets/weather/Raindrop2.svg?react';
 import getWindDirection from '../methods/getWindDirection';
 
-import { getColorGradeWind, getColorGradeTemp } from '../methods/getColorGrade';
+import { getColorGradeWind, getColorGradeTemp, getColorGradeRain } from '../methods/getColorGrade';
 import getWindSpeed from '../methods/getWindSpeed';
 
 const OneDayTable = ({ dayArray, index }) => {
@@ -99,8 +99,12 @@ const OneDayTable = ({ dayArray, index }) => {
             <div className="temp">{timeframe.t.toFixed(0)}˚C</div>
           </div>
         </td>
-        <td className="rain">
+        <td
+          className="rain"
+          style={{ backgroundColor: getColorGradeRain(timeframe.rain) }}
+        >
           <div className="raindrops">{getRaindrops(timeframe.rain)}</div>
+          {timeframe.rain.toFixed(0)}mm
         </td>
       </tr>
     );
