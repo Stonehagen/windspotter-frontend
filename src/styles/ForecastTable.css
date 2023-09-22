@@ -1,11 +1,12 @@
 table {
   border-spacing: 0 5px;
   width: 100%;
+  line-height: 1;
 }
 
 table td {
   color: #213547;
-  padding: 0 5px;
+  padding: 0 3px;
   height: 70px;
 }
 
@@ -31,51 +32,90 @@ table .windForecast {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-radius: 20px 0 0 20px;
+  border-radius: 10px;
   padding: 0;
-}
-
-table .windDirection {
-  margin: 0 10px 0 0;
+  width: 170px;
 }
 
 table .windSpeeds {
   display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: flex-end;
+  width: 140px;
+  justify-content: flex-end;
+}
+
+table td .wind {
+  font-size: 3em;
+  display: flex;
+  font-weight: 600;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+  line-height: 0.8;
+  padding: 10px 0 0 0;
+  width: 60px;
+}
+table td .windSecondCol {
+  display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   align-items: flex-start;
-  justify-content: center;
-  width: 90px;
+  height: 100%;
+  width: 42px;
 }
 
-table .wind {
+table td .windGust {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+table td .windUnit {
   font-size: 1.5em;
-  font-weight: 600;
+  font-weight: 200;
 }
 
-table .windGust {
-  font-weight: 600;
+table td .windDirection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1em;
+  font-weight: 200;
+  border-left: 0.5px solid #213547;
+  width: 60px;
 }
 
 table .clouds {
   display: flex;
   flex-direction: column;
-  margin: 5px 0 0 10px;
+  align-items: center;
   align-self: flex-start;
+  justify-content: center;
+  border-radius: 10px;
+  width: 65px;
+  height: 100%;
+}
+
+table .temp {
+  font-size: 1em;
+  font-weight: 600;
+  margin-bottom: 7px;
 }
 
 table .raindrops {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 15px;
 }
 
-table .temp {
-  font-size: 1.3em;
-  border-radius: 0 20px 20px 0;
+table .rain {
+  width: 100%;
 }
 
 @media (prefers-color-scheme: dark) {
-  table .time{
+  table .time {
     background-color: #242424;
   }
 

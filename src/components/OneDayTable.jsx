@@ -5,6 +5,7 @@ import PartlyCloudyDay from '../assets/weather/PartlyCloudyDay.svg?react';
 import MostlyCloudyDay from '../assets/weather/MostlyCloudyDay.svg?react';
 import Cloudy from '../assets/weather/Cloudy.svg?react';
 import Raindrop from '../assets/weather/Raindrop2.svg?react';
+import getWindDirection from '../methods/getWindDirection';
 
 import { getColorGradeWind, getColorGradeTemp } from '../methods/getColorGrade';
 import getWindSpeed from '../methods/getWindSpeed';
@@ -65,29 +66,41 @@ const OneDayTable = ({ dayArray, index }) => {
             )} 40%, ${getColorGradeWind(timeframe.wsMax)} 80%)`,
           }}
         >
-          <WindDir
-            className="windDirection"
-            style={{ transform: `rotate(${timeframe.dir + 180}deg)` }}
-          />
           <div className="windSpeeds">
-            <div className="wind">{`${getWindSpeed(
-              timeframe.ws,
-              windUnit,
-            )} ${windUnit}`}</div>
-            <div className="windGust">
-              max {`${getWindSpeed(timeframe.wsMax, windUnit)} ${windUnit}`}
+            <div
+              className="wind"
+              style={{
+                fontSize:
+                  getWindSpeed(timeframe.ws, windUnit) > 99 ? '2.3rem' : '3rem',
+              }}
+            >
+              {getWindSpeed(timeframe.ws, windUnit)}
+            </div>
+            <div className="windSecondCol">
+              <div className="windGust">
+                {getWindSpeed(timeframe.wsMax, windUnit)}
+              </div>
+              <div className="windUnit">{windUnit}</div>
             </div>
           </div>
-          <div className="clouds">
-            {getWeatherIcon(timeframe.clouds)}
-            <div className="raindrops">{getRaindrops(timeframe.rain)}</div>
+          <div className="windDirection">
+            <WindDir
+              style={{ transform: `rotate(${timeframe.dir + 180}deg)` }}
+            />
+            {getWindDirection(timeframe.dir)}
           </div>
         </td>
-        <td
-          className="temp"
-          style={{ backgroundColor: getColorGradeTemp(timeframe.t) }}
-        >
-          {timeframe.t.toFixed(0)}˚C
+        <td>
+          <div
+            className="clouds"
+            style={{ backgroundColor: getColorGradeTemp(timeframe.t) }}
+          >
+            {getWeatherIcon(timeframe.clouds)}
+            <div className="temp">{timeframe.t.toFixed(0)}˚C</div>
+          </div>
+        </td>
+        <td className="rain">
+          <div className="raindrops">{getRaindrops(timeframe.rain)}</div>
         </td>
       </tr>
     );
