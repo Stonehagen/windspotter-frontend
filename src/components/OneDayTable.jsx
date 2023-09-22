@@ -4,10 +4,12 @@ import ClearDay from '../assets/weather/ClearDay.svg?react';
 import PartlyCloudyDay from '../assets/weather/PartlyCloudyDay.svg?react';
 import MostlyCloudyDay from '../assets/weather/MostlyCloudyDay.svg?react';
 import Cloudy from '../assets/weather/Cloudy.svg?react';
-import Raindrop from '../assets/weather/Raindrop2.svg?react';
 import getWindDirection from '../methods/getWindDirection';
 
-import { getColorGradeWind, getColorGradeTemp, getColorGradeRain } from '../methods/getColorGrade';
+import {
+  getColorGradeWind,
+  getColorGradeTemp,
+} from '../methods/getColorGrade';
 import getWindSpeed from '../methods/getWindSpeed';
 
 const OneDayTable = ({ dayArray, index }) => {
@@ -26,30 +28,6 @@ const OneDayTable = ({ dayArray, index }) => {
     } else {
       return <Cloudy />;
     }
-  };
-
-  const getRaindrops = (rain) => {
-    if (rain < 0.1) {
-      return;
-    }
-    if (rain < 1) {
-      return <Raindrop />;
-    }
-    if (rain < 3) {
-      return (
-        <>
-          <Raindrop />
-          <Raindrop />
-        </>
-      );
-    }
-    return (
-      <>
-        <Raindrop />
-        <Raindrop />
-        <Raindrop />
-      </>
-    );
   };
 
   const createTableRow = (timeframe) => {
@@ -99,13 +77,7 @@ const OneDayTable = ({ dayArray, index }) => {
             <div className="temp">{timeframe.t.toFixed(0)}˚C</div>
           </div>
         </td>
-        <td
-          className="rain"
-          style={{ backgroundColor: getColorGradeRain(timeframe.rain) }}
-        >
-          <div className="raindrops">{getRaindrops(timeframe.rain)}</div>
-          {timeframe.rain.toFixed(0)}mm
-        </td>
+        <td className='waves'></td>
       </tr>
     );
   };
@@ -114,7 +86,7 @@ const OneDayTable = ({ dayArray, index }) => {
     <table className="ForecastTable" key={index}>
       <thead>
         <tr>
-          <th colSpan={7}>{getPrettyDate(dayArray[0].time)}</th>
+          <th colSpan={4}>{getPrettyDate(dayArray[0].time)}</th>
         </tr>
       </thead>
       <tbody>{dayArray.map((timeframe) => createTableRow(timeframe))}</tbody>

@@ -13,21 +13,28 @@ const ForecastTable = ({ forecast }) => {
   const generateForecastArray = (forecast) => {
     const newForecastArray = [];
     for (const [time, forecastValue] of Object.entries(forecast.t_2m)) {
-      newForecastArray.push({
-        time: addMinutesToDate(forecast.time, time),
-        t: forecastValue - 273.15,
-        dir: (270 -
-          Math.atan2(forecast.u_10m[time], forecast.v_10m[time]) *
-            (180 / Math.PI)) %
-        360,
-        ws: Math.sqrt(
-          Math.pow(forecast.u_10m[time], 2) + Math.pow(forecast.v_10m[time], 2),
-        ),
-        wsMax: forecast.vmax_10m[time],
-        clouds: forecast.clct_mod[time],
-        rain: forecast.prr_gsp[time],
-
-      });
+      const forecastTimestamp = new Date(time);
+      const today = new Date().setHours(0, 0, 0, 0);
+      if (
+        forecastTimestamp.getTime() >= today
+      ) {
+        newForecastArray.push({
+          time: forecastTimestamp,
+          t: forecastValue - 273.15,
+          dir:
+            (270 -
+              Math.atan2(forecast.u_10m[time], forecast.v_10m[time]) *
+                (180 / Math.PI)) %
+            360,
+          ws: Math.sqrt(
+            Math.pow(forecast.u_10m[time], 2) +
+              Math.pow(forecast.v_10m[time], 2),
+          ),
+          wsMax: forecast.vmax_10m[time],
+          clouds: forecast.clct_mod[time],
+          rain: forecast.prr_gsp[time],
+        });
+      }
     }
     setForecastArray(newForecastArray);
   };
@@ -45,8 +52,8 @@ const ForecastTable = ({ forecast }) => {
             const dayArray = arr.slice(dayStart, arr.length);
             return <OneDayTable dayArray={dayArray} index={index} />;
           } else if (checkIfNewDay(timeframe.time, arr[index + 1].time)) {
-            const dayArray = arr.slice(dayStart, index + 1);
-            dayStart = index + 1;
+            const dayArray = arr.slice(dayStart, index);
+            dayStart = index;
             return <OneDayTable dayArray={dayArray} index={index} />;
           }
         })}
