@@ -40,7 +40,7 @@ const ForecastTable = ({ forecast }) => {
   };
 
   const checkIfNewDay = (prev, curr) => {
-    return prev.getUTCDay() !== curr.getUTCDay();
+    return prev.getDay() !== curr.getDay();
   };
 
   const createTables = (forecastArray) => {
@@ -52,8 +52,8 @@ const ForecastTable = ({ forecast }) => {
             const dayArray = arr.slice(dayStart, arr.length);
             return <OneDayTable dayArray={dayArray} index={index} />;
           } else if (checkIfNewDay(timeframe.time, arr[index + 1].time)) {
-            const dayArray = arr.slice(dayStart, index);
-            dayStart = index;
+            const dayArray = arr.slice(dayStart, index + 1);
+            dayStart = index + 1;
             return <OneDayTable dayArray={dayArray} index={index} />;
           }
         })}

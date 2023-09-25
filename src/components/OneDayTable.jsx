@@ -32,9 +32,9 @@ const OneDayTable = ({ dayArray, index }) => {
 
   const createTableRow = (timeframe) => {
     return (
-      <tr key={moment(timeframe.time - 2 * 6000).format('HH')}>
+      <tr key={moment(timeframe.time).format('HH')}>
         <td className="time">
-          <div>{moment(timeframe.time - 2 * 6000).format('HH')}</div>
+          <div>{moment(timeframe.time).format('HH')}</div>
         </td>
         <td
           className="windForecast"
