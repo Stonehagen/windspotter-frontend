@@ -6,10 +6,6 @@ import OneDayTable from './OneDayTable';
 const ForecastTable = ({ forecast }) => {
   const [forecastArray, setForecastArray] = useState([]);
 
-  const addMinutesToDate = (date, minutes) => {
-    return new Date(new Date(date).getTime() + minutes * 60000);
-  };
-
   const generateForecastArray = (forecast) => {
     const newForecastArray = [];
     if (
