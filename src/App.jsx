@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import '../styles/App.css';
 
-import Forecast from './Forecast';
-import LandingPage from './LandingPage';
+import Forecast from './components/Forecast';
+import LandingPage from './components/LandingPage';
 
 const App = () => {
   return (
