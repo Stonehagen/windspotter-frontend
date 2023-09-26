@@ -12,12 +12,21 @@ const ForecastTable = ({ forecast }) => {
 
   const generateForecastArray = (forecast) => {
     const newForecastArray = [];
+    if (
+      !forecast.t_2m ||
+      !forecast.v_10m ||
+      !forecast.u_10m ||
+      !forecast.vmax_10m ||
+      !forecast.clct_mod ||
+      !forecast.prr_gsp
+    ) {
+      setForecastArray('error');
+      return;
+    }
     for (const [time, forecastValue] of Object.entries(forecast.t_2m)) {
       const forecastTimestamp = new Date(time);
       const today = new Date().setHours(0, 0, 0, 0);
-      if (
-        forecastTimestamp.getTime() >= today
-      ) {
+      if (forecastTimestamp.getTime() >= today) {
         newForecastArray.push({
           time: forecastTimestamp,
           t: forecastValue - 273.15,
@@ -44,6 +53,13 @@ const ForecastTable = ({ forecast }) => {
   };
 
   const createTables = (forecastArray) => {
+    if ((forecastArray === 'error')) {
+      return (
+        <>
+          <h3>No Forecast Available</h3>
+        </>
+      );
+    }
     let dayStart = 0;
     return (
       <>
