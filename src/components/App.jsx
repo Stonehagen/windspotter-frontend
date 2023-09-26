@@ -2,15 +2,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import '../styles/App.css';
 
 import Forecast from './Forecast';
+import LandingPage from './LandingPage';
 
 const App = () => {
   return (
     <BrowserRouter basename="/">
       <Routes>
-        <Route
-          path="/forecast/:spotName"
-          element={<Forecast />}
-        />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/forecast/:spotName" element={<Forecast />} />
       </Routes>
     </BrowserRouter>
   );
