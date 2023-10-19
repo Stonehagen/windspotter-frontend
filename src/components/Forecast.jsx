@@ -33,9 +33,7 @@ const Forecast = () => {
       {spot ? (
         <>
           <h2>{spot.name}</h2>
-          {spot.forecasts.map((forecast, index) => {
-            return <ForecastTable forecast={forecast} key={index} />;
-          })}
+          <ForecastTable forecast={spot.forecast}/>
         </>
       ) : (
         'Loading'

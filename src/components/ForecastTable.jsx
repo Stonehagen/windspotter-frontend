@@ -28,7 +28,7 @@ const ForecastTable = ({ forecast }) => {
           t: forecastValue - 273.15,
           dir:
             (270 -
-              Math.atan2(forecast.u_10m[time], forecast.v_10m[time]) *
+              Math.atan2(forecast.v_10m[time], forecast.u_10m[time]) *
                 (180 / Math.PI)) %
             360,
           ws: Math.sqrt(
@@ -38,6 +38,9 @@ const ForecastTable = ({ forecast }) => {
           wsMax: forecast.vmax_10m[time],
           clouds: forecast.clct_mod[time],
           rain: forecast.prr_gsp[time],
+          waveDir: forecast.mwd[time] ? forecast.mwd[time] : 0,
+          waveHeight: forecast.swh[time] ? forecast.swh[time] : 0,
+          wavePeriod: forecast.tm10[time] ? forecast.tm10[time] : 0,
         });
       }
     }

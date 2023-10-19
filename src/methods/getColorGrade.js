@@ -4,6 +4,7 @@ const maxMeterPerSecond = 33;
 const minTemperature = -40;
 const maxTemperature = 50;
 const maxRain = 20;
+const maxWave = 10;
 
 const colorScaleWind = [
   '#AEF1F9',
@@ -40,6 +41,8 @@ const colorScaleTemp = [
 
 const colorScaleRain = ['#ffffff', '#304164'];
 
+const colorScaleWave = ['#ffffff', '#3F93E2', '#304164'];
+
 export const getColorGradeWind = chroma
   .scale(colorScaleWind)
   .domain([0, maxMeterPerSecond]);
@@ -48,6 +51,10 @@ export const getColorGradeTemp = chroma
   .scale(colorScaleTemp)
   .domain([minTemperature, maxTemperature]);
 
-  export const getColorGradeRain = chroma
+export const getColorGradeRain = chroma
   .scale(colorScaleRain)
   .domain([0, maxRain]);
+
+export const getColorGradeWave = chroma
+  .scale(colorScaleWave)
+  .domain([0, maxWave]);

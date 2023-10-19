@@ -9,6 +9,7 @@ import getWindDirection from '../methods/getWindDirection';
 import {
   getColorGradeWind,
   getColorGradeTemp,
+  getColorGradeWave,
 } from '../methods/getColorGrade';
 import getWindSpeed from '../methods/getWindSpeed';
 
@@ -68,16 +69,41 @@ const OneDayTable = ({ dayArray, index }) => {
             {getWindDirection(timeframe.dir)}
           </div>
         </td>
-        <td>
-          <div
-            className="clouds"
-            style={{ backgroundColor: getColorGradeTemp(timeframe.t) }}
-          >
-            {getWeatherIcon(timeframe.clouds)}
-            <div className="temp">{timeframe.t.toFixed(0)}˚C</div>
-          </div>
+        <td
+          className="clouds"
+          style={{ backgroundColor: getColorGradeTemp(timeframe.t) }}
+        >
+          {getWeatherIcon(timeframe.clouds)}
+          <div className="temp">{timeframe.t.toFixed(0)}˚C</div>
         </td>
-        <td className='waves'></td>
+        <td
+          className="waves"
+          style={{
+            backgroundColor: timeframe.waveHeight
+              ? getColorGradeWave(timeframe.waveHeight)
+              : 'transparent',
+          }}
+        >
+          {timeframe.waveHeight ? (
+            <>
+              <div>
+                {timeframe.waveHeight.toFixed(1)}
+                <span className="wavesUnit">m</span>
+              </div>
+              <div className="wavesSecondCol">
+                <div>
+                  {Math.round(timeframe.wavePeriod)}
+                  <span className="wavesPeriodUnit">s</span>
+                </div>
+                <WindDir
+                  style={{
+                    transform: `rotate(${timeframe.waveDir + 180}deg)`,
+                  }}
+                />
+              </div>
+            </>
+          ) : null}
+        </td>
       </tr>
     );
   };
