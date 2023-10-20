@@ -81,7 +81,7 @@ const OneDayTable = ({ dayArray, index }) => {
           style={{
             backgroundColor: timeframe.waveHeight
               ? getColorGradeWave(timeframe.waveHeight)
-              : 'transparent',
+              : 'white',
           }}
         >
           {timeframe.waveHeight ? (
@@ -102,7 +102,7 @@ const OneDayTable = ({ dayArray, index }) => {
                 />
               </div>
             </>
-          ) : null}
+          ) : <>-</>}
         </td>
       </tr>
     );
