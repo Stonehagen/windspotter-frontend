@@ -7,6 +7,10 @@
   margin-right: auto;
 }
 
+.tableHeading {
+  padding: 10px 0 5px 0;
+}
+
 table tbody {
   display: flex;
   flex-direction: column;
@@ -157,9 +161,6 @@ table .wavesSecondCol span {
 }
 
 @media (prefers-color-scheme: dark) {
-  table .time {
-    background-color: #242424;
-  }
 
   table .time div {
     color: rgba(255, 255, 255, 0.87);

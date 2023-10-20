@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import moment from 'moment';
 import WindDir from '../assets/WindDir.svg?react';
 import ClearDay from '../assets/weather/ClearDay.svg?react';
@@ -13,8 +14,13 @@ import {
 } from '../methods/getColorGrade';
 import getWindSpeed from '../methods/getWindSpeed';
 
-const OneDayTable = ({ dayArray, index }) => {
-  const windUnit = 'kts';
+const OneDayTable = ({
+  dayArray,
+  index,
+  windUnit,
+  displayNight,
+  getNighttime,
+}) => {
   const getPrettyDate = (time) => {
     return moment(time).format('dddd, DD.MM.YY');
   };
@@ -33,7 +39,13 @@ const OneDayTable = ({ dayArray, index }) => {
 
   const createTableRow = (timeframe) => {
     return (
-      <tr key={moment(timeframe.time).format('HH')}>
+      <tr
+        key={moment(timeframe.time).format('HH')}
+        style={{
+          opacity: getNighttime(timeframe.time) && '0.4',
+          display: getNighttime(timeframe.time) && !displayNight && 'none',
+        }}
+      >
         <td className="time">
           <div>{moment(timeframe.time).format('HH')}</div>
         </td>
@@ -102,7 +114,9 @@ const OneDayTable = ({ dayArray, index }) => {
                 />
               </div>
             </>
-          ) : <>-</>}
+          ) : (
+            <>-</>
+          )}
         </td>
       </tr>
     );
@@ -112,7 +126,9 @@ const OneDayTable = ({ dayArray, index }) => {
     <table className="ForecastTable" key={index}>
       <thead>
         <tr>
-          <th colSpan={4}>{getPrettyDate(dayArray[0].time)}</th>
+          <th colSpan={4} className="tableHeading">
+            {getPrettyDate(dayArray[0].time)}
+          </th>
         </tr>
       </thead>
       <tbody>{dayArray.map((timeframe) => createTableRow(timeframe))}</tbody>

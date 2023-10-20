@@ -3,7 +3,7 @@ import '../styles/ForecastTable.css';
 
 import OneDayTable from './OneDayTable';
 
-const ForecastTable = ({ forecast }) => {
+const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
   const [forecastArray, setForecastArray] = useState([]);
 
   const generateForecastArray = (forecast) => {
@@ -22,7 +22,7 @@ const ForecastTable = ({ forecast }) => {
     // t_2m: temperature at 2m above ground is leading value
     const sortedDates = Object.keys(forecast.v_10m).sort();
 
-    for ( const time of sortedDates) {
+    for (const time of sortedDates) {
       const forecastTimestamp = new Date(time);
       const today = new Date().setHours(0, 0, 0, 0);
       if (forecastTimestamp.getTime() >= today) {
@@ -55,7 +55,7 @@ const ForecastTable = ({ forecast }) => {
   };
 
   const createTables = (forecastArray) => {
-    if ((forecastArray === 'error')) {
+    if (forecastArray === 'error') {
       return (
         <>
           <h3>No Forecast Available</h3>
@@ -68,11 +68,27 @@ const ForecastTable = ({ forecast }) => {
         {forecastArray.map((timeframe, index, arr) => {
           if (index === arr.length - 1) {
             const dayArray = arr.slice(dayStart, arr.length);
-            return <OneDayTable dayArray={dayArray} index={index} />;
+            return (
+              <OneDayTable
+                dayArray={dayArray}
+                windUnit={windUnit}
+                displayNight={displayNight}
+                getNighttime={getNighttime}
+                key={index}
+              />
+            );
           } else if (checkIfNewDay(timeframe.time, arr[index + 1].time)) {
             const dayArray = arr.slice(dayStart, index + 1);
             dayStart = index + 1;
-            return <OneDayTable dayArray={dayArray} index={index} />;
+            return (
+              <OneDayTable
+                dayArray={dayArray}
+                windUnit={windUnit}
+                displayNight={displayNight}
+                getNighttime={getNighttime}
+                key={index}
+              />
+            );
           }
         })}
       </>

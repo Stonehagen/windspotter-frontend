@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 import { setAxiosHeader } from '../methods/setAxiosHeader';
 import '../styles/Forecast.css';
 
@@ -9,6 +10,17 @@ import ForecastTable from './ForecastTable';
 const Forecast = () => {
   const [spot, setSpot] = useState(null);
   const { spotName } = useParams();
+  const [windUnit, setWindUnit] = useState('kts');
+  const [displayNight, setDisplayNight] = useState(false);
+  const [nightEnd, setNightEnd] = useState(8);
+  const [nightStart, setNightStart] = useState(18);
+
+  const getNighttime = (time) => {
+    return (
+      moment(time).format('HH') < nightEnd ||
+      moment(time).format('HH') > nightStart
+    );
+  };
 
   setAxiosHeader();
 
@@ -33,7 +45,12 @@ const Forecast = () => {
       {spot ? (
         <>
           <h2>{spot.name}</h2>
-          <ForecastTable forecast={spot.forecast}/>
+          <ForecastTable
+            forecast={spot.forecast}
+            windUnit={windUnit}
+            displayNight={displayNight}
+            getNighttime={getNighttime}
+          />
         </>
       ) : (
         'Loading'
