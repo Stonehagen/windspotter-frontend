@@ -19,13 +19,16 @@ const ForecastTable = ({ forecast }) => {
       setForecastArray('error');
       return;
     }
-    for (const [time, forecastValue] of Object.entries(forecast.t_2m)) {
+    // t_2m: temperature at 2m above ground is leading value
+    const sortedDates = Object.keys(forecast.v_10m).sort();
+
+    for ( const time of sortedDates) {
       const forecastTimestamp = new Date(time);
       const today = new Date().setHours(0, 0, 0, 0);
       if (forecastTimestamp.getTime() >= today) {
         newForecastArray.push({
           time: forecastTimestamp,
-          t: forecastValue - 273.15,
+          t: forecast.t_2m[time] - 273.15,
           dir:
             (270 -
               Math.atan2(forecast.v_10m[time], forecast.u_10m[time]) *
