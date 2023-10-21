@@ -78,15 +78,25 @@ const OneDayTable = ({
             <WindDir
               style={{ transform: `rotate(${timeframe.dir + 180}deg)` }}
             />
-            {getWindDirection(timeframe.dir)}
+            <div className="windDirInfo">
+              <div className="windDirText">
+                {getWindDirection(timeframe.dir)}
+              </div>
+              <div className="windDirNumber">{timeframe.dir.toFixed(0)}˚</div>
+            </div>
           </div>
         </td>
-        <td
-          className="clouds"
-          style={{ backgroundColor: getColorGradeTemp(timeframe.t) }}
-        >
-          {getWeatherIcon(timeframe.clouds)}
-          <div className="temp">{timeframe.t.toFixed(0)}˚C</div>
+        <td className="weather">
+          <div
+            className="clouds"
+            style={{ backgroundColor: getColorGradeTemp(timeframe.t) }}
+          >
+            {getWeatherIcon(timeframe.clouds)}
+            <div className="temp">{timeframe.t.toFixed(0)}˚C</div>
+          </div>
+          <div className="rain">
+            {timeframe.rain >= 0.1 ? `${timeframe.rain.toFixed(2)}mm` : ''}
+          </div>
         </td>
         <td
           className="waves"

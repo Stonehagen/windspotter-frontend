@@ -1,8 +1,45 @@
+@media (prefers-color-scheme: dark) {
+  table .time div {
+    color: rgba(255, 255, 255, 0.87);
+  }
+}
+
+@media (min-width: 401px) {
+  table .windDirection {
+    flex-direction: row;
+    font-size: 1.1em;
+    font-weight: 200;
+    width: 60px;
+    justify-content: center;
+    max-width: 100px;
+    gap: 3px;
+  }
+
+  table .windDirection svg {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 400px) {
+  table .windDirection {
+    flex-direction: column;
+    font-size: 1em;
+    font-weight: 200;
+    width: 60px;
+    max-width: 85px;
+  }
+  table .windDirNumber {
+    display: none;
+  }
+}
+
 .ForecastTable {
   border-spacing: 0 2px;
   line-height: 1;
-  max-width: 400px;
   width: 100%;
+  max-width: 400px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -33,9 +70,9 @@ table tr .time {
 }
 
 table .time div {
+  opacity: 0.7;
   width: 18px;
   font-size: 0.9em;
-  opacity: 0.7;
   rotate: -90deg;
 }
 
@@ -47,7 +84,7 @@ table .windForecast {
   border-radius: 10px 0 0 10px;
   padding: 0;
   min-width: 180px;
-  max-width: 220px;
+  max-width: 225px;
   flex: 1;
 }
 
@@ -93,25 +130,53 @@ table .windUnit {
 
 table .windDirection {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  font-size: 1em;
-  font-weight: 200;
   border-left: 0.5px solid #213547;
-  width: 60px;
-  max-width: 75px;
   flex: 1;
+  height: 48px;
+}
+
+table .windDirInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+table .windDirText {
+  font-weight: 400;
+  font-size: 1em;
+}
+
+table .windDirNumber {
+  font-size: 0.8em;
+  font-weight: 200;
+  margin-left: 5px;
+}
+
+table .weather {
+  display: flex;
+  flex-direction: row;
+  min-width: 45px;
+  max-width: 60px;
+  flex: 1;
+  padding: 0;
 }
 
 table .clouds {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 45px;
-  max-width: 60px;
   gap: 5px;
   flex: 1;
+}
+
+table .rain {
+  display: none;
+  width: 0px;
 }
 
 table .temp {
@@ -158,11 +223,4 @@ table .wavesSecondCol span {
   font-size: 0.8em;
   font-weight: 300;
   padding-left: wpx;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  table .time div {
-    color: rgba(255, 255, 255, 0.87);
-  }
 }
