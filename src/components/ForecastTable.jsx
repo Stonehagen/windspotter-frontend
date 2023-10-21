@@ -20,7 +20,11 @@ const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
       return;
     }
     // t_2m: temperature at 2m above ground is leading value
-    const sortedDates = Object.keys(forecast.v_10m).sort();
+    const sortedDates = Object.keys(forecast.v_10m).sort((a, b) => {
+      return new Date(a) - new Date(b);
+    });
+
+    console.log(sortedDates);
 
     for (const time of sortedDates) {
       const forecastTimestamp = new Date(time);
