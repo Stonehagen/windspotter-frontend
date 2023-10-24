@@ -21,8 +21,8 @@ const LandingPage = () => {
     <>
       <h1>AirFlow</h1>
       {spots.map((spot) => (
-        <Link to={`/forecast/${spot.searchName}`}>
-          <div key={spot._id}>{spot.name}</div>
+        <Link key={spot._id} to={`/forecast/${spot.searchName}`}>
+          <div>{spot.name}</div>
         </Link>
       ))}
     </>
