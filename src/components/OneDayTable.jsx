@@ -42,7 +42,7 @@ const OneDayTable = ({
       <tr
         key={moment(timeframe.time).format('HH')}
         style={{
-          opacity: getNighttime(timeframe.time) && '0.4',
+          opacity: getNighttime(timeframe.time) && '0.6',
           display: getNighttime(timeframe.time) && !displayNight && 'none',
         }}
       >
@@ -88,14 +88,30 @@ const OneDayTable = ({
         </td>
         <td className="weather">
           <div
-            className="clouds"
+            className="temp"
             style={{ backgroundColor: getColorGradeTemp(timeframe.t) }}
           >
-            {getWeatherIcon(timeframe.clouds)}
-            <div className="temp">{timeframe.t.toFixed(0)}˚C</div>
+            {timeframe.t.toFixed(0)}˚<span>C</span>
           </div>
-          <div className="rain">
-            {timeframe.rain >= 0.1 ? `${timeframe.rain.toFixed(2)}mm` : ''}
+          <div
+            className="clouds"
+            style={{
+              backgroundColor: getNighttime(timeframe.time)
+                ? '#213547'
+                : 'white',
+            }}
+          >
+            {getWeatherIcon(timeframe.clouds)}
+            <div className="rain">
+              {timeframe.rain >= 0.1 ? (
+                <>
+                  {timeframe.rain.toFixed(1)}
+                  <span>mm</span>
+                </>
+              ) : (
+                ''
+              )}
+            </div>
           </div>
         </td>
         <td

@@ -4,12 +4,12 @@
   }
 }
 
-@media (min-width: 401px) {
+@media (min-width: 420px) {
   table .windDirection {
     flex-direction: row;
     font-size: 1.1em;
     font-weight: 200;
-    width: 60px;
+    min-width: 85px;
     justify-content: center;
     max-width: 100px;
     gap: 3px;
@@ -22,12 +22,12 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 419px) {
   table .windDirection {
     flex-direction: column;
     font-size: 1em;
     font-weight: 200;
-    width: 60px;
+    min-width: 40px;
     max-width: 85px;
   }
   table .windDirNumber {
@@ -39,9 +39,14 @@
   border-spacing: 0 2px;
   line-height: 1;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
+  min-width: 320px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .tableHeading {
@@ -83,9 +88,9 @@ table .windForecast {
   justify-content: flex-end;
   border-radius: 10px 0 0 10px;
   padding: 0;
-  min-width: 180px;
-  max-width: 225px;
-  flex: 1;
+  min-width: 155px;
+  max-width: 255px;
+  flex-grow: 1;
 }
 
 table .windSpeeds {
@@ -93,9 +98,10 @@ table .windSpeeds {
   flex-direction: row;
   gap: 5px;
   align-items: flex-end;
-  min-width: 120px;
+  min-width: 115px;
   max-width: 160px;
   justify-content: flex-end;
+  flex-grow: 1;
 }
 
 table .wind {
@@ -106,7 +112,9 @@ table .wind {
   justify-content: flex-end;
   line-height: 0.8;
   padding: 10px 0 0 0;
-  width: 60px;
+  min-width: 70px;
+  max-width: 90px;
+  flex-grow: 1;
 }
 table .windSecondCol {
   display: flex;
@@ -114,7 +122,9 @@ table .windSecondCol {
   justify-content: flex-end;
   align-items: flex-start;
   height: 100%;
-  width: 42px;
+  flex-grow: 1;
+  min-width: 35px;
+  max-width: 42px;
   gap: 2px;
 }
 
@@ -132,7 +142,7 @@ table .windDirection {
   display: flex;
   align-items: center;
   border-left: 0.5px solid #213547;
-  flex: 1;
+  flex-grow:  1;
   height: 48px;
 }
 
@@ -158,47 +168,74 @@ table .windDirNumber {
 table .weather {
   display: flex;
   flex-direction: row;
-  min-width: 45px;
-  max-width: 60px;
-  flex: 1;
+  min-width: 85px;
+  max-width: 130px;
+  align-items: center;
   padding: 0;
+  flex-grow: 1;
 }
 
-table .clouds {
+table .weather .temp {
+  font-size: 1.3em;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 45px;
+  max-width: 70px;
+  height: 100%;
+  padding: 0;
+  flex: 1;
+}
+
+table .weather .temp span {
+  font-size: 0.8em;
+  font-weight: 400;
+  margin-left: -4px ;
+  padding-top: 2px;
+}
+
+table .weather .clouds {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 5px;
+  min-width: 40px;
+  max-width: 60px;
+  justify-content: space-between;
   flex: 1;
 }
 
-table .rain {
-  display: none;
-  width: 0px;
+table .weather .clouds svg {
+  padding: 3px 0 0 0;
 }
 
-table .temp {
-  font-size: 1em;
-  font-weight: 600;
-  margin-bottom: 1px;
+table .weather .clouds .rain {
+  width: 100%;
+  height: 15px;
+  font-size: 0.8em;
 }
+
+table .weather .clouds .rain span {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
 
 table .waves {
-  min-width: 70px;
+  min-width: 60px;
   max-width: 90px;
   border-radius: 0 10px 10px 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  gap: 2px;
+  gap: 5px;
   font-size: 1.3em;
   display: flex;
   font-weight: 600;
   padding-bottom: 2px;
-  flex: 1;
+  flex-grow: 1;
 }
 
 table .waves span {
@@ -217,6 +254,7 @@ table .wavesSecondCol {
   font-size: 0.8em;
   display: flex;
   font-weight: 400;
+  margin-right: -10px;
 }
 
 table .wavesSecondCol span {

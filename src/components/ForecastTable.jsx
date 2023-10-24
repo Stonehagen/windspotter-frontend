@@ -24,8 +24,6 @@ const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
       return new Date(a) - new Date(b);
     });
 
-    console.log(sortedDates);
-
     for (const time of sortedDates) {
       const forecastTimestamp = new Date(time);
       const today = new Date().setHours(0, 0, 0, 0);
