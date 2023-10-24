@@ -1,7 +1,30 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 const LandingPage = () => {
+  const [spots, setSpots] = useState([]);
+
+  const getSpots = async () => {
+    axios
+      .get(`${import.meta.env.VITE_API_BACKENDSERVER}/spot/list`)
+      .then((res) => setSpots(res.data.spots))
+      .catch((err) => console.log(err));
+    // need a redirect to main page if an error occurs
+  };
+
+  useEffect(() => {
+    getSpots();
+  }, []);
+
   return (
     <>
-      <h2>Welcome to Windspotter</h2>
+      <h1>AirFlow</h1>
+      {spots.map((spot) => (
+        <Link to={`/forecast/${spot.searchName}`}>
+          <div key={spot._id}>{spot.name}</div>
+        </Link>
+      ))}
     </>
   );
 };
