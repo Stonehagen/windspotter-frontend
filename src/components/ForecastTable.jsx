@@ -101,7 +101,11 @@ const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
     generateForecastArray(forecast);
   }, []);
 
-  return <>{forecastArray ? createTables(forecastArray) : 'Loading'}</>;
+  return (
+    <>
+      {forecastArray ? createTables(forecastArray) : 'Loading'}
+    </>
+  );
 };
 
 export default ForecastTable;

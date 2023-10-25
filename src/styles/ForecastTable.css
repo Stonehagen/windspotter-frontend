@@ -28,7 +28,7 @@
     font-size: 1em;
     font-weight: 200;
     min-width: 40px;
-    max-width: 85px;
+    max-width: 60px;
   }
   table .windDirNumber {
     display: none;
@@ -90,7 +90,7 @@ table .windForecast {
   padding: 0;
   min-width: 155px;
   max-width: 255px;
-  flex: 2;
+  flex: 3;
 }
 
 table .windSpeeds {
@@ -192,7 +192,7 @@ table .weather .temp span {
   font-size: 0.8em;
   font-weight: 400;
   margin-left: -4px ;
-  padding-top: 2px;
+  padding-top: 3px;
 }
 
 table .weather .clouds {
@@ -212,11 +212,17 @@ table .weather .clouds svg {
 
 table .weather .clouds .rain {
   width: 100%;
+  height: 40px;
+  margin-top: -2px;
+}
+
+table .weather .clouds .rain .rainText {
+  width: 100%;
   height: 15px;
   font-size: 0.8em;
 }
 
-table .weather .clouds .rain span {
+table .weather .clouds .rain .rainText span {
   font-size: 0.8em;
   font-weight: 400;
 }

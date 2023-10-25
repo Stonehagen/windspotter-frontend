@@ -4,7 +4,9 @@ import WindDir from '../assets/WindDir.svg?react';
 import ClearDay from '../assets/weather/ClearDay.svg?react';
 import PartlyCloudyDay from '../assets/weather/PartlyCloudyDay.svg?react';
 import MostlyCloudyDay from '../assets/weather/MostlyCloudyDay.svg?react';
+import CloudyNight from '../assets/weather/CloudyNight.svg?react';
 import Cloudy from '../assets/weather/Cloudy.svg?react';
+import RainDrop from '../assets/weather/RainDrop.svg?react';
 import getWindDirection from '../methods/getWindDirection';
 
 import {
@@ -25,16 +27,42 @@ const OneDayTable = ({
     return moment(time).format('dddd, DD.MM.YY');
   };
 
-  const getWeatherIcon = (cloudCover) => {
+  const getWeatherIcon = (cloudCover, night) => {
     if (cloudCover <= 0.25) {
-      return <ClearDay />;
+      return night ? <CloudyNight /> : <ClearDay />;
     } else if (cloudCover <= 0.5) {
-      return <PartlyCloudyDay />;
+      return night ? <CloudyNight /> : <PartlyCloudyDay />;
     } else if (cloudCover <= 0.75) {
-      return <MostlyCloudyDay />;
+      return night ? <CloudyNight /> : <MostlyCloudyDay />;
     } else {
       return <Cloudy />;
     }
+  };
+
+  const getRainDrops = (rain) => {
+    if (rain >= 0.1) {
+      return (
+        <>
+          <RainDrop />
+        </>
+      );
+    } else if (rain >= 1) {
+      return (
+        <>
+          <RainDrop />
+          <RainDrop />
+        </>
+      );
+    } else if (rain >= 2) {
+      return (
+        <>
+          <RainDrop />
+          <RainDrop />
+          <RainDrop />
+        </>
+      );
+    }
+    return <></>;
   };
 
   const createTableRow = (timeframe) => {
@@ -42,7 +70,6 @@ const OneDayTable = ({
       <tr
         key={moment(timeframe.time).format('HH')}
         style={{
-          opacity: getNighttime(timeframe.time) && '0.6',
           display: getNighttime(timeframe.time) && !displayNight && 'none',
         }}
       >
@@ -52,6 +79,7 @@ const OneDayTable = ({
         <td
           className="windForecast"
           style={{
+            opacity: getNighttime(timeframe.time) && '0.7',
             background: `linear-gradient(to right, ${getColorGradeWind(
               timeframe.ws,
             )} 40%, ${getColorGradeWind(timeframe.wsMax)} 80%)`,
@@ -89,7 +117,10 @@ const OneDayTable = ({
         <td className="weather">
           <div
             className="temp"
-            style={{ backgroundColor: getColorGradeTemp(timeframe.t) }}
+            style={{
+              opacity: getNighttime(timeframe.time) && '0.7',
+              backgroundColor: getColorGradeTemp(timeframe.t),
+            }}
           >
             {timeframe.t.toFixed(0)}˚<span>C</span>
           </div>
@@ -97,26 +128,30 @@ const OneDayTable = ({
             className="clouds"
             style={{
               backgroundColor: getNighttime(timeframe.time)
-                ? '#213547'
+                ? 'rgba(81, 81, 109, .7)'
                 : 'white',
             }}
           >
-            {getWeatherIcon(timeframe.clouds)}
+            {getWeatherIcon(timeframe.clouds, getNighttime(timeframe.time))}
             <div className="rain">
-              {timeframe.rain >= 0.1 ? (
-                <>
-                  {timeframe.rain.toFixed(1)}
-                  <span>mm</span>
-                </>
-              ) : (
-                ''
-              )}
+              <div className="rainDrops">{getRainDrops(timeframe.rain)}</div>
+              <div className="rainText">
+                {timeframe.rain >= 0.1 ? (
+                  <>
+                    {timeframe.rain.toFixed(1)}
+                    <span>mm</span>
+                  </>
+                ) : (
+                  ''
+                )}
+              </div>
             </div>
           </div>
         </td>
         <td
           className="waves"
           style={{
+            opacity: getNighttime(timeframe.time) && '0.7',
             backgroundColor: timeframe.waveHeight
               ? getColorGradeWave(timeframe.waveHeight)
               : 'white',

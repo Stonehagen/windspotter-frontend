@@ -19,9 +19,13 @@ const LandingPage = () => {
 
   return (
     <>
-      <h1>AirFlow</h1>
+      <h1>Windspotter</h1>
       {spots.map((spot) => (
-        <Link key={spot._id} to={`/forecast/${spot.searchName}`}>
+        <Link
+          key={spot._id}
+          to={`/forecast/${spot.searchName}`}
+          className="spotLink"
+        >
           <div>{spot.name}</div>
         </Link>
       ))}
