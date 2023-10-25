@@ -3,7 +3,7 @@ import chroma from 'chroma-js';
 const maxMeterPerSecond = 33;
 const minTemperature = -40;
 const maxTemperature = 50;
-const maxRain = 20;
+const maxRain = 10;
 const maxWave = 10;
 
 const colorScaleWind = [
@@ -39,7 +39,7 @@ const colorScaleTemp = [
   '#84445A',
 ];
 
-const colorScaleRain = ['#ffffff', '#304164'];
+const colorScaleRain = ['#ffffff', '#3F93E2','#304164'];
 
 const colorScaleWave = ['#ffffff', '#3F93E2', '#304164'];
 

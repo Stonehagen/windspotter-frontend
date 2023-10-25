@@ -13,6 +13,7 @@ import {
   getColorGradeWind,
   getColorGradeTemp,
   getColorGradeWave,
+  getColorGradeRain,
 } from '../methods/getColorGrade';
 import getWindSpeed from '../methods/getWindSpeed';
 
@@ -127,9 +128,10 @@ const OneDayTable = ({
           <div
             className="clouds"
             style={{
-              backgroundColor: getNighttime(timeframe.time)
-                ? 'rgba(81, 81, 109, .7)'
-                : 'white',
+              backgroundColor:
+                timeframe.rain >= 0.1
+                  ? getColorGradeRain(timeframe.rain)
+                  : 'white',
             }}
           >
             {getWeatherIcon(timeframe.clouds, getNighttime(timeframe.time))}
