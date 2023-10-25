@@ -30,7 +30,9 @@ const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
       if (forecastTimestamp.getTime() >= today) {
         newForecastArray.push({
           time: forecastTimestamp,
-          t: forecast.t_2m[time] - 273.15,
+          t: forecast.t_2m[time] !== undefined
+            ? forecast.t_2m[time] - 273.15
+            : newForecastArray[newForecastArray.length - 1].t,
           dir:
             (270 -
               Math.atan2(forecast.v_10m[time], forecast.u_10m[time]) *
@@ -101,11 +103,7 @@ const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
     generateForecastArray(forecast);
   }, []);
 
-  return (
-    <>
-      {forecastArray ? createTables(forecastArray) : 'Loading'}
-    </>
-  );
+  return <>{forecastArray ? createTables(forecastArray) : 'Loading'}</>;
 };
 
 export default ForecastTable;
