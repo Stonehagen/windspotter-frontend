@@ -46,14 +46,14 @@ const OneDayTable = ({
           <RainDrop />
         </>
       );
-    } else if (rain >= 1) {
+    } else if (rain >= 2) {
       return (
         <>
           <RainDrop />
           <RainDrop />
         </>
       );
-    } else if (rain >= 2) {
+    } else if (rain >= 4) {
       return (
         <>
           <RainDrop />

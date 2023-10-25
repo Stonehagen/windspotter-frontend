@@ -44,7 +44,7 @@ const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
           ),
           wsMax: forecast.vmax_10m[time],
           clouds: forecast.clct_mod[time],
-          rain: forecast.prr_gsp[time],
+          rain: forecast.prr_gsp[time] * 60 * 60,
           waveDir: forecast.mwd[time] ? forecast.mwd[time] : 0,
           waveHeight: forecast.swh[time] ? forecast.swh[time] : 0,
           wavePeriod: forecast.tm10[time] ? forecast.tm10[time] : 0,

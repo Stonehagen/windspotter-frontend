@@ -216,15 +216,21 @@ table .weather .clouds .rain {
   margin-top: -2px;
 }
 
+table .weather .clouds .rain svg {
+  rotate: 15deg;
+}
+
 table .weather .clouds .rain .rainText {
   width: 100%;
   height: 15px;
   font-size: 0.8em;
+  font-weight: 600;
 }
 
 table .weather .clouds .rain .rainText span {
   font-size: 0.8em;
   font-weight: 400;
+  padding-left: 0.5px;
 }
 
 

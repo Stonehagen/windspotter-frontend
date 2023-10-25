@@ -6,24 +6,41 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
 }
 
 @media (prefers-color-scheme: dark) {
 }
 
+.Logo {
+  width: 100%;
+  justify-self: flex-start;
+}
+
+.Spotlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  flex: 1;
+}
+
 .spotLink {
   text-decoration: none;
-  font-size: 1.2em;
 }  
 
 .spotLink div {
-  background-color: rgba(187, 218, 133, 0.5);
+  background-color: rgba(103, 222, 160, 0.5);
   border-radius: 5px;
   color: black;
-  width: 200px;
-  margin-top: 25px;
+  width: 290px;
+  margin: 10px 0;
 }
 
 .spotLink div:hover {
-  background-color: rgba(199, 216, 85, 0.8);
+  background-color: rgba(205, 239, 151, 0.8);
+  padding: 5px;
+  margin: 5px 0;
 }
