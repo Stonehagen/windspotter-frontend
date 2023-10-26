@@ -1,4 +1,6 @@
 const getWindSpeed = (speedMS, unit) => {
+  if (!speedMS) return '0';
+
   const beaufordConversionTable = [
     { beauford: 0, description: 'Calm', speed: 0 },
     { beauford: 1, description: 'Light air', speed: 0.3 },
