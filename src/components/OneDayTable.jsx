@@ -41,9 +41,11 @@ const OneDayTable = ({
   };
 
   const getRainDrops = (rain) => {
-    if (rain >= 0.1) {
+    if (rain >= 4) {
       return (
         <>
+          <RainDrop />
+          <RainDrop />
           <RainDrop />
         </>
       );
@@ -54,12 +56,11 @@ const OneDayTable = ({
           <RainDrop />
         </>
       );
-    } else if (rain >= 4) {
+    } else if (rain >= 0.1) {
       return (
         <>
           <RainDrop />
-          <RainDrop />
-          <RainDrop />
+
         </>
       );
     }
