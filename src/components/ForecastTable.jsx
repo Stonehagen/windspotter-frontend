@@ -14,7 +14,7 @@ const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
       !forecast.u_10m ||
       !forecast.vmax_10m ||
       !forecast.clct_mod ||
-      !forecast.prr_gsp
+      !forecast.rain_con
     ) {
       setForecastArray('error');
       return;
@@ -44,7 +44,7 @@ const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
           ),
           wsMax: forecast.vmax_10m[time],
           clouds: forecast.clct_mod[time],
-          rain: forecast.prr_gsp[time] * 60 * 60,
+          rain: forecast.rain_con[time] * 60 * 60,
           waveDir: forecast.mwd[time] ? forecast.mwd[time] : 0,
           waveHeight: forecast.swh[time] ? forecast.swh[time] : 0,
           wavePeriod: forecast.tm10[time] ? forecast.tm10[time] : 0,
