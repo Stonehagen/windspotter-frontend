@@ -11,9 +11,9 @@ const Forecast = () => {
   const [spot, setSpot] = useState(null);
   const { spotName } = useParams();
   const [windUnit, setWindUnit] = useState('kts');
-  const [displayNight, setDisplayNight] = useState(false);
-  const [nightEnd, setNightEnd] = useState(8);
-  const [nightStart, setNightStart] = useState(18);
+  const [displayNight, setDisplayNight] = useState(true);
+  const [nightEnd, setNightEnd] = useState(7);
+  const [nightStart, setNightStart] = useState(21);
 
   const getNighttime = (time) => {
     return (
