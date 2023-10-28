@@ -77,9 +77,9 @@ const OneDayTable = ({
         <td className="time">
           <div>{moment(timeframe.time).format('HH')}</div>
         </td>
-        <div className="mainRow">
+        <td className="mainRow">
           <div className="upperRow">
-            <td
+            <div
               className="windForecast"
               style={{
                 opacity: getNighttime(timeframe.time) && '0.7',
@@ -120,8 +120,8 @@ const OneDayTable = ({
                   </div>
                 </div>
               </div>
-            </td>
-            <td className="weather">
+            </div>
+            <div className="weather">
               <div
                 className="temp"
                 style={{
@@ -157,8 +157,8 @@ const OneDayTable = ({
                   </div>
                 </div>
               </div>
-            </td>
-            <td
+            </div>
+            <div
               className="waves"
               style={{
                 opacity: getNighttime(timeframe.time) && '0.7',
@@ -188,7 +188,7 @@ const OneDayTable = ({
               ) : (
                 <>-</>
               )}
-            </td>
+            </div>
           </div>
           <div className="lowerRow">
             {timeframe.wsMax ? (
@@ -229,7 +229,7 @@ const OneDayTable = ({
               ></div>
             )}
           </div>
-        </div>
+        </td>
       </tr>
     );
   };

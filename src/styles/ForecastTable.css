@@ -6,33 +6,28 @@
   table tr .lowerRow {
     background-color: #242424;
   }
-  
+
   table tr .lowerRow .windMeter {
     border-right: 3px solid #242424;
   }
-  
+
   table tr .lowerRow .windMaxMeter {
     border-top: 2px solid #242424;
+  }
 }
 
 @media (prefers-color-scheme: light) {
-  table .time div {
-    color: rgba(0, 0, 0, 0.87);
-  }
-
   table tr .lowerRow {
     background-color: #ffffff;
   }
-  
+
   table tr .lowerRow .windMeter {
     border-right: 3px solid #ffffff;
   }
-  
+
   table tr .lowerRow .windMaxMeter {
     border-top: 2px solid #ffffff;
   }
-}
-  
 }
 
 @media (min-width: 420px) {

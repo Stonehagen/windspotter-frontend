@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/ForecastTable.css';
+import moment from 'moment';
+import getWindSpeed from '../methods/getWindSpeed';
 
 import OneDayTable from './OneDayTable';
 
@@ -117,7 +119,11 @@ const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
     generateForecastArray(forecast);
   }, []);
 
-  return <>{forecastArray ? createTables(forecastArray) : 'Loading'}</>;
+  return (
+    <>
+      {forecastArray ? createTables(forecastArray) : 'Loading'}
+    </>
+  );
 };
 
 export default ForecastTable;
