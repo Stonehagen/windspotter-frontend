@@ -2,6 +2,37 @@
   table .time div {
     color: rgba(255, 255, 255, 0.87);
   }
+
+  table tr .lowerRow {
+    background-color: #242424;
+  }
+  
+  table tr .lowerRow .windMeter {
+    border-right: 3px solid #242424;
+  }
+  
+  table tr .lowerRow .windMaxMeter {
+    border-top: 2px solid #242424;
+}
+
+@media (prefers-color-scheme: light) {
+  table .time div {
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  table tr .lowerRow {
+    background-color: #ffffff;
+  }
+  
+  table tr .lowerRow .windMeter {
+    border-right: 3px solid #ffffff;
+  }
+  
+  table tr .lowerRow .windMaxMeter {
+    border-top: 2px solid #ffffff;
+  }
+}
+  
 }
 
 @media (min-width: 420px) {
@@ -56,14 +87,14 @@
 table tbody {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   width: 100%;
 }
 
 table tbody tr {
   display: flex;
   flex-direction: row;
-  height: 70px;
+  height: 68px;
 }
 
 table tr .mainRow {
@@ -80,20 +111,13 @@ table tr .upperRow {
 }
 
 table tr .lowerRow {
-  height: 10px;
+  height: 8px;
   display: flex;
   flex-direction: row;
-  background-color: white;
 }
 
 table tr .lowerRow .windMeter {
   height: 100%;
-  border-right: 3px solid rgb(255, 255, 255);
-}
-
-table tr .lowerRow .windMaxMeter {
-  border-top: 2px solid white;
-  border-bottom: 2px solid white;
 }
 
 table tr .time {
