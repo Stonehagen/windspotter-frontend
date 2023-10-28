@@ -60,7 +60,6 @@ const OneDayTable = ({
       return (
         <>
           <RainDrop />
-
         </>
       );
     }
@@ -78,110 +77,159 @@ const OneDayTable = ({
         <td className="time">
           <div>{moment(timeframe.time).format('HH')}</div>
         </td>
-        <td
-          className="windForecast"
-          style={{
-            opacity: getNighttime(timeframe.time) && '0.7',
-            background: `linear-gradient(to right, ${getColorGradeWind(
-              timeframe.ws,
-            )} 40%, ${getColorGradeWind(timeframe.wsMax)} 80%)`,
-          }}
-        >
-          <div className="windSpeeds">
-            <div
-              className="wind"
+        <div className="mainRow">
+          <div className="upperRow">
+            <td
+              className="windForecast"
               style={{
-                fontSize:
-                  getWindSpeed(timeframe.ws, windUnit) > 99 ? '2.3rem' : '3rem',
+                opacity: getNighttime(timeframe.time) && '0.7',
+                background: `linear-gradient(to right, ${getColorGradeWind(
+                  timeframe.ws,
+                )} 40%, ${getColorGradeWind(timeframe.wsMax)} 80%)`,
               }}
             >
-              {getWindSpeed(timeframe.ws, windUnit)}
-            </div>
-            <div className="windSecondCol">
-              <div className="windGust">
-                {getWindSpeed(timeframe.wsMax, windUnit)}
-              </div>
-              <div className="windUnit">{windUnit}</div>
-            </div>
-          </div>
-          <div className="windDirection">
-            <WindDir
-              style={{ transform: `rotate(${timeframe.dir + 180}deg)` }}
-            />
-            <div className="windDirInfo">
-              <div className="windDirText">
-                {getWindDirection(timeframe.dir)}
-              </div>
-              <div className="windDirNumber">{timeframe.dir.toFixed(0)}˚</div>
-            </div>
-          </div>
-        </td>
-        <td className="weather">
-          <div
-            className="temp"
-            style={{
-              opacity: getNighttime(timeframe.time) && '0.7',
-              backgroundColor: getColorGradeTemp(timeframe.t),
-            }}
-          >
-            {timeframe.t.toFixed(0)}˚<span>C</span>
-          </div>
-          <div
-            className="clouds"
-            style={{
-              backgroundColor:
-                timeframe.rain >= 0.1
-                  ? getColorGradeRain(timeframe.rain)
-                  : 'white',
-            }}
-          >
-            {getWeatherIcon(timeframe.clouds, getNighttime(timeframe.time))}
-            <div className="rain">
-              <div className="rainDrops">{getRainDrops(timeframe.rain)}</div>
-              <div className="rainText">
-                {timeframe.rain >= 0.1 ? (
-                  <>
-                    {timeframe.rain.toFixed(1)}
-                    <span>mm</span>
-                  </>
-                ) : (
-                  ''
-                )}
-              </div>
-            </div>
-          </div>
-        </td>
-        <td
-          className="waves"
-          style={{
-            opacity: getNighttime(timeframe.time) && '0.7',
-            backgroundColor: timeframe.waveHeight
-              ? getColorGradeWave(timeframe.waveHeight)
-              : 'white',
-          }}
-        >
-          {timeframe.waveHeight ? (
-            <>
-              <div>
-                {timeframe.waveHeight.toFixed(1)}
-                <span className="wavesUnit">m</span>
-              </div>
-              <div className="wavesSecondCol">
-                <div>
-                  {Math.round(timeframe.wavePeriod)}
-                  <span className="wavesPeriodUnit">s</span>
-                </div>
-                <WindDir
+              <div className="windSpeeds">
+                <div
+                  className="wind"
                   style={{
-                    transform: `rotate(${timeframe.waveDir + 180}deg)`,
+                    fontSize:
+                      getWindSpeed(timeframe.ws, windUnit) > 99
+                        ? '2.3rem'
+                        : '3rem',
                   }}
-                />
+                >
+                  {getWindSpeed(timeframe.ws, windUnit)}
+                </div>
+                <div className="windSecondCol">
+                  <div className="windGust">
+                    {getWindSpeed(timeframe.wsMax, windUnit)}
+                  </div>
+                  <div className="windUnit">{windUnit}</div>
+                </div>
               </div>
-            </>
-          ) : (
-            <>-</>
-          )}
-        </td>
+              <div className="windDirection">
+                <WindDir
+                  style={{ transform: `rotate(${timeframe.dir + 180}deg)` }}
+                />
+                <div className="windDirInfo">
+                  <div className="windDirText">
+                    {getWindDirection(timeframe.dir)}
+                  </div>
+                  <div className="windDirNumber">
+                    {timeframe.dir.toFixed(0)}˚
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td className="weather">
+              <div
+                className="temp"
+                style={{
+                  opacity: getNighttime(timeframe.time) && '0.7',
+                  backgroundColor: getColorGradeTemp(timeframe.t),
+                }}
+              >
+                {timeframe.t.toFixed(0)}˚<span>C</span>
+              </div>
+              <div
+                className="clouds"
+                style={{
+                  backgroundColor:
+                    timeframe.rain >= 0.1
+                      ? getColorGradeRain(timeframe.rain)
+                      : 'white',
+                }}
+              >
+                {getWeatherIcon(timeframe.clouds, getNighttime(timeframe.time))}
+                <div className="rain">
+                  <div className="rainDrops">
+                    {getRainDrops(timeframe.rain)}
+                  </div>
+                  <div className="rainText">
+                    {timeframe.rain >= 0.1 ? (
+                      <>
+                        {timeframe.rain.toFixed(1)}
+                        <span>mm</span>
+                      </>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              className="waves"
+              style={{
+                opacity: getNighttime(timeframe.time) && '0.7',
+                backgroundColor: timeframe.waveHeight
+                  ? getColorGradeWave(timeframe.waveHeight)
+                  : 'white',
+              }}
+            >
+              {timeframe.waveHeight ? (
+                <>
+                  <div>
+                    {timeframe.waveHeight.toFixed(1)}
+                    <span className="wavesUnit">m</span>
+                  </div>
+                  <div className="wavesSecondCol">
+                    <div>
+                      {Math.round(timeframe.wavePeriod)}
+                      <span className="wavesPeriodUnit">s</span>
+                    </div>
+                    <WindDir
+                      style={{
+                        transform: `rotate(${timeframe.waveDir + 180}deg)`,
+                      }}
+                    />
+                  </div>
+                </>
+              ) : (
+                <>-</>
+              )}
+            </td>
+          </div>
+          <div className="lowerRow">
+            {timeframe.wsMax ? (
+              <div
+                className="windMaxMeter"
+                style={{
+                  backgroundColor: getColorGradeWind(timeframe.wsMax),
+                  width: `${
+                    (timeframe.wsMax / 30) * 100 > 100
+                      ? 100
+                      : (timeframe.wsMax / 30) * 100
+                  }%`,
+                }}
+              >
+                <div
+                  className="windMeter"
+                  style={{
+                    backgroundColor: getColorGradeWind(timeframe.ws),
+                    width: `${
+                      (timeframe.ws / timeframe.wsMax) * 100 > 100
+                        ? 100
+                        : (timeframe.ws / timeframe.wsMax) * 100
+                    }%`,
+                  }}
+                ></div>
+              </div>
+            ) : (
+              <div
+                className="windMaxMeter"
+                style={{
+                  backgroundColor: getColorGradeWind(timeframe.ws),
+                  width: `${
+                    (timeframe.ws / 30) * 100 > 100
+                      ? 100
+                      : (timeframe.ws / 30) * 100
+                  }%`,
+                }}
+              ></div>
+            )}
+          </div>
+        </div>
       </tr>
     );
   };
