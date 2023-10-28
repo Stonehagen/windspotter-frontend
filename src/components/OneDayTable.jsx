@@ -69,7 +69,9 @@ const OneDayTable = ({
   const createTableRow = (timeframe) => {
     return (
       <tr
-        key={moment(timeframe.time).format('HH')}
+        key={`${moment(timeframe.time).format('HH')}${
+          moment(timeframe.time).isDST() ? 'DST' : ''
+        }`}
         style={{
           display: getNighttime(timeframe.time) && !displayNight && 'none',
         }}
