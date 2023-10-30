@@ -7,18 +7,16 @@ const maxRain = 10;
 const maxWave = 10;
 
 const colorScaleWind = [
-  '#AEF1F9',
-  '#96F7DC',
-  '#96F7B4',
-  '#6FF46F',
+  '#10BFFF',
+  '#36D7FC',
+  '#6FF48F',
   '#73ED12',
-  '#A4ED12',
-  '#DAED12',
+  '#DADD12',
   '#EDC212',
   '#ED8F12',
-  '#ED6312',
   '#ED2912',
   '#D5102D',
+  '#84445A',
 ];
 
 const colorScaleTemp = [
