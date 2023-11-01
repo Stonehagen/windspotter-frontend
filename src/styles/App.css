@@ -9,9 +9,6 @@
   height: 100vh;
 }
 
-@media (prefers-color-scheme: dark) {
-}
-
 .Logo {
   width: 100%;
   justify-self: flex-start;

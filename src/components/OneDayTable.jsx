@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import moment from 'moment';
 import WindDir from '../assets/WindDir.svg?react';
 import ClearDay from '../assets/weather/ClearDay.svg?react';
