@@ -21,10 +21,11 @@
 }
 
 .infoBar {
+  display: flex;
+  flex-direction: column;
   z-index: 1;
   position: sticky;
   top: 0;
-  height: 40px;
   width: 100%;
 }
 
@@ -35,4 +36,12 @@
   font-weight: 600;
   text-align: center;
   line-height: 40px;
+}
+
+.infoBar .ForecastOverview {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  height: 40px;
 }
