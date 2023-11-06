@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import WindMateLogo from '../assets/windmate.svg?react';
 
 const LandingPage = () => {
   const [spots, setSpots] = useState([]);
@@ -19,8 +20,11 @@ const LandingPage = () => {
 
   return (
     <>
-      <h1 className="Logo">Windspotter</h1>
+      <div>
+        <h1 className="Logo">WIND<span>MATE</span></h1>
+      </div>
       <div className="Spotlist">
+        <h3 className="LogoSub">SELECT<span>SPOT</span></h3>
         {spots.map((spot) => (
           <Link
             key={spot._id}

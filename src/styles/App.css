@@ -9,9 +9,21 @@
   height: 100vh;
 }
 
+@media (min-width: 600px) {
+  .Logo {
+    font-size: 5em;
+  }
+}
+
 .Logo {
   width: 100%;
   justify-self: flex-start;
+  color: rgb(152, 237, 100);
+  font-size: 3.5em;
+}
+
+.Logo span {
+  font-weight: 100;
 }
 
 .Spotlist {
@@ -22,22 +34,35 @@
   height: 100%;
   width: 100%;
   flex: 1;
+  gap: 5px;
+}
+
+.Spotlist h3 {
+  font-weight: 200;
+  margin: 5px 0;
+  font-size: 1.3em;
+}
+
+.Spotlist h3 span {
+  font-weight: 600;
 }
 
 .spotLink {
   text-decoration: none;
-}  
+  font-weight: 200;
+  line-height: 40px;
+}
 
 .spotLink div {
-  background-color: rgba(103, 222, 160, 0.5);
-  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.87);
   color: black;
+  border: 1px solid #242424;
+  border-radius: 5px;
   width: 290px;
-  margin: 10px 0;
+  height: 40px;
 }
 
 .spotLink div:hover {
-  background-color: rgba(205, 239, 151, 0.8);
-  padding: 5px;
-  margin: 5px 0;
+  background-color: rgb(152, 237, 100);
+  font-weight: 400;
 }
