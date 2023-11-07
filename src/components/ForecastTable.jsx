@@ -3,7 +3,13 @@ import '../styles/ForecastTable.css';
 
 import OneDayTable from './OneDayTable';
 
-const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
+const ForecastTable = ({
+  forecast,
+  windUnit,
+  displayNight,
+  getNighttime,
+  getNighttimeMorning,
+}) => {
   const checkIfNewDay = (prev, curr) => {
     return prev.getDay() !== curr.getDay();
   };
@@ -21,16 +27,19 @@ const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
       <>
         {forecast.map((timeframe, index, arr) => {
           if (index === arr.length - 1) {
-            const dayArray = arr.slice(dayStart, arr.length);
-            return (
-              <OneDayTable
-                dayArray={dayArray}
-                windUnit={windUnit}
-                displayNight={displayNight}
-                getNighttime={getNighttime}
-                key={index}
-              />
-            );
+            // check if last element is at day and if so, create table
+            if (!getNighttimeMorning(timeframe.time)) {
+              const dayArray = arr.slice(dayStart, arr.length);
+              return (
+                <OneDayTable
+                  dayArray={dayArray}
+                  windUnit={windUnit}
+                  displayNight={displayNight}
+                  getNighttime={getNighttime}
+                  key={index}
+                />
+              );
+            }
           } else if (checkIfNewDay(timeframe.time, arr[index + 1].time)) {
             const dayArray = arr.slice(dayStart, index + 1);
             dayStart = index + 1;
@@ -48,6 +57,35 @@ const ForecastTable = ({ forecast, windUnit, displayNight, getNighttime }) => {
       </>
     );
   };
+
+  useEffect(() => {
+    const targetSections = document.querySelectorAll('.ForecastTable');
+    const menuItems = document.querySelectorAll('.ForecastOverviewDay');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > 0.1) {
+            menuItems.forEach((item) => {
+              if (
+                item.getAttribute('dateday') ===
+                entry.target.getAttribute('dateday')
+              ) {
+                item.classList.add('active');
+              } else {
+                item.classList.remove('active');
+              }
+            });
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    targetSections.forEach((section) => {
+      observer.observe(section);
+    });
+  }, []);
 
   return <>{forecast ? createTables(forecast) : 'Loading'}</>;
 };

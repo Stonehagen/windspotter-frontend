@@ -3,12 +3,20 @@
     color: rgb(255, 255, 255);
     background-color: #242424;
   }
+
+  .infoBar .ForecastOverviewDay {
+    border-left: 0.5px solid rgb(130, 130, 130);
+  }
 }
 
 @media (prefers-color-scheme: light) {
   .infoBar {
     color: #242424;
     background-color: rgb(255, 255, 255);
+  }
+
+  .infoBar .ForecastOverviewDay {
+    border-left: 0.5px solid #242424;
   }
 }
 
@@ -43,5 +51,56 @@
   flex-direction: row;
   justify-content: stretch;
   align-items: stretch;
-  height: 40px;
+  height: 50px;
+  padding: 0 0 5px 0;
+  box-shadow: 5px 2px 5px 0 #24242422;
+}
+
+.infoBar .ForecastOverviewDay {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: 400;
+  font-size: 0.7em;
+  gap: 2px;
+  opacity: 0.8;
+}
+
+.infoBar .ForecastOverviewDay:first-child {
+  border-left: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.infoBar .ForecastOverviewDay:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.infoBar .ForecastOverviewDay:hover {
+  background-color: rgb(130, 130, 130);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.infoBar .ForecastOverviewDay.active {
+  background-color: rgb(130, 130, 130);
+  opacity: 1;
+  font-weight: 600;
+  color: #242424;
+}
+
+.infoBar .OverviewChart {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.infoBar .OverviewBar {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-end;
 }

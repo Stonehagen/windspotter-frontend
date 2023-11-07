@@ -237,7 +237,11 @@ const OneDayTable = ({
   };
 
   return (
-    <table className="ForecastTable" key={index}>
+    <table
+      className="ForecastTable"
+      key={index}
+      dateday={+moment(dayArray[0].time).format('DD')}
+    >
       <thead>
         <tr>
           <th colSpan={4} className="tableHeading">

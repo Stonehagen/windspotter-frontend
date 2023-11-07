@@ -18,11 +18,12 @@ const Forecast = () => {
   const [nightStart, setNightStart] = useState(21);
   const [forecastArray, setForecastArray] = useState([]);
 
+  const getNighttimeMorning = (time) => {
+    return moment(time).format('HH') < nightEnd;
+  };
+
   const getNighttime = (time) => {
-    return (
-      moment(time).format('HH') < nightEnd ||
-      moment(time).format('HH') > nightStart
-    );
+    return getNighttimeMorning(time) || moment(time).format('HH') > nightStart;
   };
 
   setAxiosHeader();
@@ -52,12 +53,17 @@ const Forecast = () => {
         <>
           <div className="infoBar">
             <h3>{spot.name}</h3>
+            <ForecastOverview
+              forecast={forecastArray}
+              getNighttimeMorning={getNighttimeMorning}
+            />
           </div>
           <ForecastTable
             forecast={forecastArray}
             windUnit={windUnit}
             displayNight={displayNight}
             getNighttime={getNighttime}
+            getNighttimeMorning={getNighttimeMorning}
           />
         </>
       ) : (
