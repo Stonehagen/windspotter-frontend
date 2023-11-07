@@ -66,6 +66,7 @@
   font-size: 0.7em;
   gap: 2px;
   opacity: 0.8;
+  overflow: hidden;
 }
 
 .infoBar .ForecastOverviewDay:first-child {

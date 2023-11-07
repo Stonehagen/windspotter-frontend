@@ -53,7 +53,11 @@ const ForecastOverview = ({ forecast, getNighttimeMorning }) => {
                     }%`,
                     background: `linear-gradient(to top, ${getColorGradeWind(
                       timeframe.windSpeed,
-                    )} 0%, ${getColorGradeWind(timeframe.windSpeedMax)} 40%)`,
+                    )} 0%, ${getColorGradeWind(
+                      timeframe.windSpeedMax,
+                    )} 40%,  ${getColorGradeWind(
+                      timeframe.windSpeedMax,
+                    )} 60%, rgba(0,0,0,0) 100%)`,
                   }}
                 ></div>
                 <div
