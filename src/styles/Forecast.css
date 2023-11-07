@@ -1,7 +1,11 @@
 @media (prefers-color-scheme: dark) {
   .infoBar {
     color: rgb(255, 255, 255);
-    background-color: #242424;
+    background: linear-gradient(
+      to bottom,
+      #242424 96%,
+      rgba(255, 255, 255, 0) 100%
+    );
   }
 
   .infoBar .ForecastOverviewDay {
