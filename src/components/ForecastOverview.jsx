@@ -28,6 +28,13 @@ const ForecastOverview = ({ forecast, getNighttimeMorning }) => {
 
   const days = [...new Set(forecastData.map((timeframe) => timeframe.day))];
 
+  const scrolltoDay = (day) => {
+    const dayElement = document.querySelector(
+      `[dateday="${day}"][class="ForecastTable"]`,
+    );
+    dayElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+  };
+
   const createOverviewDay = (day) => {
     const dayData = forecastData.filter((timeframe) => timeframe.day === day);
     return (
@@ -83,7 +90,12 @@ const ForecastOverview = ({ forecast, getNighttimeMorning }) => {
         <div className="ForecastOverview">
           {days.map((day) => {
             return (
-              <div className="ForecastOverviewDay" key={day} dateday={day}>
+              <div
+                className="ForecastOverviewDay"
+                key={day}
+                dateday={day}
+                onClick={() => scrolltoDay(day)}
+              >
                 {createOverviewDay(day)}
               </div>
             );
