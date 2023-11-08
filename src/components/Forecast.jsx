@@ -25,7 +25,10 @@ const Forecast = () => {
   };
 
   const getNighttime = (time) => {
-    return getNighttimeMorning(time) || moment(time).format('HH') > settings.nightStart;
+    return (
+      getNighttimeMorning(time) ||
+      moment(time).format('HH') > settings.nightStart
+    );
   };
 
   setAxiosHeader();
@@ -39,7 +42,7 @@ const Forecast = () => {
       )
       .then((res) => {
         setForecastArray(generateForecastArray(res.data.spot.forecast));
-        setSpot(res.data.spot);
+        setSpot({ name: res.data.spot.name });
       })
       .catch((err) => console.log(err));
     // need a redirect to main page if an error occurs
