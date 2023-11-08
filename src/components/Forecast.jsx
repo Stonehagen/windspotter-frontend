@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import moment from 'moment';
 import { setAxiosHeader } from '../methods/setAxiosHeader';
 import { generateForecastArray } from '../methods/generateForecastArray';
 import '../styles/Forecast.css';
@@ -13,6 +12,7 @@ const Forecast = () => {
   const { spotName } = useParams();
   const [spot, setSpot] = useState(null);
   const [forecastArray, setForecastArray] = useState([]);
+  const [days, setDays] = useState([]);
   const [settings, setSettings] = useState({
     windUnit: 'kts',
     displayNight: false,
@@ -30,9 +30,12 @@ const Forecast = () => {
         }/spot/name/${spotName}/forecast`,
       )
       .then((res) => {
-        setForecastArray(
-          generateForecastArray(res.data.spot.forecast, settings.nightEnd),
+        const forecastArr = generateForecastArray(
+          res.data.spot.forecast,
+          settings.nightEnd,
         );
+        setForecastArray(forecastArr);
+        setDays([...new Set(forecastArr.map((timeframe) => timeframe.day))]);
         setSpot({ name: res.data.spot.name });
       })
       .catch((err) => console.log(err));
@@ -45,16 +48,15 @@ const Forecast = () => {
 
   return (
     <div className="Forecast">
-      {spot && forecastArray ? (
+      {spot && forecastArray && days ? (
         <>
           <div className="infoBar">
             <h3>{spot.name}</h3>
-            <ForecastOverview
-              forecast={forecastArray}
-            />
+            <ForecastOverview forecast={forecastArray} days={days} />
           </div>
           <ForecastTable
             forecast={forecastArray}
+            days={days}
             settings={settings}
           />
         </>

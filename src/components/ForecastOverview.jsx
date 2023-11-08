@@ -2,22 +2,10 @@ import React from 'react';
 import moment from 'moment';
 import { getColorGradeWind } from '../methods/getColorGrade';
 
-const ForecastOverview = ({ forecast }) => {
-  const forecastData = forecast
-    .map((timeframe) => {
-      return {
-        time: +moment(timeframe.time).format('HH'),
-        day: +moment(timeframe.time).format('DD'),
-        windSpeed: timeframe.ws,
-        windSpeedMax: timeframe.wsMax,
-      };
-    })
-
+const ForecastOverview = ({ forecast, days }) => {
   const highestWindSpeed = Math.max(
-    ...forecastData.map((timeframe) => timeframe.windSpeedMax),
+    ...forecast.map((timeframe) => timeframe.wsMax),
   );
-
-  const days = [...new Set(forecastData.map((timeframe) => timeframe.day))];
 
   const scrolltoDay = (day) => {
     const dayElement = document.querySelector(
@@ -27,42 +15,42 @@ const ForecastOverview = ({ forecast }) => {
   };
 
   const createOverviewDay = (day) => {
-    const dayData = forecastData.filter((timeframe) => timeframe.day === day);
+    const dayData = forecast.filter((timeframe) => timeframe.day === day);
     return (
       <>
-        <div>{day}</div>
+        <div className="OverviewDayLabel">
+          {moment(dayData[0].time).format('dd')}
+        </div>
         <div className="OverviewChart">
           {dayData.map((timeframe, index) => {
+            const heightWind = (timeframe.ws / timeframe.wsMax) * 100;
+            const heightWindMax = 100 - heightWind;
+            const heightOverviewBar =
+              (timeframe.wsMax / highestWindSpeed) * 100;
             return (
               <div
                 key={index}
                 className="OverviewBar"
                 style={{
-                  height: `${
-                    (timeframe.windSpeedMax / highestWindSpeed) * 100
-                  }%`,
+                  height: `${heightOverviewBar}%`,
                 }}
               >
                 <div
                   className="OverviewBarWindMax"
                   style={{
-                    height: `${
-                      100 - (timeframe.windSpeed / timeframe.windSpeedMax) * 100
-                    }%`,
+                    height: `${heightWindMax}%`,
                     background: `linear-gradient(to top, ${getColorGradeWind(
-                      timeframe.windSpeed,
+                      timeframe.ws,
                     )} 0%, ${getColorGradeWind(
-                      timeframe.windSpeedMax,
-                    )} 40%,  ${getColorGradeWind(timeframe.windSpeedMax)} 75%)`,
+                      timeframe.wsMax,
+                    )} 40%,  ${getColorGradeWind(timeframe.wsMax)} 75%)`,
                   }}
                 ></div>
                 <div
                   className="OverviewBarWind"
                   style={{
-                    height: `${
-                      (timeframe.windSpeed / timeframe.windSpeedMax) * 100
-                    }%`,
-                    background: getColorGradeWind(timeframe.windSpeed),
+                    height: `${heightWind}%`,
+                    background: getColorGradeWind(timeframe.ws),
                   }}
                 ></div>
               </div>

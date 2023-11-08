@@ -68,6 +68,8 @@ export const generateForecastArray = (forecast, nightEnd) => {
       // add forecast values to array
       newForecastArray.push({
         time: forecastTimestamp,
+        hour: +moment(forecastTimestamp).format('HH'),
+        day: +moment(forecastTimestamp).format('DD'),
         t: forecast.t_2m[time]
           ? getTemperature(forecast.t_2m[time])
           : lastForecast.t,
