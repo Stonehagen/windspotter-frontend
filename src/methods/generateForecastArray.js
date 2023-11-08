@@ -1,5 +1,18 @@
+const getWindDirection = (v, u) => {
+  return (270 - Math.atan2(v, u) * (180 / Math.PI)) % 360;
+};
+
+const getWindSpeed = (v, u) => {
+  return Math.sqrt(Math.pow(u, 2) + Math.pow(v, 2));
+};
+
+const getTemperature = (t) => {
+  return t - 273.15;
+};
+
 export const generateForecastArray = (forecast) => {
   const newForecastArray = [];
+  // check if all forecast values are available
   if (
     !forecast.t_2m ||
     !forecast.v_10m ||
@@ -10,7 +23,9 @@ export const generateForecastArray = (forecast) => {
   ) {
     return newForecastArray;
   }
-  // t_2m: temperature at 2m above ground is leading value
+
+  // sort forecast by date
+  // v_10m: Wind at 10m above ground is leading value
   const sortedDates = Object.keys(forecast.v_10m).sort((a, b) => {
     return new Date(a) - new Date(b);
   });
@@ -18,7 +33,10 @@ export const generateForecastArray = (forecast) => {
   for (const time of sortedDates) {
     const forecastTimestamp = new Date(time);
     const today = new Date().setHours(0, 0, 0, 0);
+
+    // only add forecast values for today and the future
     if (forecastTimestamp.getTime() >= today) {
+      // if forecast value is not available, use last available value or 0
       const lastForecast = newForecastArray[newForecastArray.length - 1]
         ? newForecastArray[newForecastArray.length - 1]
         : {
@@ -32,23 +50,16 @@ export const generateForecastArray = (forecast) => {
             waveHeight: 0,
             wavePeriod: 0,
           };
+
       newForecastArray.push({
         time: forecastTimestamp,
-        t:
-          forecast.t_2m[time] !== undefined
-            ? forecast.t_2m[time] - 273.15
-            : lastForecast.t,
-        dir:
-          (270 -
-            Math.atan2(forecast.v_10m[time], forecast.u_10m[time]) *
-              (180 / Math.PI)) %
-          360,
-        ws: Math.sqrt(
-          Math.pow(forecast.u_10m[time], 2) +
-            Math.pow(forecast.v_10m[time], 2),
-        ),
-        wsMax: forecast.vmax_10m[time],
-        clouds: forecast.clct_mod[time],
+        t: forecast.t_2m[time]
+          ? getTemperature(forecast.t_2m[time])
+          : lastForecast.t,
+        dir: getWindDirection(forecast.v_10m[time], forecast.u_10m[time]),
+        ws: getWindSpeed(forecast.v_10m[time], forecast.u_10m[time]),
+        wsMax: forecast.vmax_10m[time] ? forecast.vmax_10m[time] : 0,
+        clouds: forecast.clct_mod[time] ? forecast.clct_mod[time] : 0,
         rain: forecast.rain_gsp[time] ? forecast.rain_gsp[time] : 0,
         waveDir: forecast.mwd[time] ? forecast.mwd[time] : 0,
         waveHeight: forecast.swh[time] ? forecast.swh[time] : 0,
