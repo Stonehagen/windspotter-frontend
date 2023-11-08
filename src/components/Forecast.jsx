@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, createRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
@@ -10,8 +10,8 @@ import ForecastTable from './ForecastTable';
 import ForecastOverview from './ForecastOverview';
 
 const Forecast = () => {
-  const [spot, setSpot] = useState(null);
   const { spotName } = useParams();
+  const [spot, setSpot] = useState(null);
   const [forecastArray, setForecastArray] = useState([]);
   const [settings, setSettings] = useState({
     windUnit: 'kts',
@@ -19,17 +19,6 @@ const Forecast = () => {
     nightEnd: 7,
     nightStart: 21,
   });
-
-  const getNighttimeMorning = (time) => {
-    return moment(time).format('HH') < settings.nightEnd;
-  };
-
-  const getNighttime = (time) => {
-    return (
-      getNighttimeMorning(time) ||
-      moment(time).format('HH') > settings.nightStart
-    );
-  };
 
   setAxiosHeader();
 
@@ -41,7 +30,9 @@ const Forecast = () => {
         }/spot/name/${spotName}/forecast`,
       )
       .then((res) => {
-        setForecastArray(generateForecastArray(res.data.spot.forecast));
+        setForecastArray(
+          generateForecastArray(res.data.spot.forecast, settings.nightEnd),
+        );
         setSpot({ name: res.data.spot.name });
       })
       .catch((err) => console.log(err));
@@ -60,18 +51,17 @@ const Forecast = () => {
             <h3>{spot.name}</h3>
             <ForecastOverview
               forecast={forecastArray}
-              getNighttimeMorning={getNighttimeMorning}
             />
           </div>
           <ForecastTable
             forecast={forecastArray}
             settings={settings}
-            getNighttime={getNighttime}
-            getNighttimeMorning={getNighttimeMorning}
           />
         </>
       ) : (
-        'Loading'
+        <div className="Loading">
+          Try to get your WIND<span>MATE</span>...
+        </div>
       )}
     </div>
   );

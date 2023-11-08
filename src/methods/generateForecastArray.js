@@ -1,3 +1,6 @@
+import moment from 'moment';
+import { checkNighttimeMorning } from './checkNightTime';
+
 const getWindDirection = (v, u) => {
   return (270 - Math.atan2(v, u) * (180 / Math.PI)) % 360;
 };
@@ -10,7 +13,7 @@ const getTemperature = (t) => {
   return t - 273.15;
 };
 
-export const generateForecastArray = (forecast) => {
+export const generateForecastArray = (forecast, nightEnd) => {
   const newForecastArray = [];
   // check if all forecast values are available
   if (
@@ -24,18 +27,29 @@ export const generateForecastArray = (forecast) => {
     return newForecastArray;
   }
 
+  // get current date
+  const today = new Date().setHours(0, 0, 0, 0);
+
   // sort forecast by date
   // v_10m: Wind at 10m above ground is leading value
   const sortedDates = Object.keys(forecast.v_10m).sort((a, b) => {
     return new Date(a) - new Date(b);
   });
 
+  // get last day of forecast
+  const lastTimestamp = new Date(sortedDates[sortedDates.length - 1]);
+  const lastDay = +moment(lastTimestamp).format('DD');
+
+  // check if last forecast value is from the night in morning
+  const skipLastDay = checkNighttimeMorning(lastTimestamp, nightEnd);
+
   for (const time of sortedDates) {
     const forecastTimestamp = new Date(time);
-    const today = new Date().setHours(0, 0, 0, 0);
+    const timestampDay = +moment(forecastTimestamp).format('DD');
+    const skipThisDay = skipLastDay && timestampDay === lastDay;
 
     // only add forecast values for today and the future
-    if (forecastTimestamp.getTime() >= today) {
+    if (forecastTimestamp.getTime() >= today && !skipThisDay) {
       // if forecast value is not available, use last available value or 0
       const lastForecast = newForecastArray[newForecastArray.length - 1]
         ? newForecastArray[newForecastArray.length - 1]
@@ -51,6 +65,7 @@ export const generateForecastArray = (forecast) => {
             wavePeriod: 0,
           };
 
+      // add forecast values to array
       newForecastArray.push({
         time: forecastTimestamp,
         t: forecast.t_2m[time]

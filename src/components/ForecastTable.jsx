@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { checkNighttimeMorning } from '../methods/checkNightTime';
 import '../styles/ForecastTable.css';
 
 import OneDayTable from './OneDayTable';
@@ -6,8 +7,6 @@ import OneDayTable from './OneDayTable';
 const ForecastTable = ({
   forecast,
   settings,
-  getNighttime,
-  getNighttimeMorning,
 }) => {
   const checkIfNewDay = (prev, curr) => {
     return prev.getDay() !== curr.getDay();
@@ -27,13 +26,12 @@ const ForecastTable = ({
         {forecast.map((timeframe, index, arr) => {
           if (index === arr.length - 1) {
             // check if last element is at day and if so, create table
-            if (!getNighttimeMorning(timeframe.time)) {
+            if (!checkNighttimeMorning(timeframe.time, settings.nightEnd)) {
               const dayArray = arr.slice(dayStart, arr.length);
               return (
                 <OneDayTable
                   dayArray={dayArray}
                   settings={settings}
-                  getNighttime={getNighttime}
                   key={index}
                 />
               );
@@ -45,7 +43,6 @@ const ForecastTable = ({
               <OneDayTable
                 dayArray={dayArray}
                 settings={settings}
-                getNighttime={getNighttime}
                 key={index}
               />
             );

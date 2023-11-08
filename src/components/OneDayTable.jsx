@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { checkNighttime } from '../methods/checkNightTime';
 import WindDir from '../assets/WindDir.svg?react';
 import ClearDay from '../assets/weather/ClearDay.svg?react';
 import PartlyCloudyDay from '../assets/weather/PartlyCloudyDay.svg?react';
@@ -17,12 +18,7 @@ import {
 } from '../methods/getColorGrade';
 import getWindSpeed from '../methods/getWindSpeed';
 
-const OneDayTable = ({
-  dayArray,
-  index,
-  settings,
-  getNighttime,
-}) => {
+const OneDayTable = ({ dayArray, index, settings }) => {
   const getPrettyDate = (time) => {
     return moment(time).format('dddd, DD.MM.YY');
   };
@@ -74,7 +70,14 @@ const OneDayTable = ({
           moment(timeframe.time).isDST() ? 'DST' : ''
         }`}
         style={{
-          display: getNighttime(timeframe.time) && !displayNight && 'none',
+          display:
+            checkNighttime(
+              timeframe.time,
+              settings.nightStart,
+              settings.nightEnd,
+            ) &&
+            !displayNight &&
+            'none',
         }}
       >
         <td className="time">
@@ -85,7 +88,12 @@ const OneDayTable = ({
             <div
               className="windForecast"
               style={{
-                opacity: getNighttime(timeframe.time) && '0.7',
+                opacity:
+                  checkNighttime(
+                    timeframe.time,
+                    settings.nightStart,
+                    settings.nightEnd,
+                  ) && '0.7',
                 background: `linear-gradient(to right, ${getColorGradeWind(
                   timeframe.ws,
                 )} 40%, ${getColorGradeWind(timeframe.wsMax)} 80%)`,
@@ -128,7 +136,12 @@ const OneDayTable = ({
               <div
                 className="temp"
                 style={{
-                  opacity: getNighttime(timeframe.time) && '0.7',
+                  opacity:
+                    checkNighttime(
+                      timeframe.time,
+                      settings.nightStart,
+                      settings.nightEnd,
+                    ) && '0.7',
                   backgroundColor: getColorGradeTemp(timeframe.t),
                 }}
               >
@@ -143,7 +156,14 @@ const OneDayTable = ({
                       : 'white',
                 }}
               >
-                {getWeatherIcon(timeframe.clouds, getNighttime(timeframe.time))}
+                {getWeatherIcon(
+                  timeframe.clouds,
+                  checkNighttime(
+                    timeframe.time,
+                    settings.nightStart,
+                    settings.nightEnd,
+                  ),
+                )}
                 <div className="rain">
                   <div className="rainDrops">
                     {getRainDrops(timeframe.rain)}
@@ -164,7 +184,12 @@ const OneDayTable = ({
             <div
               className="waves"
               style={{
-                opacity: getNighttime(timeframe.time) && '0.7',
+                opacity:
+                  checkNighttime(
+                    timeframe.time,
+                    settings.nightStart,
+                    settings.nightEnd,
+                  ) && '0.7',
                 backgroundColor: timeframe.waveHeight
                   ? getColorGradeWave(timeframe.waveHeight)
                   : 'white',

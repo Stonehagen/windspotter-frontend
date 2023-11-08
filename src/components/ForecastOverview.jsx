@@ -2,19 +2,9 @@ import React from 'react';
 import moment from 'moment';
 import { getColorGradeWind } from '../methods/getColorGrade';
 
-const ForecastOverview = ({ forecast, getNighttimeMorning }) => {
-  const checkIfNewDay = (prev, curr) => {
-    return prev.getDay() !== curr.getDay();
-  };
-
-  const lastDay = +moment(forecast[forecast.length - 1].time).format('DD');
-  const lastDaySkip = getNighttimeMorning(forecast[forecast.length - 1].time);
-
+const ForecastOverview = ({ forecast }) => {
   const forecastData = forecast
     .map((timeframe) => {
-      if (lastDaySkip && lastDay === +moment(timeframe.time).format('DD')) {
-        return;
-      }
       return {
         time: +moment(timeframe.time).format('HH'),
         day: +moment(timeframe.time).format('DD'),
@@ -22,7 +12,6 @@ const ForecastOverview = ({ forecast, getNighttimeMorning }) => {
         windSpeedMax: timeframe.wsMax,
       };
     })
-    .filter((timeframe) => timeframe !== undefined);
 
   const highestWindSpeed = Math.max(
     ...forecastData.map((timeframe) => timeframe.windSpeedMax),
@@ -64,9 +53,7 @@ const ForecastOverview = ({ forecast, getNighttimeMorning }) => {
                       timeframe.windSpeed,
                     )} 0%, ${getColorGradeWind(
                       timeframe.windSpeedMax,
-                    )} 40%,  ${getColorGradeWind(
-                      timeframe.windSpeedMax,
-                    )} 75%)`,
+                    )} 40%,  ${getColorGradeWind(timeframe.windSpeedMax)} 75%)`,
                   }}
                 ></div>
                 <div
