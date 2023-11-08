@@ -10,17 +10,19 @@ const ForecastOverview = ({ forecast, getNighttimeMorning }) => {
   const lastDay = +moment(forecast[forecast.length - 1].time).format('DD');
   const lastDaySkip = getNighttimeMorning(forecast[forecast.length - 1].time);
 
-  const forecastData = forecast.map((timeframe, index, prev) => {
-    if (lastDaySkip && lastDay === +moment(timeframe.time).format('DD')) {
-      return;
-    }
-    return {
-      time: +moment(timeframe.time).format('HH'),
-      day: +moment(timeframe.time).format('DD'),
-      windSpeed: timeframe.ws,
-      windSpeedMax: timeframe.wsMax,
-    };
-  });
+  const forecastData = forecast
+    .map((timeframe) => {
+      if (lastDaySkip && lastDay === +moment(timeframe.time).format('DD')) {
+        return;
+      }
+      return {
+        time: +moment(timeframe.time).format('HH'),
+        day: +moment(timeframe.time).format('DD'),
+        windSpeed: timeframe.ws,
+        windSpeedMax: timeframe.wsMax,
+      };
+    })
+    .filter((timeframe) => timeframe !== undefined);
 
   const highestWindSpeed = Math.max(
     ...forecastData.map((timeframe) => timeframe.windSpeedMax),
