@@ -66,7 +66,7 @@ const ForecastOverview = ({ forecast, getNighttimeMorning }) => {
                       timeframe.windSpeedMax,
                     )} 40%,  ${getColorGradeWind(
                       timeframe.windSpeedMax,
-                    )} 60%, rgba(0,0,0,0) 100%)`,
+                    )} 75%)`,
                   }}
                 ></div>
                 <div
