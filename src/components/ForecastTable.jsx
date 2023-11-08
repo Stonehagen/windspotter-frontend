@@ -5,8 +5,7 @@ import OneDayTable from './OneDayTable';
 
 const ForecastTable = ({
   forecast,
-  windUnit,
-  displayNight,
+  settings,
   getNighttime,
   getNighttimeMorning,
 }) => {
@@ -33,8 +32,7 @@ const ForecastTable = ({
               return (
                 <OneDayTable
                   dayArray={dayArray}
-                  windUnit={windUnit}
-                  displayNight={displayNight}
+                  settings={settings}
                   getNighttime={getNighttime}
                   key={index}
                 />
@@ -46,8 +44,7 @@ const ForecastTable = ({
             return (
               <OneDayTable
                 dayArray={dayArray}
-                windUnit={windUnit}
-                displayNight={displayNight}
+                settings={settings}
                 getNighttime={getNighttime}
                 key={index}
               />

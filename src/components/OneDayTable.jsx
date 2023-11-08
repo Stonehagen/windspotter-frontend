@@ -20,13 +20,14 @@ import getWindSpeed from '../methods/getWindSpeed';
 const OneDayTable = ({
   dayArray,
   index,
-  windUnit,
-  displayNight,
+  settings,
   getNighttime,
 }) => {
   const getPrettyDate = (time) => {
     return moment(time).format('dddd, DD.MM.YY');
   };
+  const windUnit = settings.windUnit;
+  const displayNight = settings.displayNight;
 
   const getWeatherIcon = (cloudCover, night) => {
     if (cloudCover <= 0.25) {
