@@ -3,6 +3,7 @@ import './styles/App.css';
 
 import Forecast from './components/Forecast';
 import LandingPage from './components/LandingPage';
+import Map from './components/Map';
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/forecast/:spotName" element={<Forecast />} />
+        <Route path="/map" element={<Map />} />
       </Routes>
     </BrowserRouter>
   );
