@@ -5,7 +5,7 @@ import { setAxiosHeader } from '../methods/setAxiosHeader';
 import { generateForecastArray } from '../methods/generateForecastArray';
 import '../styles/Forecast.css';
 
-import ForecastTable from './ForecastTable';
+import ForecastTables from './ForecastTables';
 import ForecastOverview from './ForecastOverview';
 
 const Forecast = () => {
@@ -54,7 +54,7 @@ const Forecast = () => {
             <h3>{spot.name}</h3>
             <ForecastOverview forecast={forecastArray} days={days} />
           </div>
-          <ForecastTable
+          <ForecastTables
             forecast={forecastArray}
             days={days}
             settings={settings}

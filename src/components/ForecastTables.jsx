@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import '../styles/ForecastTable.css';
 
-import OneDayTable from './OneDayTable';
+import DailyForecastTable from './DailyForecastTable';
 
-const ForecastTable = ({ forecast, days, settings }) => {
+const ForecastTables = ({ forecast, days, settings }) => {
   const createTables = (forecast) => {
     if (!forecast) {
       return (
@@ -18,7 +18,7 @@ const ForecastTable = ({ forecast, days, settings }) => {
     });
 
     return sortedForecastDays.map((dayArray, index) => (
-      <OneDayTable dayArray={dayArray} settings={settings} key={index} />
+      <DailyForecastTable dayArray={dayArray} settings={settings} key={index} />
     ));
   };
 
@@ -54,4 +54,4 @@ const ForecastTable = ({ forecast, days, settings }) => {
   return <>{forecast ? createTables(forecast) : ''}</>;
 };
 
-export default ForecastTable;
+export default ForecastTables;
