@@ -37,22 +37,33 @@ const colorScaleTemp = [
   '#84445A',
 ];
 
-const colorScaleRain = ['#ffffff', '#3F93E2','#304164'];
+const colorScaleRain = ['#ffffff', '#3F93E2', '#304164'];
 
 const colorScaleWave = ['#ffffff', '#3F93E2', '#304164'];
 
-export const getColorGradeWind = chroma
+const getColorGradeWind = chroma
   .scale(colorScaleWind)
   .domain([0, maxMeterPerSecond]);
 
-export const getColorGradeTemp = chroma
+const getColorGradeTemp = chroma
   .scale(colorScaleTemp)
   .domain([minTemperature, maxTemperature]);
 
-export const getColorGradeRain = chroma
-  .scale(colorScaleRain)
-  .domain([0, maxRain]);
+const getColorGradeRain = chroma.scale(colorScaleRain).domain([0, maxRain]);
 
-export const getColorGradeWave = chroma
-  .scale(colorScaleWave)
-  .domain([0, maxWave]);
+const getColorGradeWave = chroma.scale(colorScaleWave).domain([0, maxWave]);
+
+export default (value, type) => {
+  switch (type) {
+    case 'wind':
+      return getColorGradeWind(value);
+    case 'temp':
+      return getColorGradeTemp(value);
+    case 'rain':
+      return getColorGradeRain(value);
+    case 'wave':
+      return getColorGradeWave(value);
+    default:
+      return getColorGradeWind(value);
+  }
+};

@@ -2,21 +2,12 @@ import React from 'react';
 import moment from 'moment';
 import { checkNighttime } from '../methods/checkNightTime';
 import WindDir from '../assets/WindDir.svg?react';
-import ClearDay from '../assets/weather/ClearDay.svg?react';
-import PartlyCloudyDay from '../assets/weather/PartlyCloudyDay.svg?react';
-import MostlyCloudyDay from '../assets/weather/MostlyCloudyDay.svg?react';
-import CloudyNight from '../assets/weather/CloudyNight.svg?react';
-import Cloudy from '../assets/weather/Cloudy.svg?react';
-import RainDrop from '../assets/weather/RainDrop.svg?react';
 import getWindDirection from '../methods/getWindDirection';
-
-import {
-  getColorGradeWind,
-  getColorGradeTemp,
-  getColorGradeWave,
-  getColorGradeRain,
-} from '../methods/getColorGrade';
+import getColorGrade from '../methods/getColorGrade';
 import getWindSpeed from '../methods/getWindSpeed';
+
+import RainDrops from './RainDrops';
+import WeatherIcon from './WeatherIcon';
 
 const OneDayTable = ({ dayArray, index, settings }) => {
   const getPrettyDate = (time) => {
@@ -24,44 +15,6 @@ const OneDayTable = ({ dayArray, index, settings }) => {
   };
   const windUnit = settings.windUnit;
   const displayNight = settings.displayNight;
-
-  const getWeatherIcon = (cloudCover, night) => {
-    if (cloudCover <= 0.25) {
-      return night ? <CloudyNight /> : <ClearDay />;
-    } else if (cloudCover <= 0.5) {
-      return night ? <CloudyNight /> : <PartlyCloudyDay />;
-    } else if (cloudCover <= 0.75) {
-      return night ? <CloudyNight /> : <MostlyCloudyDay />;
-    } else {
-      return <Cloudy />;
-    }
-  };
-
-  const getRainDrops = (rain) => {
-    if (rain >= 4) {
-      return (
-        <>
-          <RainDrop />
-          <RainDrop />
-          <RainDrop />
-        </>
-      );
-    } else if (rain >= 2) {
-      return (
-        <>
-          <RainDrop />
-          <RainDrop />
-        </>
-      );
-    } else if (rain >= 0.1) {
-      return (
-        <>
-          <RainDrop />
-        </>
-      );
-    }
-    return <></>;
-  };
 
   const createTableRow = (timeframe) => {
     return (
@@ -94,9 +47,10 @@ const OneDayTable = ({ dayArray, index, settings }) => {
                     settings.nightStart,
                     settings.nightEnd,
                   ) && '0.7',
-                background: `linear-gradient(to right, ${getColorGradeWind(
+                background: `linear-gradient(to right, ${getColorGrade(
                   timeframe.ws,
-                )} 40%, ${getColorGradeWind(timeframe.wsMax)} 80%)`,
+                  'wind',
+                )} 40%, ${getColorGrade(timeframe.wsMax, 'wind')} 80%)`,
               }}
             >
               <div className="windSpeeds">
@@ -142,7 +96,7 @@ const OneDayTable = ({ dayArray, index, settings }) => {
                       settings.nightStart,
                       settings.nightEnd,
                     ) && '0.7',
-                  backgroundColor: getColorGradeTemp(timeframe.t),
+                  backgroundColor: getColorGrade(timeframe.t, 'temp'),
                 }}
               >
                 {timeframe.t.toFixed(0)}˚<span>C</span>
@@ -152,21 +106,21 @@ const OneDayTable = ({ dayArray, index, settings }) => {
                 style={{
                   backgroundColor:
                     timeframe.rain >= 0.1
-                      ? getColorGradeRain(timeframe.rain)
+                      ? getColorGrade(timeframe.rain, 'rain')
                       : 'white',
                 }}
               >
-                {getWeatherIcon(
-                  timeframe.clouds,
-                  checkNighttime(
+                <WeatherIcon
+                  cloudCover={timeframe.clouds}
+                  night={checkNighttime(
                     timeframe.time,
                     settings.nightStart,
                     settings.nightEnd,
-                  ),
-                )}
+                  )}
+                />
                 <div className="rain">
                   <div className="rainDrops">
-                    {getRainDrops(timeframe.rain)}
+                    <RainDrops rain={timeframe.rain} />
                   </div>
                   <div className="rainText">
                     {timeframe.rain >= 0.1 ? (
@@ -191,7 +145,7 @@ const OneDayTable = ({ dayArray, index, settings }) => {
                     settings.nightEnd,
                   ) && '0.7',
                 backgroundColor: timeframe.waveHeight
-                  ? getColorGradeWave(timeframe.waveHeight)
+                  ? getColorGrade(timeframe.waveHeight, 'wave')
                   : 'white',
               }}
             >
@@ -223,7 +177,7 @@ const OneDayTable = ({ dayArray, index, settings }) => {
               <div
                 className="windMaxMeter"
                 style={{
-                  backgroundColor: getColorGradeWind(timeframe.wsMax),
+                  backgroundColor: getColorGrade(timeframe.wsMax, 'wind'),
                   width: `${
                     (timeframe.wsMax / 30) * 100 > 100
                       ? 100
@@ -234,7 +188,7 @@ const OneDayTable = ({ dayArray, index, settings }) => {
                 <div
                   className="windMeter"
                   style={{
-                    backgroundColor: getColorGradeWind(timeframe.ws),
+                    backgroundColor: getColorGrade(timeframe.ws, 'wind'),
                     width: `${
                       (timeframe.ws / timeframe.wsMax) * 100 > 100
                         ? 100
@@ -247,7 +201,7 @@ const OneDayTable = ({ dayArray, index, settings }) => {
               <div
                 className="windMaxMeter"
                 style={{
-                  backgroundColor: getColorGradeWind(timeframe.ws),
+                  backgroundColor: getColorGrade(timeframe.ws, 'wind'),
                   width: `${
                     (timeframe.ws / 30) * 100 > 100
                       ? 100

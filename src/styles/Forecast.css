@@ -69,7 +69,6 @@
   font-weight: 400;
   font-size: 0.7em;
   gap: 2px;
-  opacity: 0.8;
   overflow: hidden;
 }
 
@@ -89,10 +88,9 @@
 }
 
 .infoBar .ForecastOverviewDay.active {
-  background-color: rgb(130, 130, 130);
+  background-color: rgba(130, 130, 130, 0.25);
   opacity: 1;
   font-weight: 600;
-  color: #242424;
 }
 
 .infoBar .OverviewChart {
