@@ -14,11 +14,20 @@ import convertImageToData from '../methods/convertImageToData.js';
 
 import overlayMap from '../assets/maps/overlayMap.json';
 import baseMap from '../assets/maps/baseMap.json';
+import MapForecastModelMenu from './MapForecastModelMenu.jsx';
+import MapForecastTimeMenu from './MapForecastTimeMenu.jsx';
 
 const Map = () => {
+  const [forecastModel, setForecastModel] = useState('icon-d2');
+  const [forecastMaps, setForecastMaps] = useState([]);
   const [map, setMap] = useState(null);
   const [layersControl, setLayersControl] = useState(null);
   const [overlayed, setOverlayed] = useState(false);
+  const [windSpeedLayer, setWindSpeedLayer] = useState(null);
+  const [velocityOverlay, setVelocityOverlay] = useState(null);
+  const [forecastTime, setForecastTime] = useState(
+    'Wed, 22 Nov 2023 09:00:00 GMT',
+  );
 
   setAxiosHeader();
 
@@ -32,50 +41,60 @@ const Map = () => {
     });
   };
 
-  const getMap = async (mapId = '65553dfdbba0aad9c5a8a485') => {
-    axios
-      .get(`${import.meta.env.VITE_API_BACKENDSERVER}/map/${mapId}`)
-      .then(async (res) => {
-        const header =
-          res.data.mapForecast.forecastMaps['Wed, 22 Nov 2023 09:00:00 GMT']
-            .data;
-        const imageBuffer = await urlToBuffer(
-          res.data.mapForecast.forecastMaps['Wed, 22 Nov 2023 09:00:00 GMT']
-            .url,
-        );
-        const { values, windOverlay } = await convertImageToData(
-          imageBuffer,
-          header,
-        );
+  const getMap = async () => {
+    let mapForecasts;
+    if (forecastMaps.length === 0) {
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_BACKENDSERVER}/map/`,
+      );
+      mapForecasts = res.data.mapForecasts;
+      setForecastMaps(res.data.mapForecasts);
+    } else {
+      mapForecasts = forecastMaps;
+    }
 
-        const overlay = L.imageOverlay(
-          windOverlay,
-          [
-            [header.la2, header.lo1 > 180 ? header.lo1 - 360 : header.lo1],
-            [header.la1, header.lo2 > 180 ? header.lo2 - 360 : header.lo2],
-          ],
-          { zIndex: 1, opacity: 1 },
-        ).addTo(map);
+    const currentMap = mapForecasts.find(
+      (map) => map.forecastInfo.name === forecastModel,
+    );
+    const header = currentMap.forecastMaps[forecastTime].data;
+    const imageBuffer = await urlToBuffer(
+      currentMap.forecastMaps[forecastTime].url,
+    );
+    const { values, windOverlay } = await convertImageToData(
+      imageBuffer,
+      header,
+    );
 
-        const overlayElement = overlay.getElement();
-        overlayElement.style.mixBlendMode = 'multiply';
+    velocityOverlay ? velocityOverlay.remove() : null;
 
-        L.velocityLayer({
-          displayValues: true,
-          displayOptions: {
-            velocityType: 'Wind',
-            position: 'bottomleft',
-            emptyString: 'No wind data',
-            speedUnit: 'kt',
-          },
-          data: { json: { header }, values },
-          maxVelocity: 20,
-        }).addTo(map);
+    const overlay = L.imageOverlay(
+      windOverlay,
+      [
+        [header.la2, header.lo1 > 180 ? header.lo1 - 360 : header.lo1],
+        [header.la1, header.lo2 > 180 ? header.lo2 - 360 : header.lo2],
+      ],
+      { zIndex: 1, opacity: 1 },
+    ).addTo(map);
 
-        setOverlayed(true);
-      })
-      .catch((err) => console.log(err));
-    // need a redirect to main page if an error occurs
+    const overlayElement = overlay.getElement();
+    overlayElement.style.mixBlendMode = 'multiply';
+    setWindSpeedLayer(overlayElement);
+
+    windSpeedLayer ? windSpeedLayer.remove() : null;
+    const veloOverlay = L.velocityLayer({
+      displayValues: true,
+      displayOptions: {
+        velocityType: 'Wind',
+        position: 'bottomleft',
+        emptyString: 'No wind data',
+        speedUnit: 'kt',
+      },
+      data: { json: { header }, values },
+      maxVelocity: 20,
+    }).addTo(map);
+
+    setVelocityOverlay(veloOverlay);
+    setOverlayed(true);
   };
 
   const setMapLayers = () => {
@@ -105,7 +124,7 @@ const Map = () => {
       getMap();
       setMapLayers();
     }
-  }, [map]);
+  }, [map, forecastModel, forecastTime]);
 
   return (
     <>
@@ -120,6 +139,22 @@ const Map = () => {
       >
         <LayersControl ref={setLayersControl}></LayersControl>
         <AttributionControl position="bottomright" prefix="" />
+        {forecastMaps.length > 0 ? (
+          <>
+            <MapForecastModelMenu
+              setForecastModel={setForecastModel}
+              forecastMaps={forecastMaps}
+              setOverlayed={setOverlayed}
+            />
+            <MapForecastTimeMenu
+              setForecastTime={setForecastTime}
+              forecastMap={forecastMaps.find(
+                (map) => map.forecastInfo.name === forecastModel,
+              )}
+              setOverlayed={setOverlayed}
+            />
+          </>
+        ) : null}
       </MapContainer>
     </>
   );

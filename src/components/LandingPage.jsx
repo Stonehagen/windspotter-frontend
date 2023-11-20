@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import WindMateLogo from '../assets/windmate.svg?react';
 
 const LandingPage = () => {
   const [spots, setSpots] = useState([]);
