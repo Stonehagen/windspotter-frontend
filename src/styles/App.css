@@ -83,7 +83,11 @@
   height: 100%;
 }
 
-#map  .leaflet-layer {
+#map .leaflet-layer {
   -webkit-filter: grayscale(90%);
   filter: grayscale(90%);
-  }
+}
+
+#map .leaflet-control-attribution {
+  font-size: 0.85em;
+}

@@ -7,13 +7,13 @@ const maxRain = 10;
 const maxWave = 10;
 
 const colorScaleWind = [
-  '#10BFFF',
-  '#36D7FC',
-  '#6FF48F',
-  '#73ED12',
+  '#908FFF',
+  '#56C7FC',
+  '#5FF15F',
+  '#A3ED12',
   '#DADD12',
-  '#EDC212',
-  '#ED8F12',
+  '#EDA212',
+  '#ED6F12',
   '#ED2912',
   '#D5102D',
   '#84445A',
@@ -45,6 +45,10 @@ const getColorGradeWind = chroma
   .scale(colorScaleWind)
   .domain([0, maxMeterPerSecond]);
 
+const getColorGradeWindRGB = chroma
+  .scale(colorScaleWind)
+  .domain([0, maxMeterPerSecond]);
+
 const getColorGradeTemp = chroma
   .scale(colorScaleTemp)
   .domain([minTemperature, maxTemperature]);
@@ -57,6 +61,8 @@ export default (value, type) => {
   switch (type) {
     case 'wind':
       return getColorGradeWind(value);
+    case 'windRGB':
+      return chroma(getColorGradeWindRGB(value)).rgb();
     case 'temp':
       return getColorGradeTemp(value);
     case 'rain':
