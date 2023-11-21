@@ -69,7 +69,7 @@ const Map = () => {
 
     const header = currentMap.forecastMaps[forecastDate].data;
     const imageBuffer = await urlToBuffer(
-      currentMap.forecastMaps[forecastDate].url,
+      currentMap.forecastMaps[forecastDate].url.replace('http://', 'https://'),
     );
     const { values, windOverlay } = await convertImageToData(
       imageBuffer,
