@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, AttributionControl, LayersControl } from 'react-leaflet';
 import axios from 'axios';
 import L from 'leaflet';
-import '@maplibre/maplibre-gl-leaflet';
+import {} from '@maplibre/maplibre-gl-leaflet';
 import '../wind/js/L.Control.Velocity.js';
 import '../wind/js/L.VelocityLayer.js';
 import '../wind/js/L.CanvasLayer.js';
