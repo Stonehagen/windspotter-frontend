@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import '../styles/LandingPage.css';
 
 const LandingPage = () => {
   const [spots, setSpots] = useState([]);
@@ -20,10 +21,19 @@ const LandingPage = () => {
   return (
     <>
       <div>
-        <h1 className="Logo">WIND<span>MATE</span></h1>
+        <h1 className="Logo">
+          WIND<span>MATE</span>
+        </h1>
+      </div>
+      <div className="LandingPage">
+        <Link to={`/map/`} className="spotLink">
+          <div>Map Beta</div>
+        </Link>
       </div>
       <div className="Spotlist">
-        <h3 className="LogoSub">SELECT<span>SPOT</span></h3>
+        <h3 className="LogoSub">
+          SELECT<span>SPOT</span>
+        </h3>
         {spots.map((spot) => (
           <Link
             key={spot._id}

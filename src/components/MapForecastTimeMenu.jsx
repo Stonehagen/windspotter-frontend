@@ -11,9 +11,6 @@ const MapForecastTimeMenu = ({
   const [forecastDay, setForecastDay] = useState(
     new Date(forecastTime).getDate(),
   );
-  const [forecastHour, setForecastHour] = useState(
-    new Date(forecastTime).getHours(),
-  );
 
   const getPrettyDate = (time) => {
     return moment(new Date(time)).format('dd, DD.MM');

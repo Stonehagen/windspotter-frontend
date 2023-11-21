@@ -84,7 +84,7 @@ const Map = () => {
         [header.la2, header.lo1 > 180 ? header.lo1 - 360 : header.lo1],
         [header.la1, header.lo2 > 180 ? header.lo2 - 360 : header.lo2],
       ],
-      { zIndex: 1, opacity: 1 },
+      { zIndex: 5, opacity: 1 },
     ).addTo(map);
 
     const overlayElement = overlay.getElement();
