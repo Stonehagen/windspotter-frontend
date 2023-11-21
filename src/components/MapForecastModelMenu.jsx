@@ -1,12 +1,18 @@
-const MapForecastModelMenu = ({ setForecastModel, forecastMaps, setOverlayed }) => {
+const MapForecastModelMenu = ({
+  setForecastModel,
+  forecastMaps,
+  setOverlayed,
+  setForecastTime,
+}) => {
   return (
-    <div className="leaflet-top leaflet-right">
+    <div className="leaflet-top">
       {forecastMaps.map((map) => (
         <button
           className="leaflet-control"
           key={map.forecastInfo.name}
           onClick={() => {
             setForecastModel(map.forecastInfo.name);
+            setForecastTime(null);
             setOverlayed(false);
           }}
         >

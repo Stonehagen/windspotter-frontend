@@ -8,6 +8,7 @@ import '../wind/js/L.Control.Velocity.js';
 import '../wind/js/L.VelocityLayer.js';
 import '../wind/js/L.CanvasLayer.js';
 import '../wind/css/leaflet-wind.css';
+import '../styles/Map.css';
 
 import { setAxiosHeader } from '../methods/setAxiosHeader';
 import convertImageToData from '../methods/convertImageToData.js';
@@ -25,11 +26,17 @@ const Map = () => {
   const [overlayed, setOverlayed] = useState(false);
   const [windSpeedLayer, setWindSpeedLayer] = useState(null);
   const [velocityOverlay, setVelocityOverlay] = useState(null);
-  const [forecastTime, setForecastTime] = useState(
-    'Wed, 22 Nov 2023 09:00:00 GMT',
-  );
+  const [forecastTime, setForecastTime] = useState(null);
+  const [newPane, setNewPane] = useState(null);
 
   setAxiosHeader();
+
+  const getForecastTime = (maps) => {
+    // sort Dates and pick the oldest one
+    return Object.keys(maps).sort((a, b) => {
+      return new Date(a) - new Date(b);
+    })[0];
+  };
 
   const urlToBuffer = async (url) => {
     return axios({
@@ -56,9 +63,14 @@ const Map = () => {
     const currentMap = mapForecasts.find(
       (map) => map.forecastInfo.name === forecastModel,
     );
-    const header = currentMap.forecastMaps[forecastTime].data;
+
+    const forecastDate = forecastTime
+      ? forecastTime
+      : getForecastTime(currentMap.forecastMaps);
+
+    const header = currentMap.forecastMaps[forecastDate].data;
     const imageBuffer = await urlToBuffer(
-      currentMap.forecastMaps[forecastTime].url,
+      currentMap.forecastMaps[forecastDate].url,
     );
     const { values, windOverlay } = await convertImageToData(
       imageBuffer,
@@ -95,6 +107,7 @@ const Map = () => {
 
     setVelocityOverlay(veloOverlay);
     setOverlayed(true);
+    setForecastTime(forecastDate);
   };
 
   const setMapLayers = () => {
@@ -117,12 +130,16 @@ const Map = () => {
         '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a> contributors',
       pane: 'newPane',
     }).addTo(map);
+
+    setNewPane(newPane);
   };
 
   useEffect(() => {
     if (map && !overlayed) {
       getMap();
-      setMapLayers();
+      if (!newPane) {
+        setMapLayers();
+      }
     }
   }, [map, forecastModel, forecastTime]);
 
@@ -145,14 +162,19 @@ const Map = () => {
               setForecastModel={setForecastModel}
               forecastMaps={forecastMaps}
               setOverlayed={setOverlayed}
-            />
-            <MapForecastTimeMenu
               setForecastTime={setForecastTime}
-              forecastMap={forecastMaps.find(
-                (map) => map.forecastInfo.name === forecastModel,
-              )}
-              setOverlayed={setOverlayed}
             />
+            {forecastTime ? (
+              <MapForecastTimeMenu
+                setForecastTime={setForecastTime}
+                forecastTime={forecastTime}
+                forecastMap={forecastMaps.find(
+                  (map) => map.forecastInfo.name === forecastModel,
+                )}
+                setOverlayed={setOverlayed}
+                forecastModel={forecastModel}
+              />
+            ) : null}
           </>
         ) : null}
       </MapContainer>
