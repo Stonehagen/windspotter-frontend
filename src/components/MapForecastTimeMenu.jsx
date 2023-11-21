@@ -43,17 +43,25 @@ const MapForecastTimeMenu = ({
     //create the forecastDayMenu
     const forecastDayMenu = [];
     for (const sortedDay of sortedForecastDays) {
-      forecastDayMenu.push(
-        <div
-          key={sortedDay}
-          className="leaflet-control"
-          onClick={() => {
-            setForecastDay(sortedDay);
-          }}
-        >
-          <div>{getPrettyDate(forecastDays[sortedDay][0])}</div>
-        </div>,
-      );
+      const dayToday = new Date().getDate();
+      //if the day is today, add a "today" label
+      console.log(dayToday, +sortedDay);
+      if (+sortedDay >= dayToday || +sortedDay + 3 <= dayToday) {
+        forecastDayMenu.push(
+          <div
+            key={sortedDay}
+            className="leaflet-control"
+            onClick={() => {
+              setForecastDay(sortedDay);
+            }}
+          >
+            <div>
+              {getPrettyDate(forecastDays[sortedDay][0])}
+            </div>
+          </div>,
+        );
+      }
+
     }
     //create the forecastHourMenu
     const forecastHourMenu = [];

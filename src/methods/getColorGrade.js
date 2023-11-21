@@ -7,16 +7,22 @@ const maxRain = 10;
 const maxWave = 10;
 
 const colorScaleWind = [
-  '#908FFF',
-  '#56C7FC',
-  '#5FF15F',
-  '#A3ED12',
-  '#DADD12',
-  '#EDA212',
-  '#ED6F12',
-  '#ED2912',
-  '#D5102D',
-  '#84445A',
+  '#25475A', //0
+  '#3A516A', //4
+  '#496677', //7
+  '#40756E', //11
+  '#4ECA2D', //17
+  '#B9D227', //22
+  '#D3A824', //28
+  '#C25A2D', //34
+  '#AA4646', //41
+  '#903C5F', //48
+  '#7B3575', //56
+  '#491F99', //64
+  '#273FC9', //83
+  '#0000FF', //96
+  '#B008CF', //114
+  '#FE37FC', //135
 ];
 
 const colorScaleTemp = [
@@ -43,15 +49,30 @@ const colorScaleWave = ['#ffffff', '#3F93E2', '#304164'];
 
 const getColorGradeWind = chroma
   .scale(colorScaleWind)
-  .domain([0, maxMeterPerSecond]);
-
-const getColorGradeWindRGB = chroma
-  .scale(colorScaleWind)
-  .domain([0, maxMeterPerSecond]);
+  .domain([
+    0,
+    4 * 0.514444,
+    7 * 0.514444,
+    11 * 0.514444,
+    17 * 0.514444,
+    22 * 0.514444,
+    28 * 0.514444,
+    34 * 0.514444,
+    41 * 0.514444,
+    48 * 0.514444,
+    56 * 0.514444,
+    64 * 0.514444,
+    83 * 0.514444,
+    96 * 0.514444,
+    114 * 0.514444,
+    135 * 0.514444,
+    maxMeterPerSecond,
+  ]);
 
 const getColorGradeTemp = chroma
   .scale(colorScaleTemp)
-  .domain([minTemperature, maxTemperature]);
+  .domain([minTemperature, maxTemperature])
+  .colors(45);
 
 const getColorGradeRain = chroma.scale(colorScaleRain).domain([0, maxRain]);
 
@@ -62,7 +83,7 @@ export default (value, type) => {
     case 'wind':
       return getColorGradeWind(value);
     case 'windRGB':
-      return chroma(getColorGradeWindRGB(value)).rgb();
+      return chroma(getColorGradeWind(value)).rgb();
     case 'temp':
       return getColorGradeTemp(value);
     case 'rain':

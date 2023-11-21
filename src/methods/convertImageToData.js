@@ -3,7 +3,7 @@ import getMercatorCoords from './getMercatorCoords.js';
 import jpeg from 'jpeg-js';
 
 export default async (image, header) => {
-  const scalefactor = 4;
+  const scalefactor = 2;
   const skipfactor = scalefactor <= 1 ? 1 : scalefactor - 1;
   const jpegBias = 2;
 

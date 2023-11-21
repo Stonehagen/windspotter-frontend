@@ -1,12 +1,12 @@
 export const Windy = function (params) {
-  var MIN_VELOCITY_INTENSITY = params.minVelocity || 10; // velocity at which particle intensity is minimum (m/s)
+  var MIN_VELOCITY_INTENSITY = params.minVelocity || 0; // velocity at which particle intensity is minimum (m/s)
   var MAX_VELOCITY_INTENSITY = params.maxVelocity || 20; // velocity at which particle intensity is maximum (m/s)
   var VELOCITY_SCALE =
     (params.velocityScale || 0.005) *
     (Math.pow(window.devicePixelRatio, 1 / 3) || 1); // scale for wind velocity (completely arbitrary--this value looks nice)
   var MAX_PARTICLE_AGE = params.particleAge || 90; // max number of frames a particle is drawn before regeneration
   var PARTICLE_LINE_WIDTH = params.lineWidth || 2; // line width of a drawn particle
-  var PARTICLE_MULTIPLIER = params.particleMultiplier || 1 / 500; // particle count scalar (completely arbitrary--this values looks nice)
+  var PARTICLE_MULTIPLIER = params.particleMultiplier || 1 / 800; // particle count scalar (completely arbitrary--this values looks nice)
   var PARTICLE_REDUCTION = Math.pow(window.devicePixelRatio, 1 / 3) || 1.6; // multiply particle count for mobiles by this amount
   var FRAME_RATE = params.frameRate || 15;
   var FRAME_TIME = 1000 / FRAME_RATE; // desired frames per second

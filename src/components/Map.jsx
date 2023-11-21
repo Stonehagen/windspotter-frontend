@@ -101,7 +101,8 @@ const Map = () => {
         speedUnit: 'kt',
       },
       data: { json: { header }, values },
-      maxVelocity: 20,
+      maxVelocity: 30,
+      
     }).addTo(map);
 
     setVelocityOverlay(veloOverlay);
