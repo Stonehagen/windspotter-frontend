@@ -45,7 +45,7 @@ export default async (image, header) => {
         uValues.push(NaN);
         ctx.fillStyle = `rgba(0, 0, 0, 0)`;
       } else {
-        const windSpeed = getWindSpeed(vValue, uValue);
+        const windSpeed = Math.floor(getWindSpeed(vValue, uValue));
         const [red, green, blue] = getColorGrade(windSpeed, 'windRGB');
         vValues.push(vValue);
         uValues.push(uValue);
