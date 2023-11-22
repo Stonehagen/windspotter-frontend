@@ -1,10 +1,23 @@
 import getColorGrade from './getColorGrade';
 import getMercatorCoords from './getMercatorCoords.js';
 import jpeg from 'jpeg-js';
+import { fabric } from "fabric";
 
 export default async (image, header) => {
-  const scalefactor = 2;
-  const skipfactor = scalefactor <= 1 ? 1 : scalefactor - 1;
+  fabric.Image.prototype.getSvgSrc = function() {
+    return this.toDataURLforSVG();
+  };
+
+  fabric.Image.prototype.toDataURLforSVG = function(options) {
+    var el = fabric.util.createCanvasElement();
+          el.width  = this._element.naturalWidth || this._element.width;
+          el.height = this._element.naturalHeight || this._element.height;
+    el.getContext("2d").drawImage(this._element, 0, 0);
+    var data = el.toDataURL(options);
+    return data;
+  };
+
+  const scalefactor = 4;
   const jpegBias = 2;
 
   const getWindSpeed = (v, u) => {
@@ -56,7 +69,7 @@ export default async (image, header) => {
       const [warpedX, warpedY] = getMercatorCoords([x, y], header);
 
       // Set pixel color on canvas and flip it vertically
-      if (x % skipfactor === 0 && y % skipfactor === 0) {
+      if (x % 1 === 0 && y % 1 === 0) {
         ctx.fillRect(
           warpedX / scalefactor,
           canvas.height - warpedY / scalefactor,
@@ -66,7 +79,7 @@ export default async (image, header) => {
       }
     }
   }
-
+  ctx.scale(scalefactor, scalefactor);
   const windOverlay = canvas.toDataURL();
 
   return { values: { u: uValues, v: vValues }, windOverlay };

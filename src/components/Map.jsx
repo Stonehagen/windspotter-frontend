@@ -102,7 +102,6 @@ const Map = () => {
       },
       data: { json: { header }, values },
       maxVelocity: 30,
-      
     }).addTo(map);
 
     setVelocityOverlay(veloOverlay);

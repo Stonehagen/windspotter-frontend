@@ -44,8 +44,6 @@ const MapForecastTimeMenu = ({
     const forecastDayMenu = [];
     for (const sortedDay of sortedForecastDays) {
       const dayToday = new Date().getDate();
-      //if the day is today, add a "today" label
-      console.log(dayToday, +sortedDay);
       if (+sortedDay >= dayToday || +sortedDay + 3 <= dayToday) {
         forecastDayMenu.push(
           <div

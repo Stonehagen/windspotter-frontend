@@ -7,10 +7,10 @@ const maxRain = 10;
 const maxWave = 10;
 
 const colorScaleWind = [
-  '#25475A', //0
-  '#3A516A', //4
-  '#496677', //7
-  '#40756E', //11
+  '#05376A', //0
+  '#2A517A', //4
+  '#396697', //7
+  '#30756E', //11
   '#4ECA2D', //17
   '#B9D227', //22
   '#D3A824', //28
@@ -71,8 +71,7 @@ const getColorGradeWind = chroma
 
 const getColorGradeTemp = chroma
   .scale(colorScaleTemp)
-  .domain([minTemperature, maxTemperature])
-  .colors(45);
+  .domain([minTemperature, maxTemperature]);
 
 const getColorGradeRain = chroma.scale(colorScaleRain).domain([0, maxRain]);
 

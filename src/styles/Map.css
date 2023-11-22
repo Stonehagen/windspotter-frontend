@@ -83,7 +83,7 @@
   align-items: center;
 }
 
-#map .leaflet-control:hover {
+#map .timeline .leaflet-control:hover {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
@@ -115,4 +115,17 @@
 
 #map .leaflet-top .leaflet-control:hover {
   background-color: rgba(255, 255, 255, 0.9);
+}
+
+#map .leaflet-control-attribution {
+  background-color: #333333e3;
+  color: rgba(255, 255, 255, 1);
+}
+
+#map .leaflet-control-attribution a {
+  color: #81bb0f;
+}
+
+#map .leaflet-control-attribution a:hover {
+  color: #ffaa00;
 }
