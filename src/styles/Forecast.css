@@ -42,13 +42,36 @@
   max-width: 480px;
 }
 
-.infoBar h3 {
+.infoBar .forecastInfo  {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.infoBar .forecastInfo .backButton {
+  align-self: center;
+  justify-self: start;
+  width: 30px;
+  padding-left: 5px;
+}
+
+.infoBar .forecastInfo .backButton a {
+  height: 100%;
+  display: flex;
+}
+
+.infoBar .forecastInfo .backButton svg {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.infoBar .forecastInfo h3 {
   margin: 0;
-  padding: 0;
   font-size: 1.1em;
   font-weight: 400;
-  text-align: center;
   line-height: 40px;
+  flex: 1;
 }
 
 .infoBar .ForecastOverview {

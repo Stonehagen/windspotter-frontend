@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { setAxiosHeader } from '../methods/setAxiosHeader';
 import { generateForecastArray } from '../methods/generateForecastArray';
 import '../styles/Forecast.css';
+
+import BackBtn from '../assets/back.svg?react';
 
 import ForecastTables from './ForecastTables';
 import ForecastOverview from './ForecastOverview';
@@ -51,7 +53,14 @@ const Forecast = () => {
       {spot && forecastArray && days ? (
         <>
           <div className="infoBar">
-            <h3>{spot.name}</h3>
+            <div className="forecastInfo">
+              <div className="backButton">
+                <Link to="/">
+                  <BackBtn />
+                </Link>
+              </div>
+              <h3>{spot.name}</h3>
+            </div>
             <ForecastOverview forecast={forecastArray} days={days} />
           </div>
           <ForecastTables
