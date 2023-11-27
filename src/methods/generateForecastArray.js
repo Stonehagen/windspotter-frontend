@@ -75,7 +75,9 @@ export const generateForecastArray = (forecast, nightEnd) => {
           : lastForecast.t,
         dir: getWindDirection(forecast.v_10m[time], forecast.u_10m[time]),
         ws: getWindSpeed(forecast.v_10m[time], forecast.u_10m[time]),
-        wsMax: forecast.vmax_10m[time] ? forecast.vmax_10m[time] : 0,
+        wsMax: forecast.vmax_10m[time]
+          ? forecast.vmax_10m[time]
+          : getWindSpeed(forecast.v_10m[time], forecast.u_10m[time]),
         clouds: forecast.clct_mod[time] ? forecast.clct_mod[time] : 0,
         rain: forecast.rain_gsp[time] ? forecast.rain_gsp[time] : 0,
         waveDir: forecast.mwd[time] ? forecast.mwd[time] : 0,
