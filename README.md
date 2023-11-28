@@ -1,4 +1,4 @@
-# Windspotter.de - Wind Forecast Service - Frontend
+# Windmate.de - Wind Forecast Service - Frontend
 
 A Wind Forecast App. You can search for a spot and get the wind forecast for the next 5 days. The app is still in development and will be released soon. Windmate does not realy on a Weather API. Instead, i download the date from the DWD and NOAA and calculate the forecast myself. This way i can be indipedent from a Weather API and can provide the forecast for any spot in the world. There is one Backend API that provides the data and one Frontend App that displays the forecast. There is also a Backend Service that downloads the data from the DWD and NOAA and calculates the forecast that is then stored in a MongoDB database and an CDN.
 
