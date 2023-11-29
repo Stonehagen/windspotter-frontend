@@ -8,8 +8,19 @@ const MapForecastTimeMenu = ({
   setOverlayed,
   forecastModel,
 }) => {
+  const getDateString = (time) => {
+    const date = new Date(time);
+    const day = `${date.getDate()}`;
+    const month = `${date.getMonth() + 1}`;
+    const year = `${date.getFullYear()}`;
+    return `${year.padStart(4, '0')}${month.padStart(2, '0')}${day.padStart(
+      2,
+      '0',
+    )}`;
+  };
+
   const [forecastDay, setForecastDay] = useState(
-    new Date(forecastTime).getDate(),
+    getDateString(new Date(forecastTime)),
   );
 
   const getPrettyDate = (time) => {
@@ -20,13 +31,11 @@ const MapForecastTimeMenu = ({
     //group the forecastTimes by forecastDays and then forecastHours
     const forecastDays = {};
     for (const forecastTime in forecastMap.forecastMaps) {
-      const date = new Date(forecastTime);
-      const day = date.getDate();
-      const hour = date.getHours();
-      if (!forecastDays[day]) {
-        forecastDays[day] = [];
+      const dateIndex = getDateString(forecastTime);
+      if (!forecastDays[dateIndex]) {
+        forecastDays[dateIndex] = [];
       }
-      forecastDays[day].push(forecastTime);
+      forecastDays[dateIndex].push(forecastTime);
     }
 
     //sort the forecastDays
@@ -35,15 +44,13 @@ const MapForecastTimeMenu = ({
     //sort the forecastHours
     for (const day in forecastDays) {
       //sorting the timestamps by hour
-      forecastDays[day].sort((a, b) => {
-        return new Date(a) - new Date(b);
-      });
+      forecastDays[day].sort((a, b) => a - b);
     }
 
     //create the forecastDayMenu
     const forecastDayMenu = [];
     for (const sortedDay of sortedForecastDays) {
-      const dayToday = new Date().getDate();
+      const dayToday = getDateString(new Date());
       if (+sortedDay >= dayToday || +sortedDay + 3 <= dayToday) {
         forecastDayMenu.push(
           <div
@@ -53,13 +60,10 @@ const MapForecastTimeMenu = ({
               setForecastDay(sortedDay);
             }}
           >
-            <div>
-              {getPrettyDate(forecastDays[sortedDay][0])}
-            </div>
+            <div>{getPrettyDate(forecastDays[sortedDay][0])}</div>
           </div>,
         );
       }
-
     }
     //create the forecastHourMenu
     const forecastHourMenu = [];

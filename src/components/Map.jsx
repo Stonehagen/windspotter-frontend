@@ -32,9 +32,15 @@ const Map = () => {
 
   const getForecastTime = (maps) => {
     // sort Dates and pick the oldest one
-    return Object.keys(maps).sort((a, b) => {
-      return new Date(a) - new Date(b);
-    })[0];
+    return Object.keys(maps)
+      .filter((time) => {
+        const dateToday = new Date().setHours(0, 0, 0, 0);
+        const dateForecast = new Date(time).setHours(0, 0, 0, 0);
+        return dateForecast >= dateToday;
+      })
+      .sort((a, b) => {
+        return new Date(a) - new Date(b);
+      })[0];
   };
 
   const urlToBuffer = async (url) => {
@@ -54,7 +60,17 @@ const Map = () => {
         `${import.meta.env.VITE_API_BACKENDSERVER}/map/`,
       );
       mapForecasts = res.data.mapForecasts;
-      setForecastMaps(res.data.mapForecasts);
+      // iterater over the mapForecasts and over the forecastMaps and remove every map that is older than today
+      const today = new Date().setHours(0, 0, 0, 0);
+      for (const mapForecast of mapForecasts) {
+        for (const forecastTime in mapForecast.forecastMaps) {
+          const dateForecast = new Date(forecastTime).setHours(0, 0, 0, 0);
+          if (dateForecast < today) {
+            delete mapForecast.forecastMaps[forecastTime];
+          }
+        }
+      }
+      setForecastMaps(mapForecasts);
     } else {
       mapForecasts = forecastMaps;
     }
