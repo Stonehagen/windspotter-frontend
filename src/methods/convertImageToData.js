@@ -18,7 +18,7 @@ export default async (image, header) => {
   };
 
   const scalefactor = 4;
-  const jpegBias = 2;
+  const jpegBias = 20;
 
   const getWindSpeed = (v, u) => {
     return Math.sqrt(Math.pow(u, 2) + Math.pow(v, 2));
