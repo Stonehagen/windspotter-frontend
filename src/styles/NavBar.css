@@ -6,6 +6,7 @@
   min-height: 50px;
   justify-content: center;
   align-items: center;
+  background-color: #242424;
 }
 .navbar div {
   height: 100%;
