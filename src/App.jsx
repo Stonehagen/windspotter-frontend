@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './styles/App.css';
 import 'maplibre-gl';
@@ -11,6 +10,14 @@ import NavBar from './components/NavBar';
 import Search from './components/Search';
 
 const App = () => {
+  const appHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty('--app-height', `${window.innerHeight}px`);
+  };
+
+  window.addEventListener('resize', appHeight);
+  appHeight();
+
   return (
     <BrowserRouter basename="/">
       <Routes>
