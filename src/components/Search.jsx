@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../styles/LandingPage.css';
+import '../styles/Search.css';
 
-const LandingPage = () => {
+const Search = () => {
   const [spots, setSpots] = useState([]);
 
   const getSpots = async () => {
@@ -19,12 +19,23 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className='landingpage'>
-      <h1 className="Logo">
-        WIND<span>MATE</span>
-      </h1>
-    </div>
+    <>
+      <div className="Spotlist">
+        <h3 className="LogoSub">
+          SELECT<span>SPOT</span>
+        </h3>
+        {spots.map((spot) => (
+          <Link
+            key={spot._id}
+            to={`/forecast/${spot.searchName}`}
+            className="spotLink"
+          >
+            <div>{spot.name}</div>
+          </Link>
+        ))}
+      </div>
+    </>
   );
 };
 
-export default LandingPage;
+export default Search;
