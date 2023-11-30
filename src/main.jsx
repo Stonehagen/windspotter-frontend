@@ -1,13 +1,18 @@
-import Div100vh from 'react-div-100vh';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './styles/index.css';
 
+const appHeight = () => {
+  const doc = document.documentElement;
+  doc.style.setProperty('--app-height', `${window.innerHeight}px`);
+};
+
+window.addEventListener('resize', appHeight);
+appHeight();
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Div100vh className='root'>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Div100vh>,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
 );
