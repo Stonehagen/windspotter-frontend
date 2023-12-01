@@ -1,11 +1,24 @@
 .leaflet-control-velocity {
-  padding: 0 5px;
-  margin: 0 !important;
-  background-color: #333333e3;
-  color: rgba(255, 255, 255, 1);
+  padding: 0 10px;
+  background-color: #242424;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 0 10px 0 0 ;
 }
 
 .velocity-overlay {
   position: absolute;
   z-index: 1;
+}
+
+@media (max-width: 800px) {
+  .leaflet-control-velocity {
+    width: 100vw;
+    margin: 0 0 13px 0 !important;
+  }
+}
+
+@media (min-width: 801px) {
+  .leaflet-control-velocity {
+    margin: 0 !important;
+  }
 }
