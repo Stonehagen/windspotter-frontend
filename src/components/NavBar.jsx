@@ -8,22 +8,19 @@ import HomeLight from '../assets/icons/HomeLight.svg?react';
 import '../styles/NavBar.css';
 import { Link } from 'react-router-dom';
 
-const NavBar = ({}) => {
+const NavBar = ({ mode }) => {
+  console.log(mode);
   return (
     <div className="navbar">
       <div className="navbarHome">
-        <Link to="/">
-          <HomeLight />
-        </Link>
+        <Link to="/">{mode === 'dark' ? <HomeLight /> : <HomeDark />}</Link>
       </div>
       <div className="navbarMap">
-        <Link to="/map">
-          <MapLight />
-        </Link>
+        <Link to="/map">{mode === 'dark' ? <MapLight /> : <MapDark />}</Link>
       </div>
       <div className="navbarForecast">
         <Link to="/search">
-          <WindLight />
+          {mode === 'dark' ? <WindLight /> : <WindDark />}
         </Link>
       </div>
     </div>

@@ -1,3 +1,15 @@
+@media (prefers-color-scheme: light) {
+  .navbar {
+    background-color: #ffffff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background-color: #242424;
+  }
+}
+
 .navbar {
   display: flex;
   flex-direction: row;
@@ -6,8 +18,8 @@
   min-height: 50px;
   justify-content: center;
   align-items: center;
-  background-color: #242424;
   width: 100%;
+  box-shadow: 5px 2px 5px 5px #24242424;
 }
 .navbar div {
   height: 100%;

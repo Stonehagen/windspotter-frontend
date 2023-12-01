@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './styles/App.css';
 import 'maplibre-gl';
@@ -10,6 +11,20 @@ import NavBar from './components/NavBar';
 import Search from './components/Search';
 
 const App = () => {
+  const [mode, setMode] = useState(
+    window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+  );
+
+  useEffect(() => {
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', (event) => {
+        const colorScheme = event.matches ? 'dark' : 'light';
+        console.log(colorScheme);
+        setMode(colorScheme);
+      });
+  }, []);
+
   return (
     <BrowserRouter basename="/">
       <Routes>
@@ -18,7 +33,7 @@ const App = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/forecast/:spotName" element={<Forecast />} />
       </Routes>
-      <NavBar />
+      <NavBar mode={mode} />
     </BrowserRouter>
   );
 };
