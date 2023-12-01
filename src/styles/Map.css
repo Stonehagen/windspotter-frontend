@@ -1,11 +1,3 @@
-.leaflet-container {
-  background-color: none !important;
-}
-
-.map-overlay {
-  background-color: black !important;
-}
-
 #map {
   width: 100%;
   height: 100%;
