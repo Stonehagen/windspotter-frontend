@@ -1,24 +1,23 @@
 import getColorGrade from './getColorGrade';
 import getMercatorCoords from './getMercatorCoords.js';
 import jpeg from 'jpeg-js';
-import { fabric } from "fabric";
+import { fabric } from 'fabric';
 
 export default async (image, header) => {
-  fabric.Image.prototype.getSvgSrc = function() {
+  fabric.Image.prototype.getSvgSrc = function () {
     return this.toDataURLforSVG();
   };
 
-  fabric.Image.prototype.toDataURLforSVG = function(options) {
+  fabric.Image.prototype.toDataURLforSVG = function (options) {
     var el = fabric.util.createCanvasElement();
-          el.width  = this._element.naturalWidth || this._element.width;
-          el.height = this._element.naturalHeight || this._element.height;
-    el.getContext("2d").drawImage(this._element, 0, 0);
+    el.width = this._element.naturalWidth || this._element.width;
+    el.height = this._element.naturalHeight || this._element.height;
+    el.getContext('2d').drawImage(this._element, 0, 0);
     var data = el.toDataURL(options);
     return data;
   };
 
   const scalefactor = 4;
-  const jpegBias = 20;
 
   const getWindSpeed = (v, u) => {
     return Math.sqrt(Math.pow(u, 2) + Math.pow(v, 2));
@@ -49,11 +48,8 @@ export default async (image, header) => {
         (rawImageData.data[i + 1] / 255) * (header.vMax - header.vMin) +
         header.vMin;
 
-      // If windspeed and winddir pixels are black, set values to NaN
-      if (
-        rawImageData.data[i + 0] <= jpegBias &&
-        rawImageData.data[i + 1] <= jpegBias
-      ) {
+      // If windspeed and winddir pixels are blue, set values to NaN
+      if (rawImageData.data[i + 2] >= 100) {
         vValues.push(NaN);
         uValues.push(NaN);
         ctx.fillStyle = `rgba(0, 0, 0, 0)`;
