@@ -10,6 +10,7 @@
   }
   #map .leaflet-top .leaflet-control {
     background-color: #FFF;
+    color: black;
   };
   #map .timeline {
     color: black;
@@ -19,6 +20,13 @@
   }
   #map .leaflet-top .leaflet-control:hover {
     background-color: #d7f1d7;
+  }
+  #map .leaflet-control-attribution {
+    background-color: #FFF;
+    color: black;
+  }
+  #map .leaflet-control-attribution a {
+    color: black;
   }
 }
 
@@ -39,6 +47,10 @@
     background-color: #242424;
     color: rgba(255, 255, 255, 0.7);
   }
+  #map .leaflet-top .leaflet-control {
+    background-color: #242424;
+    color: rgba(255, 255, 255, 0.7);
+  };
   #map .timeline {
     color: rgba(255, 255, 255, 0.7);
   }
@@ -48,9 +60,16 @@
   #map .leaflet-top .leaflet-control:hover {
     background-color: black;
   }
+  #map .leaflet-control-attribution {
+    background-color: #242424;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  #map .leaflet-control-attribution a {
+    color: rgba(255, 255, 255, 0.7);
+  }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   #map .leaflet-control-attribution {
     width: 100vw;
   }
@@ -60,7 +79,7 @@
   }
 }
 
-@media (min-width: 801px) {
+@media (min-width: 701px) {
   #map .leaflet-control-attribution {
     border-radius: 10px 0 0 0;
   }
@@ -176,14 +195,7 @@
   border: none;
 }
 
-#map .leaflet-control-attribution {
-  background-color: #242424;
-  color: rgba(255, 255, 255, 0.8);
-}
 
-#map .leaflet-control-attribution a {
-  color: #82bb0fc6;
-}
 
 #map .leaflet-control-attribution a:hover {
   color: #ffaa00;

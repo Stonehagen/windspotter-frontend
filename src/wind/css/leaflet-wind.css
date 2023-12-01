@@ -1,8 +1,21 @@
+@media (prefers-color-scheme: light) {
+  .leaflet-control-velocity {
+    background-color: #fff;
+    color: black;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .leaflet-control-velocity {
+    background-color: #242424;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
 .leaflet-control-velocity {
   padding: 0 10px;
-  background-color: #242424;
-  color: rgba(255, 255, 255, 0.7);
-  border-radius: 0 10px 0 0 ;
+  border-radius: 0 10px 0 0;
+  font-size: 1em;
 }
 
 .velocity-overlay {
@@ -10,14 +23,14 @@
   z-index: 1;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   .leaflet-control-velocity {
     width: 100vw;
     margin: 0 0 13px 0 !important;
   }
 }
 
-@media (min-width: 801px) {
+@media (min-width: 701px) {
   .leaflet-control-velocity {
     margin: 0 !important;
   }
