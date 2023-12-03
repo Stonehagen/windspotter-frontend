@@ -1,8 +1,66 @@
+@media (max-width: 499px) {
+  .landingpage .Logo {
+    font-size: 3.5em;
+  }
+}
+
+@media (min-width: 500px) {
+  .landingpage .Logo {
+    font-size: 5em;
+  }
+}
+
 .landingpage {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+
+.landingpage .Logo {
+  width: 100%;
+  justify-self: flex-start;
+  color: rgb(152, 237, 100);
+}
+
+.landingpage .Logo span {
+  font-weight: 100;
+}
+
+.landingpage .landingpageText {
+  margin: 10px;
+  max-width: 700px;
+}
+
+.landingpage .landingpageList {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+}
+
+.landingpage .landingpageList p {
+  margin-bottom: 0;
+}
+
+.landingpage .landingpageList ul {
+  margin-top: 10px;
+  width: 120px;
+  list-style-type: circle;
+}
+
+.landingpage .landingpageList ul li {
+  width: 100%;
+}
+
+.landingpage .landingpageText a {
+  text-decoration: none;
+  font-size: 1.1em;
+  color: #ffaa00;
+}
+
+.landingpage .landingpageText a:hover {
+  text-decoration: underline;
 }
