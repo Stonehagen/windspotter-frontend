@@ -32,7 +32,7 @@ const App = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/forecast/:spotName" element={<Forecast />} />
       </Routes>
-      <NavBar mode={mode} />
+      <NavBar mode={mode}/>
     </BrowserRouter>
   );
 };

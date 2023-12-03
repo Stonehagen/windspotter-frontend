@@ -84,7 +84,6 @@ const Map = () => {
       : getForecastTime(currentMap.forecastMaps);
 
     const header = currentMap.forecastMaps[forecastDate].data;
-    console.log(currentMap.forecastMaps[forecastDate].url);
     const imageBuffer = await urlToBuffer(
       currentMap.forecastMaps[forecastDate].url.replace('http://', 'https://'),
     );
