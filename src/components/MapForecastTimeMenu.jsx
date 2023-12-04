@@ -65,9 +65,21 @@ const MapForecastTimeMenu = ({
         );
       }
     }
+
+    // sort the forecastHours
+    const sortedForecastHours = forecastDays[forecastDay].sort(
+      (a, b) => new Date(a).getHours() - new Date(b).getHours(),
+    );
+    //sort the forecastHours
+    for (const day in forecastDays) {
+      //sorting the timestamps by hour
+      forecastDays[day].sort((a, b) => a - b);
+    }
+
     //create the forecastHourMenu
     const forecastHourMenu = [];
-    for (const timestamp of forecastDays[forecastDay]) {
+
+    for (const timestamp of sortedForecastHours) {
       const hours = new Date(timestamp).getHours();
       if (hours >= 7 && hours <= 21) {
         forecastHourMenu.push(
