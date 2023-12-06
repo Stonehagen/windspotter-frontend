@@ -7,6 +7,9 @@ import WindActive from '../assets/icons/WindActive.svg?react';
 import HomeDark from '../assets/icons/HomeDark.svg?react';
 import HomeLight from '../assets/icons/HomeLight.svg?react';
 import HomeActive from '../assets/icons/HomeActive.svg?react';
+import InfoDark from '../assets/icons/InfoDark.svg?react';
+import InfoLight from '../assets/icons/InfoLight.svg?react';
+import InfoActive from '../assets/icons/InfoActive.svg?react';
 
 import '../styles/NavBar.css';
 import { Link } from 'react-router-dom';
@@ -62,6 +65,21 @@ const NavBar = ({ mode }) => {
             <WindLight />
           ) : (
             <WindDark />
+          )}
+        </Link>
+      </div>
+      <div
+        className="navbarInfo"
+        onMouseOver={() => setActive('/info')}
+        onMouseOut={() => setActive(path)}
+      >
+        <Link to="/info" onClick={() => setPath('/info')}>
+          {active === '/info' ? (
+            <InfoActive />
+          ) : mode === 'dark' ? (
+            <InfoLight />
+          ) : (
+            <InfoDark />
           )}
         </Link>
       </div>

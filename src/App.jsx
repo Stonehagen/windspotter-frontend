@@ -9,6 +9,7 @@ import LandingPage from './components/LandingPage';
 import Map from './components/Map';
 import NavBar from './components/NavBar';
 import Search from './components/Search';
+import Info from './components/Info';
 
 const App = () => {
   const [mode, setMode] = useState(
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/map" element={<Map />} />
         <Route path="/search" element={<Search />} />
         <Route path="/forecast/:spotName" element={<Forecast />} />
+        <Route path="/info" element={<Info />} />
       </Routes>
       <NavBar mode={mode}/>
     </BrowserRouter>

@@ -1,0 +1,63 @@
+.info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.info .infoTitle {
+  width: 100%;
+  justify-self: flex-start;
+  font-weight: 100;
+}
+
+.info .infoTitle span {
+  font-weight: 600;
+  color: rgb(152, 237, 100);
+}
+
+
+.info .infoTitle span span {
+  font-weight: 100;
+  color: rgb(152, 237, 100);
+}
+
+
+.info .infoText {
+  margin: 10px;
+  max-width: 700px;
+}
+
+.info .infoList {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+}
+
+.info .infoList p {
+  margin-bottom: 0;
+}
+
+.info .infoList ul {
+  margin-top: 10px;
+  width: 120px;
+  list-style-type: circle;
+}
+
+.info .infoList ul li {
+  width: 100%;
+}
+
+.info .infoText a {
+  text-decoration: none;
+  font-size: 1.1em;
+  color: #ffaa00;
+}
+
+.info .infoText a:hover {
+  text-decoration: underline;
+}

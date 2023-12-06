@@ -13,7 +13,7 @@
 .navbar {
   display: flex;
   flex-direction: row;
-  gap: 70px;
+  gap: 50px;
   max-height: 50px;
   min-height: 50px;
   padding-top: 5px;
