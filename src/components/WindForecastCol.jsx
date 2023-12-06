@@ -1,10 +1,17 @@
+import React, { useState, useEffect } from 'react';
 import getWindDirection from '../methods/getWindDirection';
 import getWindSpeed from '../methods/getWindSpeed';
 import { checkNighttime } from '../methods/checkNightTime';
 import WindDir from '../assets/WindDir.svg?react';
 import getColorGrade from '../methods/getColorGrade';
 
+const getWindowDimensions = () => {
+  const { innerWidth: width } = window;
+  return width;
+};
+
 const WindForecastCol = ({ timeframe, settings, setSettings }) => {
+  const [windowWidth, setWindowWidth] = useState(getWindowDimensions());
   const changeWindUnit = () => {
     if (settings.windUnit === 'kts') {
       setSettings({ ...settings, windUnit: 'kph' });
@@ -15,6 +22,13 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
     }
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(getWindowDimensions());
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  });
 
   return (
     <div
@@ -26,13 +40,20 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
             settings.nightStart,
             settings.nightEnd,
           ) && '0.7',
-        background: `linear-gradient(to right, ${getColorGrade(
-          timeframe.ws,
-          'wind',
-        )} 40%, ${getColorGrade(timeframe.wsMax, 'wind')} 80%)`,
+        background: `${
+          windowWidth >= 1000
+            ? `linear-gradient(to top, ${getColorGrade(
+                timeframe.ws,
+                'wind',
+              )} 40%, ${getColorGrade(timeframe.wsMax, 'wind')} 80%)`
+            : `linear-gradient(to right, ${getColorGrade(
+                timeframe.ws,
+                'wind',
+              )} 40%, ${getColorGrade(timeframe.wsMax, 'wind')} 80%)`
+        }`,
       }}
     >
-      <div className="windSpeeds">
+      <div className="windSpeeds" onClick={changeWindUnit}>
         <div
           className="wind"
           style={{
@@ -47,11 +68,11 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
         <div className="windSecondCol">
           <div className="windGust">
             {getWindSpeed(timeframe.wsMax, settings.windUnit)}
+            <span className="gustMaxDesktop">MAX</span>
           </div>
-          <div className="windUnit" onClick={changeWindUnit}>
-            {settings.windUnit}
-          </div>
+          <div className="windUnit">{settings.windUnit}</div>
         </div>
+        <div className="windUnitDesktop">{settings.windUnit}</div>
       </div>
       <div className="windDirection">
         <WindDir style={{ transform: `rotate(${timeframe.dir + 180}deg)` }} />

@@ -24,6 +24,47 @@
   }
 }
 
+@media (min-width: 1000px) {
+  .infoBar {
+    width: calc(100% - 40px);
+  }
+  .infoBar .ForecastOverview {
+    height: 80px;
+  }
+
+  .infoBar .OverviewChart {
+    height: 60px;
+  }
+}
+
+@media (min-width: 420px) and (max-width: 999px) {
+  .infoBar {
+    width: calc(100% - 20px);
+  }
+  .infoBar .ForecastOverview {
+    height: 50px;
+  }
+
+  .infoBar .OverviewChart {
+    height: 30px;
+  }
+}
+
+@media (max-width: 419px) {
+  .infoBar {
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .infoBar .ForecastOverview {
+    height: 50px;
+  }
+
+  .infoBar .OverviewChart {
+    height: 30px;
+  }
+}
+
 .Forecast {
   display: flex;
   flex-direction: column;
@@ -34,38 +75,18 @@
   overflow-y: scroll;
 }
 
-.infoBar { 
+.infoBar {
   display: flex;
   flex-direction: column;
   z-index: 1;
   position: sticky;
   top: 0;
-  width: 100%;
-  max-width: 480px;
 }
 
-.infoBar .forecastInfo  {
+.infoBar .forecastInfo {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.infoBar .forecastInfo .backButton {
-  align-self: center;
-  justify-self: start;
-  width: 30px;
-  padding-left: 5px;
-}
-
-.infoBar .forecastInfo .backButton a {
-  height: 100%;
-  display: flex;
-}
-
-.infoBar .forecastInfo .backButton svg {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
 }
 
 .infoBar .forecastInfo h3 {
@@ -81,7 +102,6 @@
   flex-direction: row;
   justify-content: stretch;
   align-items: stretch;
-  height: 50px;
   padding: 0 0 5px 0;
   box-shadow: 5px 2px 5px -5px #24242424;
 }
@@ -122,7 +142,6 @@
 .infoBar .OverviewChart {
   display: flex;
   flex-direction: row;
-  height: 30px;
   width: 100%;
   align-items: flex-end;
 }
