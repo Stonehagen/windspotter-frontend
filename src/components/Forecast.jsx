@@ -8,17 +8,11 @@ import '../styles/Forecast.css';
 import ForecastTables from './ForecastTables';
 import ForecastOverview from './ForecastOverview';
 
-const Forecast = () => {
+const Forecast = ({settings, setSettings}) => {
   const { spotName } = useParams();
   const [spot, setSpot] = useState(null);
   const [forecastArray, setForecastArray] = useState([]);
   const [days, setDays] = useState([]);
-  const [settings, setSettings] = useState({
-    windUnit: 'kts',
-    displayNight: false,
-    nightEnd: 7,
-    nightStart: 21,
-  });
 
   setAxiosHeader();
 
@@ -60,6 +54,7 @@ const Forecast = () => {
             forecast={forecastArray}
             days={days}
             settings={settings}
+            setSettings={setSettings}
           />
         </>
       ) : (

@@ -186,6 +186,11 @@ table .windUnit {
   font-weight: 200;
 }
 
+table .windUnit:hover {
+  cursor: pointer;
+  font-weight: 300;
+}
+
 table .windDirection {
   display: flex;
   align-items: center;

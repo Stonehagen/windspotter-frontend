@@ -7,7 +7,7 @@ import WeatherForecastCol from './WeatherForecastCol';
 import WaveForecastCol from './WaveForecastCol';
 import WindMeter from './WindMeter';
 
-const ForecastTableRow = ({ timeframe, settings }) => {
+const ForecastTableRow = ({ timeframe, settings, setSettings }) => {
   const displayNight = settings.displayNight;
 
   return (
@@ -31,7 +31,11 @@ const ForecastTableRow = ({ timeframe, settings }) => {
       </td>
       <td className="mainRow">
         <div className="upperRow">
-          <WindForecastCol timeframe={timeframe} settings={settings} />
+          <WindForecastCol
+            timeframe={timeframe}
+            settings={settings}
+            setSettings={setSettings}
+          />
           <WeatherForecastCol timeframe={timeframe} settings={settings} />
           <WaveForecastCol timeframe={timeframe} settings={settings} />
         </div>

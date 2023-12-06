@@ -13,8 +13,16 @@ import Info from './components/Info';
 
 const App = () => {
   const [mode, setMode] = useState(
-    window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light',
   );
+  const [settings, setSettings] = useState({
+    windUnit: 'kts',
+    displayNight: false,
+    nightEnd: 7,
+    nightStart: 21,
+  });
 
   useEffect(() => {
     window
@@ -31,10 +39,13 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/map" element={<Map />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/forecast/:spotName" element={<Forecast />} />
+        <Route
+          path="/forecast/:spotName"
+          element={<Forecast settings={settings} setSettings={setSettings} />}
+        />
         <Route path="/info" element={<Info />} />
       </Routes>
-      <NavBar mode={mode}/>
+      <NavBar mode={mode} />
     </BrowserRouter>
   );
 };
