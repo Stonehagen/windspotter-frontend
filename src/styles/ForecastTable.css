@@ -415,6 +415,11 @@ table tr .time {
   justify-content: center;
 }
 
+table tr .time:hover {
+  cursor: pointer;
+  background-color: #ffaa00;
+}
+
 table .windSpeeds:hover {
   cursor: pointer;
   font-weight: 300;

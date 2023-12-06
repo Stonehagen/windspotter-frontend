@@ -8,7 +8,9 @@ import WaveForecastCol from './WaveForecastCol';
 import WindMeter from './WindMeter';
 
 const ForecastTableRow = ({ timeframe, settings, setSettings }) => {
-  const displayNight = settings.displayNight;
+  const toggleNight = () => {
+    setSettings({ ...settings, displayNight: !settings.displayNight });
+  };
 
   return (
     <tr
@@ -22,11 +24,11 @@ const ForecastTableRow = ({ timeframe, settings, setSettings }) => {
             settings.nightStart,
             settings.nightEnd,
           ) &&
-          !displayNight &&
+          !settings.displayNight &&
           'none',
       }}
     >
-      <td className="time">
+      <td className="time" onClick={toggleNight}>
         <div>{moment(timeframe.time).format('HH')}</div>
       </td>
       <td className="mainRow">
