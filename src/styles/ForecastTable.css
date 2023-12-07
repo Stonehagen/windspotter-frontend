@@ -413,6 +413,7 @@ table tr .time {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: 5px;
 }
 
 table tr .time:hover {
