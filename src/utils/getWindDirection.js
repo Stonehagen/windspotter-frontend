@@ -19,8 +19,8 @@ const directions = [
 ];
 
 export const getWindDirection = (deg) => {
-  const index = Math.round(deg / 22.5);
+  const degNormalized = deg > 360 ? deg % 360 : deg;
+  const index = Math.round(degNormalized/ 22.5);
   const direction = directions[index];
   return direction;
 };
-
