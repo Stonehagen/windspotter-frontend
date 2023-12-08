@@ -1,5 +1,5 @@
 import WindDir from '../assets/WindDir.svg?react';
-import { checkNighttime } from '../methods/checkNightTime';
+import { useCheckNightTime } from '../hooks/useCheckNightTime';
 import getColorGrade from '../methods/getColorGrade';
 
 
@@ -9,7 +9,7 @@ const WaveForecastCol = ({ timeframe, settings }) => {
       className="waves"
       style={{
         opacity:
-          checkNighttime(
+        useCheckNightTime(
             timeframe.time,
             settings.nightStart,
             settings.nightEnd,

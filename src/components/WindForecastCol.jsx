@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import getWindDirection from '../methods/getWindDirection';
 import getWindSpeed from '../methods/getWindSpeed';
-import { checkNighttime } from '../methods/checkNightTime';
+import { useCheckNightTime } from '../hooks/useCheckNightTime';
 import WindDir from '../assets/WindDir.svg?react';
 import getColorGrade from '../methods/getColorGrade';
 
@@ -35,7 +35,7 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
       className="windForecast"
       style={{
         opacity:
-          checkNighttime(
+          useCheckNightTime(
             timeframe.time,
             settings.nightStart,
             settings.nightEnd,

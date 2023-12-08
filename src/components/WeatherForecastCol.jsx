@@ -1,4 +1,4 @@
-import { checkNighttime } from '../methods/checkNightTime';
+import { useCheckNightTime } from '../hooks/useCheckNightTime';
 import RainDrops from './RainDrops';
 import WeatherIcon from './WeatherIcon';
 
@@ -11,7 +11,7 @@ const WeatherForecastCol = ({ timeframe, settings }) => {
         className="temp"
         style={{
           opacity:
-            checkNighttime(
+            useCheckNightTime(
               timeframe.time,
               settings.nightStart,
               settings.nightEnd,
@@ -32,7 +32,7 @@ const WeatherForecastCol = ({ timeframe, settings }) => {
       >
         <WeatherIcon
           cloudCover={timeframe.clouds}
-          night={checkNighttime(
+          night={useCheckNightTime(
             timeframe.time,
             settings.nightStart,
             settings.nightEnd,

@@ -1,3 +1,5 @@
+// TODO: Legacy code, delete this after resetting with react hooks
+
 import moment from 'moment';
 
 export const checkNighttimeMorning = (time, nightEnd) => {

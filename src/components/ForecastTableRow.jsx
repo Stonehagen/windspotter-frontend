@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { checkNighttime } from '../methods/checkNightTime';
+import { useCheckNightTime } from '../hooks/useCheckNightTime';
 
 import WindForecastCol from './WindForecastCol';
 import WeatherForecastCol from './WeatherForecastCol';
@@ -19,7 +19,7 @@ const ForecastTableRow = ({ timeframe, settings, setSettings }) => {
       }`}
       style={{
         display:
-          checkNighttime(
+          useCheckNightTime(
             timeframe.time,
             settings.nightStart,
             settings.nightEnd,
