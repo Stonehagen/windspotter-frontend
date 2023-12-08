@@ -1,17 +1,17 @@
-import MapDark from '../assets/icons/MapDark.svg?react';
-import MapLight from '../assets/icons/MapLight.svg?react';
-import MapActive from '../assets/icons/MapActive.svg?react';
-import WindDark from '../assets/icons/WindDark.svg?react';
-import WindLight from '../assets/icons/WindLight.svg?react';
-import WindActive from '../assets/icons/WindActive.svg?react';
-import HomeDark from '../assets/icons/HomeDark.svg?react';
-import HomeLight from '../assets/icons/HomeLight.svg?react';
-import HomeActive from '../assets/icons/HomeActive.svg?react';
-import InfoDark from '../assets/icons/InfoDark.svg?react';
-import InfoLight from '../assets/icons/InfoLight.svg?react';
-import InfoActive from '../assets/icons/InfoActive.svg?react';
+import MapDark from '../../assets/icons/MapDark.svg?react';
+import MapLight from '../../assets/icons/MapLight.svg?react';
+import MapActive from '../../assets/icons/MapActive.svg?react';
+import WindDark from '../../assets/icons/WindDark.svg?react';
+import WindLight from '../../assets/icons/WindLight.svg?react';
+import WindActive from '../../assets/icons/WindActive.svg?react';
+import HomeDark from '../../assets/icons/HomeDark.svg?react';
+import HomeLight from '../../assets/icons/HomeLight.svg?react';
+import HomeActive from '../../assets/icons/HomeActive.svg?react';
+import InfoDark from '../../assets/icons/InfoDark.svg?react';
+import InfoLight from '../../assets/icons/InfoLight.svg?react';
+import InfoActive from '../../assets/icons/InfoActive.svg?react';
 
-import '../assets/styles/NavBar.css';
+import '../../assets/styles/NavBar.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 

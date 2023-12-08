@@ -1,6 +1,6 @@
-import WindDir from '../assets/WindDir.svg?react';
-import { checkNightTime } from '../utils/checkNightTime';
-import { getColorGrade } from '../utils/getColorGrade';
+import WindDir from '../../assets/icons/WindDir.svg?react';
+import { checkNightTime } from '../../utils/checkNightTime';
+import { getColorGrade } from '../../utils/getColorGrade';
 
 const WaveForecastCol = ({ timeframe, settings }) => {
   return (

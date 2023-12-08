@@ -1,5 +1,5 @@
-import { checkNightTime } from '../utils/checkNightTime';
-import { getColorGrade } from '../utils/getColorGrade';
+import { checkNightTime } from '../../utils/checkNightTime';
+import { getColorGrade } from '../../utils/getColorGrade';
 import RainDrops from './RainDrops';
 import WeatherIcon from './WeatherIcon';
 

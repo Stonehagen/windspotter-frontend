@@ -1,4 +1,4 @@
-import { getColorGrade } from '../utils/getColorGrade';
+import { getColorGrade } from '../../utils/getColorGrade';
 
 const WindMeter = ({ timeframe }) => {
   const windMeterMax = timeframe.wsMax ? timeframe.wsMax : timeframe.ws;

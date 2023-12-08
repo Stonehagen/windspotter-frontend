@@ -5,12 +5,12 @@ import './assets/styles/App.css';
 import 'maplibre-gl';
 import '@maplibre/maplibre-gl-leaflet';
 
-import Forecast from './components/Forecast';
-import LandingPage from './components/LandingPage';
-import Map from './components/Map';
-import NavBar from './components/NavBar';
-import Search from './components/Search';
-import Info from './components/Info';
+import Forecast from './pages/Forecast';
+import LandingPage from './pages/LandingPage';
+import Map from './pages/Map';
+import NavBar from './features/navbar/NavBar';
+import Search from './pages/Search';
+import Info from './pages/Info';
 
 const App = () => {
   const [mode, setMode] = useState(

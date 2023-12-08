@@ -1,4 +1,4 @@
-import RainDrop from '../assets/weather/RainDrop.svg?react';
+import RainDrop from '../../assets/icons/weather/RainDrop.svg?react';
 
 export default ({ rain }) => {
   const raindrops = [0.1, 2, 4];

@@ -4,8 +4,8 @@ import axios from 'axios';
 import { useGenerateForecastArray } from '../hooks/useGenerateForecastArray';
 import '../assets/styles/Forecast.css';
 
-import ForecastTables from './ForecastTables';
-import ForecastOverview from './ForecastOverview';
+import ForecastTables from '../features/forecastTable/ForecastTables';
+import ForecastOverview from '../features/forecastOverview/ForecastOverview';
 
 const Forecast = ({ settings, setSettings }) => {
   const { spotName } = useParams();

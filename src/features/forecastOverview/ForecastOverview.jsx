@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { getColorGrade } from '../utils/getColorGrade';
+import { getColorGrade } from '../../utils/getColorGrade';
 
 const ForecastOverview = ({ forecast, days }) => {
   const highestWindSpeed = Math.max(

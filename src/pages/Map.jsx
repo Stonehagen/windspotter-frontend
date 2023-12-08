@@ -3,17 +3,17 @@ import { MapContainer, AttributionControl, LayersControl } from 'react-leaflet';
 import axios from 'axios';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import '../wind/js/L.Control.Velocity.js';
-import '../wind/js/L.VelocityLayer.js';
-import '../wind/js/L.CanvasLayer.js';
-import '../wind/css/leaflet-wind.css';
+import '../utils/wind/js/L.Control.Velocity.js';
+import '../utils/wind/js/L.VelocityLayer.js';
+import '../utils/wind/js/L.CanvasLayer.js';
+import '../utils/wind/css/leaflet-wind.css';
 import '../assets/styles/Map.css';
 import { useConvertImageToData } from '../hooks/useConvertImageToData.js';
 
-import overlayMap from '../assets/maps/overlayMap.json';
-import baseMap from '../assets/maps/baseMap.json';
-import MapForecastModelMenu from './MapForecastModelMenu.jsx';
-import MapForecastTimeMenu from './MapForecastTimeMenu.jsx';
+import overlayMap from '../data/maps/overlayMap.json';
+import baseMap from '../data/maps/baseMap.json';
+import MapForecastModelMenu from '../features/mapMenu/MapForecastModelMenu.jsx';
+import MapForecastTimeMenu from '../features/mapMenu/MapForecastTimeMenu.jsx';
 
 const Map = () => {
   const [forecastModel, setForecastModel] = useState('icon-d2');

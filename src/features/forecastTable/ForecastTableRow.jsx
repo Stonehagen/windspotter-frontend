@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { checkNightTime } from '../utils/checkNightTime';
+import { checkNightTime } from '../../utils/checkNightTime';
 
 import WindForecastCol from './WindForecastCol';
 import WeatherForecastCol from './WeatherForecastCol';

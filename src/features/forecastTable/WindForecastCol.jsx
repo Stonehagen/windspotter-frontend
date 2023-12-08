@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getWindDirection } from '../utils/getWindDirection';
-import { getWindSpeed } from '../utils/getWindSpeed';
-import { checkNightTime } from '../utils/checkNightTime';
-import WindDir from '../assets/WindDir.svg?react';
-import { getColorGrade } from '../utils/getColorGrade';
+import { getWindDirection } from '../../utils/getWindDirection';
+import { getWindSpeed } from '../../utils/getWindSpeed';
+import { checkNightTime } from '../../utils/checkNightTime';
+import { getColorGrade } from '../../utils/getColorGrade';
+import WindDir from '../../assets/icons/WindDir.svg?react';
 
 const getWindowDimensions = () => {
   const { innerWidth: width } = window;
