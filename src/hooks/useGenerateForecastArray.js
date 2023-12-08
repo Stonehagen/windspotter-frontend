@@ -1,19 +1,19 @@
 import moment from 'moment';
-import { checkNighttimeMorning } from './checkNightTime';
+import { useCheckNightTimeMorning } from '../hooks/useCheckNightTimeMorning';
 
-const getWindDirection = (v, u) => {
-  return (270 - Math.atan2(v, u) * (180 / Math.PI)) % 360;
-};
+export const useGenerateForecastArray = (forecast, nightEnd) => {
+  const getWindDirection = (v, u) => {
+    return (270 - Math.atan2(v, u) * (180 / Math.PI)) % 360;
+  };
+  
+  const getWindSpeed = (v, u) => {
+    return Math.sqrt(Math.pow(u, 2) + Math.pow(v, 2));
+  };
+  
+  const getTemperature = (t) => {
+    return t - 273.15;
+  };
 
-const getWindSpeed = (v, u) => {
-  return Math.sqrt(Math.pow(u, 2) + Math.pow(v, 2));
-};
-
-const getTemperature = (t) => {
-  return t - 273.15;
-};
-
-export const generateForecastArray = (forecast, nightEnd) => {
   const newForecastArray = [];
   // check if all forecast values are available
   if (
@@ -41,7 +41,7 @@ export const generateForecastArray = (forecast, nightEnd) => {
   const lastDay = +moment(lastTimestamp).format('DD');
 
   // check if last forecast value is from the night in morning
-  const skipLastDay = checkNighttimeMorning(lastTimestamp, nightEnd);
+  const skipLastDay = useCheckNightTimeMorning(lastTimestamp, nightEnd);
 
   for (const time of sortedDates) {
     const forecastTimestamp = new Date(time);

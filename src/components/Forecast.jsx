@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { setAxiosHeader } from '../methods/setAxiosHeader';
-import { generateForecastArray } from '../methods/generateForecastArray';
+import { useGenerateForecastArray } from '../hooks/useGenerateForecastArray';
 import '../styles/Forecast.css';
 
 import ForecastTables from './ForecastTables';
 import ForecastOverview from './ForecastOverview';
 
-const Forecast = ({settings, setSettings}) => {
+const Forecast = ({ settings, setSettings }) => {
   const { spotName } = useParams();
   const [spot, setSpot] = useState(null);
   const [forecastArray, setForecastArray] = useState([]);
@@ -24,7 +24,7 @@ const Forecast = ({settings, setSettings}) => {
         }/spot/name/${spotName}/forecast`,
       )
       .then((res) => {
-        const forecastArr = generateForecastArray(
+        const forecastArr = useGenerateForecastArray(
           res.data.spot.forecast,
           settings.nightEnd,
         );
