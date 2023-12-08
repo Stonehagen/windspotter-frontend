@@ -21,7 +21,7 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
       setSettings({ ...settings, windUnit: 'kts' });
     }
   };
-
+  
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(getWindowDimensions());
