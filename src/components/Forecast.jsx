@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { setAxiosHeader } from '../methods/setAxiosHeader';
 import { useGenerateForecastArray } from '../hooks/useGenerateForecastArray';
 import '../styles/Forecast.css';
 
@@ -13,8 +12,6 @@ const Forecast = ({ settings, setSettings }) => {
   const [spot, setSpot] = useState(null);
   const [forecastArray, setForecastArray] = useState([]);
   const [days, setDays] = useState([]);
-
-  setAxiosHeader();
 
   const getSpot = async () => {
     axios

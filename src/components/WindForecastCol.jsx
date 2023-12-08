@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import getWindDirection from '../methods/getWindDirection';
-import getWindSpeed from '../methods/getWindSpeed';
+import { useGetWindDirection } from '../hooks/useGetWindDirection';
+import { useGetWindSpeed } from '../hooks/useGetWindSpeed';
 import { useCheckNightTime } from '../hooks/useCheckNightTime';
 import WindDir from '../assets/WindDir.svg?react';
-import getColorGrade from '../methods/getColorGrade';
+import { useGetColorGrade } from '../hooks/useGetColorGrade';
 
 const getWindowDimensions = () => {
   const { innerWidth: width } = window;
@@ -42,14 +42,14 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
           ) && '0.7',
         background: `${
           windowWidth >= 1000
-            ? `linear-gradient(to top, ${getColorGrade(
+            ? `linear-gradient(to top, ${useGetColorGrade(
                 timeframe.ws,
                 'wind',
-              )} 40%, ${getColorGrade(timeframe.wsMax, 'wind')} 80%)`
-            : `linear-gradient(to right, ${getColorGrade(
+              )} 40%, ${useGetColorGrade(timeframe.wsMax, 'wind')} 80%)`
+            : `linear-gradient(to right, ${useGetColorGrade(
                 timeframe.ws,
                 'wind',
-              )} 40%, ${getColorGrade(timeframe.wsMax, 'wind')} 80%)`
+              )} 40%, ${useGetColorGrade(timeframe.wsMax, 'wind')} 80%)`
         }`,
       }}
     >
@@ -58,16 +58,16 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
           className="wind"
           style={{
             fontSize:
-              getWindSpeed(timeframe.ws, settings.windUnit) > 99
+              useGetWindSpeed(timeframe.ws, settings.windUnit) > 99
                 ? '2.3rem'
                 : '3rem',
           }}
         >
-          {getWindSpeed(timeframe.ws, settings.windUnit)}
+          {useGetWindSpeed(timeframe.ws, settings.windUnit)}
         </div>
         <div className="windSecondCol">
           <div className="windGust">
-            {getWindSpeed(timeframe.wsMax, settings.windUnit)}
+            {useGetWindSpeed(timeframe.wsMax, settings.windUnit)}
             <span className="gustMaxDesktop">MAX</span>
           </div>
           <div className="windUnit">{settings.windUnit}</div>
@@ -77,7 +77,9 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
       <div className="windDirection">
         <WindDir style={{ transform: `rotate(${timeframe.dir + 180}deg)` }} />
         <div className="windDirInfo">
-          <div className="windDirText">{getWindDirection(timeframe.dir)}</div>
+          <div className="windDirText">
+            {useGetWindDirection(timeframe.dir)}
+          </div>
           <div className="windDirNumber">{timeframe.dir.toFixed(0)}˚</div>
         </div>
       </div>

@@ -8,9 +8,7 @@ import '../wind/js/L.VelocityLayer.js';
 import '../wind/js/L.CanvasLayer.js';
 import '../wind/css/leaflet-wind.css';
 import '../styles/Map.css';
-
-import { setAxiosHeader } from '../methods/setAxiosHeader';
-import convertImageToData from '../methods/convertImageToData.js';
+import { useConvertImageToData } from '../hooks/useConvertImageToData.js';
 
 import overlayMap from '../assets/maps/overlayMap.json';
 import baseMap from '../assets/maps/baseMap.json';
@@ -27,8 +25,6 @@ const Map = () => {
   const [velocityOverlay, setVelocityOverlay] = useState(null);
   const [forecastTime, setForecastTime] = useState(null);
   const [newPane, setNewPane] = useState(null);
-
-  setAxiosHeader();
 
   const getForecastTime = (maps) => {
     // sort Dates and pick the oldest one
@@ -87,7 +83,7 @@ const Map = () => {
     const imageBuffer = await urlToBuffer(
       currentMap.forecastMaps[forecastDate].url.replace('http://', 'https://'),
     );
-    const { values, windOverlay } = await convertImageToData(
+    const { values, windOverlay } = await useConvertImageToData(
       imageBuffer,
       header,
     );

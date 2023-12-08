@@ -1,4 +1,4 @@
-export default ([x, y], header) => {
+export const useGetMercatorCoords = ([x, y], header) => {
   // calc lat and long for each pixel
   const lat = (y / header.height) * (header.la2 - header.la1) + header.la1;
   const long = (x / header.width) * (header.lo2 - header.lo1) + header.lo1;

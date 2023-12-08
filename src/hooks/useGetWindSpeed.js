@@ -1,4 +1,4 @@
-const getWindSpeed = (speedMS, unit) => {
+export const useGetWindSpeed = (speedMS, unit) => {
   if (!speedMS) return '0';
 
   const beaufordConversionTable = [
@@ -37,5 +37,3 @@ const getWindSpeed = (speedMS, unit) => {
       return `${speedMS.toFixed(0)}`;
   }
 };
-
-export default getWindSpeed;

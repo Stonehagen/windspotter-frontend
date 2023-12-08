@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useSetAxiosHeader } from './hooks/useSetAxiosHeader';
 import './styles/App.css';
 import 'maplibre-gl';
 import '@maplibre/maplibre-gl-leaflet';
@@ -23,6 +24,8 @@ const App = () => {
     nightEnd: 7,
     nightStart: 21,
   });
+
+  useSetAxiosHeader();
 
   useEffect(() => {
     window

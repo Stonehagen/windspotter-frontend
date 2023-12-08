@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import getColorGrade from '../methods/getColorGrade';
+import { useGetColorGrade } from '../hooks/useGetColorGrade';
 
 const ForecastOverview = ({ forecast, days }) => {
   const highestWindSpeed = Math.max(
@@ -39,20 +39,20 @@ const ForecastOverview = ({ forecast, days }) => {
                   className="OverviewBarWindMax"
                   style={{
                     height: `${heightWindMax}%`,
-                    background: `linear-gradient(to top, ${getColorGrade(
+                    background: `linear-gradient(to top, ${useGetColorGrade(
                       timeframe.ws,
                       'wind',
-                    )} 0%, ${getColorGrade(
+                    )} 0%, ${useGetColorGrade(
                       timeframe.wsMax,
                       'wind',
-                    )} 40%,  ${getColorGrade(timeframe.wsMax, 'wind')} 75%)`,
+                    )} 40%,  ${useGetColorGrade(timeframe.wsMax, 'wind')} 75%)`,
                   }}
                 ></div>
                 <div
                   className="OverviewBarWind"
                   style={{
                     height: `${heightWind}%`,
-                    background: getColorGrade(timeframe.ws, 'wind'),
+                    background: useGetColorGrade(timeframe.ws, 'wind'),
                   }}
                 ></div>
               </div>

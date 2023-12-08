@@ -1,9 +1,9 @@
-import getColorGrade from './getColorGrade';
-import getMercatorCoords from './getMercatorCoords.js';
+import { useGetColorGrade } from './useGetColorGrade.js';
+import { useGetMercatorCoords } from './useGetMercatorCoords.js';
 import jpeg from 'jpeg-js';
 import { fabric } from 'fabric';
 
-export default async (image, header) => {
+export const useConvertImageToData = async (image, header) => {
   fabric.Image.prototype.getSvgSrc = function () {
     return this.toDataURLforSVG();
   };
@@ -55,14 +55,14 @@ export default async (image, header) => {
         ctx.fillStyle = `rgba(0, 0, 0, 0)`;
       } else {
         const windSpeed = Math.floor(getWindSpeed(vValue, uValue));
-        const [red, green, blue] = getColorGrade(windSpeed, 'windRGB');
+        const [red, green, blue] = useGetColorGrade(windSpeed, 'windRGB');
         vValues.push(vValue);
         uValues.push(uValue);
         ctx.fillStyle = `rgba(${red}, ${green}, ${blue}, 255)`;
       }
 
       // Get mercator coordinates for pixel
-      const [warpedX, warpedY] = getMercatorCoords([x, y], header);
+      const [warpedX, warpedY] = useGetMercatorCoords([x, y], header);
 
       // Set pixel color on canvas and flip it vertically
       if (x % 1 === 0 && y % 1 === 0) {
