@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export const useSetAxiosHeader = () => {
+export const setAxiosHeader = () => {
   axios.defaults.headers.common['content-type'] = 'application/json';
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/LandingPage.css';
+import '../assets/styles/LandingPage.css';
 
 const LandingPage = () => {
   const [spots, setSpots] = useState([]);

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { useCheckNightTimeMorning } from '../hooks/useCheckNightTimeMorning';
+import { checkNightTimeMorning } from '../utils/checkNightTimeMorning';
 
 export const useGenerateForecastArray = (forecast, nightEnd) => {
   const getWindDirection = (v, u) => {
@@ -41,7 +41,7 @@ export const useGenerateForecastArray = (forecast, nightEnd) => {
   const lastDay = +moment(lastTimestamp).format('DD');
 
   // check if last forecast value is from the night in morning
-  const skipLastDay = useCheckNightTimeMorning(lastTimestamp, nightEnd);
+  const skipLastDay = checkNightTimeMorning(lastTimestamp, nightEnd);
 
   for (const time of sortedDates) {
     const forecastTimestamp = new Date(time);

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Info.css';
+import '../assets/styles/Info.css';
 
 const Info = () => {
 

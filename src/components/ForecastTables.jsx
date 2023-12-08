@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../styles/ForecastTable.css';
+import '../assets/styles/ForecastTable.css';
 
 import DailyForecastTable from './DailyForecastTable';
 

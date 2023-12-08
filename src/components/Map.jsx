@@ -7,7 +7,7 @@ import '../wind/js/L.Control.Velocity.js';
 import '../wind/js/L.VelocityLayer.js';
 import '../wind/js/L.CanvasLayer.js';
 import '../wind/css/leaflet-wind.css';
-import '../styles/Map.css';
+import '../assets/styles/Map.css';
 import { useConvertImageToData } from '../hooks/useConvertImageToData.js';
 
 import overlayMap from '../assets/maps/overlayMap.json';

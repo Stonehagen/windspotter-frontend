@@ -1,5 +1,5 @@
 import moment from 'moment';
 
-export const useCheckNightTimeMorning = (time, nightEnd) => {
+export const checkNightTimeMorning = (time, nightEnd) => {
   return moment(time).format('HH') < nightEnd;
 };

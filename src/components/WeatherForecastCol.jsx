@@ -1,8 +1,7 @@
-import { useCheckNightTime } from '../hooks/useCheckNightTime';
+import { checkNightTime } from '../utils/checkNightTime';
+import { getColorGrade } from '../utils/getColorGrade';
 import RainDrops from './RainDrops';
 import WeatherIcon from './WeatherIcon';
-
-import { useGetColorGrade } from '../hooks/useGetColorGrade';
 
 const WeatherForecastCol = ({ timeframe, settings }) => {
   return (
@@ -11,12 +10,12 @@ const WeatherForecastCol = ({ timeframe, settings }) => {
         className="temp"
         style={{
           opacity:
-            useCheckNightTime(
+            checkNightTime(
               timeframe.time,
               settings.nightStart,
               settings.nightEnd,
             ) && '0.7',
-          backgroundColor: useGetColorGrade(timeframe.t, 'temp'),
+          backgroundColor: getColorGrade(timeframe.t, 'temp'),
         }}
       >
         {timeframe.t.toFixed(0)}˚<span>C</span>
@@ -26,13 +25,13 @@ const WeatherForecastCol = ({ timeframe, settings }) => {
         style={{
           backgroundColor:
             timeframe.rain >= 0.1
-              ? useGetColorGrade(timeframe.rain, 'rain')
+              ? getColorGrade(timeframe.rain, 'rain')
               : 'white',
         }}
       >
         <WeatherIcon
           cloudCover={timeframe.clouds}
-          night={useCheckNightTime(
+          night={checkNightTime(
             timeframe.time,
             settings.nightStart,
             settings.nightEnd,

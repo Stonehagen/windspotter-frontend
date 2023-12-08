@@ -1,4 +1,4 @@
-import { useGetColorGrade } from '../hooks/useGetColorGrade';
+import { getColorGrade } from '../utils/getColorGrade';
 
 const WindMeter = ({ timeframe }) => {
   const windMeterMax = timeframe.wsMax ? timeframe.wsMax : timeframe.ws;
@@ -9,7 +9,7 @@ const WindMeter = ({ timeframe }) => {
       <div
         className="windMaxMeter"
         style={{
-          backgroundColor: useGetColorGrade(windMeterMax, 'wind'),
+          backgroundColor: getColorGrade(windMeterMax, 'wind'),
           width: `${Math.min((windMeterMax / 30) * 100, 100)}%`,
         }}
       >
@@ -17,7 +17,7 @@ const WindMeter = ({ timeframe }) => {
           <div
             className="windMeter"
             style={{
-              backgroundColor: useGetColorGrade(windMeterBase, 'wind'),
+              backgroundColor: getColorGrade(windMeterBase, 'wind'),
               width: `${Math.min((windMeterBase / windMeterMax) * 100, 100)}%`,
             }}
           ></div>

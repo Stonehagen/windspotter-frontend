@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useGenerateForecastArray } from '../hooks/useGenerateForecastArray';
-import '../styles/Forecast.css';
+import '../assets/styles/Forecast.css';
 
 import ForecastTables from './ForecastTables';
 import ForecastOverview from './ForecastOverview';

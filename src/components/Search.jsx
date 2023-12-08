@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../styles/Search.css';
+import '../assets/styles/Search.css';
 
 const Search = () => {
   const [spots, setSpots] = useState([]);

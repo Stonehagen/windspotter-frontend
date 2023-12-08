@@ -1,4 +1,4 @@
-import { useGetColorGrade } from './useGetColorGrade.js';
+import { getColorGrade } from '../utils/getColorGrade.js';
 import { useGetMercatorCoords } from './useGetMercatorCoords.js';
 import jpeg from 'jpeg-js';
 import { fabric } from 'fabric';
@@ -55,7 +55,7 @@ export const useConvertImageToData = async (image, header) => {
         ctx.fillStyle = `rgba(0, 0, 0, 0)`;
       } else {
         const windSpeed = Math.floor(getWindSpeed(vValue, uValue));
-        const [red, green, blue] = useGetColorGrade(windSpeed, 'windRGB');
+        const [red, green, blue] = getColorGrade(windSpeed, 'windRGB');
         vValues.push(vValue);
         uValues.push(uValue);
         ctx.fillStyle = `rgba(${red}, ${green}, ${blue}, 255)`;

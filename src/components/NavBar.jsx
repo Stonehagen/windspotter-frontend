@@ -11,7 +11,7 @@ import InfoDark from '../assets/icons/InfoDark.svg?react';
 import InfoLight from '../assets/icons/InfoLight.svg?react';
 import InfoActive from '../assets/icons/InfoActive.svg?react';
 
-import '../styles/NavBar.css';
+import '../assets/styles/NavBar.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 

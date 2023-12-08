@@ -18,7 +18,7 @@ const directions = [
   'N',
 ];
 
-export const useGetWindDirection = (deg) => {
+export const getWindDirection = (deg) => {
   const index = Math.round(deg / 22.5);
   const direction = directions[index];
   return direction;
