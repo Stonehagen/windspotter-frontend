@@ -131,6 +131,6 @@ export const getColorGrade = (value, type) => {
     case 'wave':
       return getColorGradeWave(value);
     default:
-      return getColorGradeWind(value);
+      return false;
   }
 };
