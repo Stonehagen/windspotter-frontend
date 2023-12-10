@@ -2,6 +2,7 @@ import moment from 'moment';
 import { checkNightTimeMorning } from '../utils/checkNightTimeMorning';
 
 export const useGenerateForecastArray = (forecast, nightEnd) => {
+  console.log(forecast)
   const getWindDirection = (v, u) => {
     return (270 - Math.atan2(v, u) * (180 / Math.PI)) % 360;
   };
