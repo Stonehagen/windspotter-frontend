@@ -2,15 +2,14 @@ import moment from 'moment';
 import { checkNightTimeMorning } from '../utils/checkNightTimeMorning';
 
 export const useGenerateForecastArray = (forecast, nightEnd) => {
-  console.log(forecast)
   const getWindDirection = (v, u) => {
     return (270 - Math.atan2(v, u) * (180 / Math.PI)) % 360;
   };
-  
+
   const getWindSpeed = (v, u) => {
     return Math.sqrt(Math.pow(u, 2) + Math.pow(v, 2));
   };
-  
+
   const getTemperature = (t) => {
     return t - 273.15;
   };
