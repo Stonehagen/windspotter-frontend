@@ -29,6 +29,13 @@
   height: 100px;
 }
 
+.landingpage .LogoWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .landingpage .Logo {
   width: 100%;
   justify-self: flex-start;
@@ -59,7 +66,6 @@
 
 .landingpage .Register button:last-child {
   background-color: #ffaa00;
-
 }
 
 .landingpage .Register button:last-child:hover {
@@ -87,3 +93,21 @@
   background-color: rgb(152, 237, 100);
   cursor: pointer;
 }
+
+.landingpage .Logout {
+  height: 70px;
+}
+
+.landingpage .Logout button {
+  background-color: #FFF;
+  color: black;
+  border: 1px solid #242424;
+  border-radius: 5px;
+  width: 150px;
+}
+
+.landingpage .Logout button:hover {
+  background-color: rgb(152, 237, 100);
+  cursor: pointer;
+}
+

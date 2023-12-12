@@ -31,7 +31,7 @@ const SignIn = ({ user, login }) => {
         } else {
           saveJWTinCookie(res.data.token);
           setAuthToken(res.data.token);
-          login(res.data.user.email, res.data.user._id);
+          login(res.data.user.email, res.data.user.username, res.data.user._id);
         }
       })
       .catch((err) =>
@@ -49,50 +49,47 @@ const SignIn = ({ user, login }) => {
   return (
     <div className="SignIn">
       <form onSubmit={handleSubmit}>
-      <div className="SignIn-form-grp">
-        <h3>
-          LOG<span>IN</span>
-        </h3>
-        <div className="formGroup">
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            value={email}
-            id="email"
-            placeholder="email"
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="formGroup">
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            value={password}
-            id="password"
-            placeholder="password"
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="messages">
-          {errors.map((error, index) => {
-            return (
-              <p className="errorMessage" key={index}>
-                {error.msg}
-              </p>
-            );
-          })}
-        </div>
+        <div className="SignIn-form-grp">
+          <h3>
+            LOG<span>IN</span>
+          </h3>
+          <div className="formGroup">
+            <label htmlFor="email">Email</label>
+            <input
+              name="email"
+              value={email}
+              id="email"
+              placeholder="email"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label htmlFor="password">Password</label>
+            <input
+              name="password"
+              value={password}
+              id="password"
+              placeholder="password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="messages">
+            {errors.map((error, index) => {
+              return (
+                <p className="errorMessage" key={index}>
+                  {error.msg}
+                </p>
+              );
+            })}
+          </div>
         </div>
         <div className="SignIn-btn-grp">
           <button type="submit">
             SEND<span>IT</span>
           </button>
-          <button
-            type="button"
-            onClick={() => navigate('/sign-up')}
-          >
+          <button type="button" onClick={() => navigate('/sign-up')}>
             REGISTER
           </button>
         </div>

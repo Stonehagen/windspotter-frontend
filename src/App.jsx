@@ -39,8 +39,9 @@ const App = () => {
 
   setAxiosHeader();
 
-  const login = (email, id) => {
+  const login = (email, username, id) => {
     setUser({
+      username,
       email,
       id,
     });
@@ -50,19 +51,16 @@ const App = () => {
     removeCookie('jwt_token');
     setAuthToken();
     setUser(null);
-    setProfile(null);
   };
 
   const getUser = async () => {
     // TODO: get rid of console.log
-    axios
-      .get(`${import.meta.env.VITE_API_BACKENDSERVER}/session`)
-      .then((res) =>
-        setUser({
-          email: res.data.email,
-          id: res.data._id,
-        }),
-      )
+    axios.get(`${import.meta.env.VITE_API_BACKENDSERVER}/session`).then((res) =>
+      setUser({
+        email: res.data.email,
+        id: res.data._id,
+      }),
+    );
   };
 
   useEffect(() => {
@@ -74,15 +72,13 @@ const App = () => {
       });
     if (!user && token) {
       getUser();
-    } else {
-      setLoading(false);
     }
   }, [user, token]);
 
   return (
     <BrowserRouter basename="/">
       <Routes>
-        <Route path="/" element={<LandingPage user={user}/>} />
+        <Route path="/" element={<LandingPage user={user} logout={logout} />} />
         <Route path="/map" element={<Map />} />
         <Route path="/search" element={<Search />} />
         <Route
@@ -92,7 +88,7 @@ const App = () => {
         <Route path="/info" element={<Info />} />
         <Route path="/sign-up" element={<SignUp user={user} />} />
         <Route path="/sign-in" element={<SignIn login={login} user={user} />} />
-        <Route path='*' element={<LandingPage />} />
+        <Route path="*" element={<LandingPage />} />
       </Routes>
       <NavBar mode={mode} />
     </BrowserRouter>
