@@ -107,3 +107,11 @@
   background-color: rgb(152, 237, 100);
   cursor: pointer;
 }
+
+.SignUp button:first-child {
+  background-color: #ffaa00;
+}
+
+.SignUp button:first-child:hover {
+  background-color: rgb(152, 237, 100);
+}

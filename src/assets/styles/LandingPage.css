@@ -2,11 +2,17 @@
   .landingpage .Logo {
     font-size: 3.5em;
   }
+  .landingpage .LogoSub {
+    font-size: 1em;
+  }
 }
 
 @media (min-width: 500px) {
   .landingpage .Logo {
     font-size: 5em;
+  }
+  .landingpage .LogoSub {
+    font-size: 1.5em;
   }
 }
 
@@ -16,16 +22,68 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.landingpage .landingHeader {
+  height: 100px;
 }
 
 .landingpage .Logo {
   width: 100%;
   justify-self: flex-start;
   color: rgb(152, 237, 100);
+  margin-bottom: 0;
 }
 
 .landingpage .Logo span {
   font-weight: 100;
 }
 
+.landingpage .LogoSub {
+  font-weight: 200;
+  margin-top: 0;
+  color: #ffaa00;
+}
+
+.landingpage .LogoSub span {
+  font-weight: 600;
+}
+
+.landingpage .Register {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.landingpage .Register button:last-child {
+  background-color: #ffaa00;
+
+}
+
+.landingpage .Register button:last-child:hover {
+  background-color: rgb(152, 237, 100);
+}
+
+.landingpage button {
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid #242424;
+  border-radius: 5px;
+  width: 200px;
+  height: 40px;
+  text-decoration: none;
+  font-weight: 200;
+  font-size: 1.3em;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.landingpage button span {
+  font-weight: 600;
+}
+
+.landingpage button:hover {
+  background-color: rgb(152, 237, 100);
+  cursor: pointer;
+}

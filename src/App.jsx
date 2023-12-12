@@ -82,7 +82,7 @@ const App = () => {
   return (
     <BrowserRouter basename="/">
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage user={user}/>} />
         <Route path="/map" element={<Map />} />
         <Route path="/search" element={<Search />} />
         <Route

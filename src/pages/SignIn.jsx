@@ -49,7 +49,10 @@ const SignIn = ({ user, login }) => {
   return (
     <div className="SignIn">
       <form onSubmit={handleSubmit}>
-        <h2>SIGN<span>IN</span></h2>
+      <div className="SignIn-form-grp">
+        <h3>
+          LOG<span>IN</span>
+        </h3>
         <div className="formGroup">
           <label htmlFor="email">Email</label>
           <input
@@ -81,14 +84,18 @@ const SignIn = ({ user, login }) => {
             );
           })}
         </div>
-        <button type="submit">SIGN<span>IN</span></button>
-        <button
-          type="button"
-          className="secondoryBtn"
-          onClick={() => navigate('/sign-up')}
-        >
-          SIGN<span>UP</span>
-        </button>
+        </div>
+        <div className="SignIn-btn-grp">
+          <button type="submit">
+            SEND<span>IT</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate('/sign-up')}
+          >
+            REGISTER
+          </button>
+        </div>
       </form>
     </div>
   );

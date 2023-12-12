@@ -65,7 +65,7 @@ const SignUp = ({ user }) => {
       <form onSubmit={handleSubmit}>
         <div className="SignUp-form-grp">
           <h3>
-            SIGN<span>UP</span>
+            REGISTER<span>NOW</span>
           </h3>
           <div className="formGroup">
             <label htmlFor="username">Username</label>
@@ -123,14 +123,13 @@ const SignUp = ({ user }) => {
         </div>
         <div className="SignUp-btn-grp">
           <button type="submit">
-            SIGN<span>UP</span>
+            SEND<span>IT</span>
           </button>
           <button
             type="button"
-            className="secondoryBtn"
             onClick={() => navigate('/sign-in')}
           >
-            SIGN<span>IN</span>
+            LOG IN
           </button>
         </div>
       </form>

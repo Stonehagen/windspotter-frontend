@@ -1,0 +1,117 @@
+.SignIn {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.SignIn form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.SignIn .SignIn-form-grp {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.SignIn h3 {
+  font-weight: 200;
+  margin: 5px 0;
+  font-size: 2em;
+}
+
+.SignIn h3 span {
+  font-weight: 600;
+}
+
+.SignIn form input {
+  background-color: rgba(255, 255, 255, 0.87);
+  font-size: 1.2em;
+  color: black;
+  border: 1px solid #242424;
+  border-radius: 5px;
+  width: 276px;
+  height: 40px;
+  text-decoration: none;
+  font-weight: 200;
+  line-height: 40px;
+  margin: 1px;
+  padding-left: 10px;
+}
+
+.SignIn form .messages {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: red;
+}
+
+.SignIn form .errorMessage {
+  padding: 0;
+  margin: 0;
+  font-size: 0.75em;
+}
+
+.SignIn form input::placeholder {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  font-size: 1.2em;
+}
+
+.SignIn form input:focus {
+  outline: none;
+  border: 2px solid #ffaa00;
+  margin: 0;
+}
+
+.SignIn form label {
+  font-weight: 200;
+  font-size: 1.2em;
+  display: flex;
+
+}
+
+.SignIn .SignIn-btn-grp {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.SignIn button {
+  background-color: rgba(255, 255, 255, 0.87);
+  color: black;
+  border: 1px solid #242424;
+  border-radius: 5px;
+  width: 140px;
+  height: 40px;
+  text-decoration: none;
+  font-weight: 200;
+  font-size: 1.3em;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.SignIn button span {
+  font-weight: 600;
+}
+
+.SignIn button:hover {
+  background-color: rgb(152, 237, 100);
+  cursor: pointer;
+}
+
+.SignIn button:first-child {
+  background-color: #ffaa00;
+}
+
+.SignIn button:first-child:hover {
+  background-color: rgb(152, 237, 100);
+}
