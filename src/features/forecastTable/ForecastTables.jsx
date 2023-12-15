@@ -17,14 +17,17 @@ const ForecastTables = ({ forecast, days, settings, setSettings }) => {
       return forecast.filter((timeframe) => timeframe.day === day);
     });
 
-    return sortedForecastDays.map((dayArray, index) => (
-      <DailyForecastTable
-        dayArray={dayArray}
-        settings={settings}
-        setSettings={setSettings}
-        key={index}
-      />
-    ));
+    return sortedForecastDays.map((dayArray, index) => {
+      if (index > 10) return null;
+      return (
+        <DailyForecastTable
+          dayArray={dayArray}
+          settings={settings}
+          setSettings={setSettings}
+          key={index}
+        />
+      );
+    });
   };
 
   useEffect(() => {

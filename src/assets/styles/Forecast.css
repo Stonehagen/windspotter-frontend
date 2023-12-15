@@ -26,10 +26,13 @@
 
 @media (min-width: 1000px) {
   .infoBar {
-    width: calc(100% - 40px);
+    max-width: 2000px;
+    padding-bottom: 5px;
   }
+
   .infoBar .ForecastOverview {
     height: 80px;
+    width: calc(100% - 40px);
   }
 
   .infoBar .OverviewChart {
@@ -39,10 +42,11 @@
 
 @media (min-width: 420px) and (max-width: 999px) {
   .infoBar {
-    width: calc(100% - 20px);
+    padding-bottom: 2px;
   }
   .infoBar .ForecastOverview {
     height: 50px;
+    width: calc(100% - 20px);
   }
 
   .infoBar .OverviewChart {
@@ -53,11 +57,12 @@
 @media (max-width: 419px) {
   .infoBar {
     max-width: 480px;
-    width: 100%;
+    padding-bottom: 2px;
   }
 
   .infoBar .ForecastOverview {
     height: 50px;
+    width: 100%;
   }
 
   .infoBar .OverviewChart {
@@ -76,11 +81,13 @@
 }
 
 .infoBar {
+  width: 100%;
   display: flex;
   flex-direction: column;
   z-index: 1;
   position: sticky;
   top: 0;
+  align-items: center;
 }
 
 .infoBar .forecastInfo {

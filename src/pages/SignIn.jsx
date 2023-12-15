@@ -9,7 +9,6 @@ const SignIn = ({ user, login }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
-
   const [cookie, setCookie] = useCookies(['jwt_token']);
 
   const navigate = useNavigate();
@@ -20,6 +19,14 @@ const SignIn = ({ user, login }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (email.length < 1) {
+      setErrors([{ msg: 'please provide an email' }]);
+      return;
+    }
+    if (password.length < 1) {
+      setErrors([{ msg: 'please provide a password' }]);
+      return;
+    }
     axios
       .post(`${import.meta.env.VITE_API_BACKENDSERVER}/user/sign-in`, {
         email,

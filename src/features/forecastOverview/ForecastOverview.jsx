@@ -45,7 +45,7 @@ const ForecastOverview = ({ forecast, days }) => {
                     )} 0%, ${getColorGrade(
                       timeframe.wsMax,
                       'wind',
-                    )} 40%,  ${getColorGrade(timeframe.wsMax, 'wind')} 75%)`,
+                    )} 50%,  ${getColorGrade(timeframe.wsMax, 'wind')} 80%)`,
                   }}
                 ></div>
                 <div
@@ -67,7 +67,8 @@ const ForecastOverview = ({ forecast, days }) => {
     <>
       {forecast ? (
         <div className="ForecastOverview">
-          {days.map((day) => {
+          {days.map((day, index) => {
+            if (index > 10) return null;
             return (
               <div
                 className="ForecastOverviewDay"

@@ -13,15 +13,17 @@ const getWindowDimensions = () => {
 const WindForecastCol = ({ timeframe, settings, setSettings }) => {
   const [windowWidth, setWindowWidth] = useState(getWindowDimensions());
   const changeWindUnit = () => {
-    if (settings.windUnit === 'kts') {
+    if (settings.windUnit === 'mps') {
       setSettings({ ...settings, windUnit: 'kph' });
     } else if (settings.windUnit === 'kph') {
       setSettings({ ...settings, windUnit: 'bft' });
     } else if (settings.windUnit === 'bft') {
       setSettings({ ...settings, windUnit: 'kts' });
+    } else if (settings.windUnit === 'kts') {
+      setSettings({ ...settings, windUnit: 'mps' });
     }
   };
-  
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(getWindowDimensions());
@@ -35,7 +37,7 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
       className="windForecast"
       style={{
         opacity:
-        checkNightTime(
+          checkNightTime(
             timeframe.time,
             settings.nightStart,
             settings.nightEnd,
@@ -45,7 +47,7 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
             ? `linear-gradient(to top, ${getColorGrade(
                 timeframe.ws,
                 'wind',
-              )} 40%, ${getColorGrade(timeframe.wsMax, 'wind')} 80%)`
+              )} 60%, ${getColorGrade(timeframe.wsMax, 'wind')} 80%)`
             : `linear-gradient(to right, ${getColorGrade(
                 timeframe.ws,
                 'wind',
@@ -57,10 +59,10 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
         <div
           className="wind"
           style={{
-            fontSize:
-            getWindSpeed(timeframe.ws, settings.windUnit) > 99
-                ? '2.3rem'
-                : '3rem',
+            scale:
+              getWindSpeed(timeframe.ws, settings.windUnit) > 99
+                ? '0.7'
+                : '1',
           }}
         >
           {getWindSpeed(timeframe.ws, settings.windUnit)}
@@ -77,9 +79,7 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
       <div className="windDirection">
         <WindDir style={{ transform: `rotate(${timeframe.dir + 180}deg)` }} />
         <div className="windDirInfo">
-          <div className="windDirText">
-            {getWindDirection(timeframe.dir)}
-          </div>
+          <div className="windDirText">{getWindDirection(timeframe.dir)}</div>
           <div className="windDirNumber">{timeframe.dir.toFixed(0)}˚</div>
         </div>
       </div>

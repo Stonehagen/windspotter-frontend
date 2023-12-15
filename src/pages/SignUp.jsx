@@ -48,10 +48,11 @@ const SignUp = ({ user }) => {
         email,
         password,
       })
-      .then(() => navigate('/sign-in'))
+      .then()
       .catch((err) =>
         setErrors(err.response.data.errors ? err.response.data.errors : []),
-      );
+      )
+      .finally(() => navigate('/sign-in'));
   };
 
   useEffect(() => {
@@ -125,10 +126,7 @@ const SignUp = ({ user }) => {
           <button type="submit">
             SEND<span>IT</span>
           </button>
-          <button
-            type="button"
-            onClick={() => navigate('/sign-in')}
-          >
+          <button type="button" onClick={() => navigate('/sign-in')}>
             LOG IN
           </button>
         </div>
