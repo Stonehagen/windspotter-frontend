@@ -31,7 +31,7 @@ const LandingPage = ({ user, logout }) => {
           WIND<span>PREDICTION</span> FOR <span>SURFERS</span>
         </h2>
       </div>
-      {user ? (
+      {/* {user ? (
         <div className="Logout">
           <button type="button" onClick={() => logout()}>
             LOG<span>OUT</span>
@@ -46,7 +46,7 @@ const LandingPage = ({ user, logout }) => {
             REGISTER<span>NOW</span>
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
