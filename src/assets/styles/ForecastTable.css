@@ -154,7 +154,7 @@ table .upperRow {
 
 
   table .windDirection svg {
-    scale: 1.3;
+    scale: 1.1;
   }
 
   table .windDirText {
@@ -201,7 +201,8 @@ table .upperRow {
   }
 
   table .windDirection svg {
-    scale: 1.5;
+    scale: 1.2;
+    margin-bottom: 5px;
   }
 
   table .windDirText {
