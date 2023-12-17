@@ -32,11 +32,19 @@ const LandingPage = ({ user, logout }) => {
         </h2>
       </div>
       {/* {user ? (
-        <div className="Logout">
-          <button type="button" onClick={() => logout()}>
-            LOG<span>OUT</span>
-          </button>
-        </div>
+        <>
+          <div className="Links">
+            {user.memberStatus === 'admin' ||
+            user.memberStatus === 'creator' ? (
+              <button type="button" onClick={() => navigate('/adm-dashboard')}>
+                DASH<span>BOARD</span>
+              </button>
+            ) : null}
+            <button id='LogoutBtn' type="button" onClick={() => logout()}>
+              LOG<span>OUT</span>
+            </button>
+          </div>
+        </>
       ) : (
         <div className="Register">
           <button type="button" onClick={() => navigate('/sign-in')}>

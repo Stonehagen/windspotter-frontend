@@ -5,16 +5,20 @@ import WeatherIcon from './WeatherIcon';
 
 const WeatherForecastCol = ({ timeframe, settings }) => {
   return (
-    <div className="weather">
+    <div
+      className="weather"
+      style={{
+        opacity:
+          checkNightTime(
+            timeframe.time,
+            settings.nightStart,
+            settings.nightEnd,
+          ) && '0.7',
+      }}
+    >
       <div
         className="temp"
         style={{
-          opacity:
-            checkNightTime(
-              timeframe.time,
-              settings.nightStart,
-              settings.nightEnd,
-            ) && '0.7',
           backgroundColor: getColorGrade(timeframe.t, 'temp'),
         }}
       >

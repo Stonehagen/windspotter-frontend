@@ -11,7 +11,7 @@ const ForecastOverview = ({ forecast, days }) => {
     const dayElement = document.querySelector(
       `[dateday="${day}"][class="ForecastTable"]`,
     );
-    dayElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+    dayElement.scrollIntoView({ behavior: 'auto', block: 'center' });
   };
 
   const createOverviewDay = (day) => {

@@ -94,11 +94,15 @@
   cursor: pointer;
 }
 
-.landingpage .Logout {
-  height: 70px;
+.landingpage .Links {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
-.landingpage .Logout button {
+.landingpage .Links button {
   background-color: #FFF;
   color: black;
   border: 1px solid #242424;
@@ -106,7 +110,15 @@
   width: 150px;
 }
 
-.landingpage .Logout button:hover {
+.landingpage #LogoutBtn {
+  opacity: 0.5;
+}
+
+.landingpage #LogoutBtn:hover {
+  opacity: 1;
+}
+
+.landingpage .Links button:hover {
   background-color: rgb(152, 237, 100);
   cursor: pointer;
 }

@@ -33,6 +33,11 @@ const ForecastTables = ({ forecast, days, settings, setSettings }) => {
   useEffect(() => {
     const targetSections = document.querySelectorAll('.ForecastTable');
     const menuItems = document.querySelectorAll('.ForecastOverviewDay');
+    const options = {
+      root: document,
+      rootMargin: '-10px 0px -40% 0px',
+      threshold: 0.1,
+    };
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -51,7 +56,7 @@ const ForecastTables = ({ forecast, days, settings, setSettings }) => {
           }
         });
       },
-      { threshold: 0.5 },
+      options,
     );
 
     targetSections.forEach((section) => {

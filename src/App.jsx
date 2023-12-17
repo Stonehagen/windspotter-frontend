@@ -54,11 +54,11 @@ const App = () => {
   };
 
   const getUser = async () => {
-    // TODO: get rid of console.log
     axios.get(`${import.meta.env.VITE_API_BACKENDSERVER}/session`).then((res) =>
       setUser({
         email: res.data.email,
         id: res.data._id,
+        memberStatus: res.data.memberStatus,
       }),
     );
   };
