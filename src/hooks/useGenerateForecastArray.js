@@ -6,9 +6,7 @@ export const useGenerateForecastArray = (
   nightEnd,
   forecastModels,
 ) => {
-  const lastShortRangeForecastDay = new Date(
-    forecastModels.shortRange.lastDay,
-  );
+  const lastShortRangeForecastDay = new Date(forecastModels.shortRange.lastDay);
   const lastMidRangeForecastDay = new Date(forecastModels.midRange.lastDay);
 
   const getWindDirection = (v, u) => {
@@ -26,14 +24,14 @@ export const useGenerateForecastArray = (
   const getForecastModel = (timestamp, forecastModels) => {
     const time = new Date(timestamp);
     if (time.getTime() <= lastShortRangeForecastDay.getTime()) {
-      return forecastModels.shortRange.name;
+      return forecastModels.shortRange;
     } else if (
       time.getTime() > lastShortRangeForecastDay.getTime() &&
       time.getTime() <= lastMidRangeForecastDay.getTime()
     ) {
-      return forecastModels.midRange.name;
+      return forecastModels.midRange;
     } else {
-      return forecastModels.longRange.name;
+      return forecastModels.longRange;
     }
   };
 
@@ -88,12 +86,15 @@ export const useGenerateForecastArray = (
             wavePeriod: 0,
           };
 
+      const forecastModel = getForecastModel(forecastTimestamp, forecastModels);
+
       // add forecast values to array
       newForecastArray.push({
         time: forecastTimestamp,
         hour: +moment(forecastTimestamp).format('HH'),
         day: +moment(forecastTimestamp).format('DD'),
-        model: getForecastModel(forecastTimestamp, forecastModels),
+        model: forecastModel.name,
+        modelTime: forecastModel.time,
         t: forecast.t_2m[time]
           ? getTemperature(forecast.t_2m[time])
           : lastForecast.t,
