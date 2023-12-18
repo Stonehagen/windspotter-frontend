@@ -1,7 +1,16 @@
 import moment from 'moment';
 import { checkNightTimeMorning } from '../utils/checkNightTimeMorning';
 
-export const useGenerateForecastArray = (forecast, nightEnd) => {
+export const useGenerateForecastArray = (
+  forecast,
+  nightEnd,
+  forecastModels,
+) => {
+  const lastShortRangeForecastDay = new Date(
+    forecastModels.shortRange.lastDay,
+  );
+  const lastMidRangeForecastDay = new Date(forecastModels.midRange.lastDay);
+
   const getWindDirection = (v, u) => {
     return (270 - Math.atan2(v, u) * (180 / Math.PI)) % 360;
   };
@@ -12,6 +21,20 @@ export const useGenerateForecastArray = (forecast, nightEnd) => {
 
   const getTemperature = (t) => {
     return t - 273.15;
+  };
+
+  const getForecastModel = (timestamp, forecastModels) => {
+    const time = new Date(timestamp);
+    if (time.getTime() <= lastShortRangeForecastDay.getTime()) {
+      return forecastModels.shortRange.name;
+    } else if (
+      time.getTime() > lastShortRangeForecastDay.getTime() &&
+      time.getTime() <= lastMidRangeForecastDay.getTime()
+    ) {
+      return forecastModels.midRange.name;
+    } else {
+      return forecastModels.longRange.name;
+    }
   };
 
   const newForecastArray = [];
@@ -70,6 +93,7 @@ export const useGenerateForecastArray = (forecast, nightEnd) => {
         time: forecastTimestamp,
         hour: +moment(forecastTimestamp).format('HH'),
         day: +moment(forecastTimestamp).format('DD'),
+        model: getForecastModel(forecastTimestamp, forecastModels),
         t: forecast.t_2m[time]
           ? getTemperature(forecast.t_2m[time])
           : lastForecast.t,

@@ -24,7 +24,7 @@ const Forecast = ({ settings, setSettings }) => {
         const forecastArr = useGenerateForecastArray(
           res.data.spot.forecast,
           settings.nightEnd,
-          res.data.spot.lat
+          res.data.spot.forecastModels
         );
         setForecastArray(forecastArr);
         setDays([...new Set(forecastArr.map((timeframe) => timeframe.day))]);

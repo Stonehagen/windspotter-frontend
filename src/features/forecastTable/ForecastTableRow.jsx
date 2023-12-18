@@ -40,6 +40,10 @@ const ForecastTableRow = ({ timeframe, settings, setSettings }) => {
           />
           <WeatherForecastCol timeframe={timeframe} settings={settings} />
           <WaveForecastCol timeframe={timeframe} settings={settings} />
+          <div className="modelInfo">
+            {timeframe.model.split(' ')[0]}
+            <span>{timeframe.model.split(' ')[1]}</span>
+          </div>
         </div>
         <div className="lowerRow">
           <WindMeter timeframe={timeframe} />

@@ -4,6 +4,10 @@ table .upperRow {
 }
 
 @media (prefers-color-scheme: dark) {
+  table .modelInfo {
+    color: rgba(255, 255, 255, 0.87);
+  }
+
   table .time div {
     color: rgba(255, 255, 255, 0.87);
   }
@@ -22,6 +26,10 @@ table .upperRow {
 }
 
 @media (prefers-color-scheme: light) {
+  table .modelInfo {
+    color: #242424;
+  }
+
   table tr .lowerRow {
     background-color: #ffffff;
   }
@@ -36,6 +44,9 @@ table .upperRow {
 }
 
 @container forecastCol (max-width: 59.99px) {
+  table .modelInfo {
+    font-size: 0.6em;
+  }
   table .windGust {
     font-size: 1.5rem;
     font-weight: 300;
@@ -84,6 +95,9 @@ table .upperRow {
 }
 
 @container forecastCol (min-width: 60px)  and (max-width: 69.99px) {
+  table .modelInfo {
+    font-size: 0.7em;
+  }
   table .windGust {
     font-size: 1.9rem;
     font-weight: 300;
@@ -125,6 +139,9 @@ table .upperRow {
 }
 
 @container forecastCol (min-width: 70px)  and (max-width: 79.99px) {
+  table .modelInfo {
+    font-size: 0.8em;
+  }
   table .windGust {
     font-size: 2rem;
     font-weight: 300;
@@ -152,7 +169,6 @@ table .upperRow {
     padding-bottom: 5px;
   }
 
-
   table .windDirection svg {
     scale: 1.1;
   }
@@ -173,6 +189,9 @@ table .upperRow {
 }
 
 @container forecastCol (min-width: 80px)  and (max-width: 100px) {
+  table .modelInfo {
+    font-size: 0.9em;
+  }
   table .windGust {
     font-size: 2.3rem;
     font-weight: 300;
@@ -219,7 +238,6 @@ table .upperRow {
     padding-top: 7px;
   }
 }
-
 
 @media (min-width: 1000px) {
   .ForecastTable {
@@ -555,6 +573,10 @@ table .upperRow {
 }
 
 @media (min-width: 420px) and (max-width: 999px) {
+  .modelInfo {
+    display: none;
+  }
+
   .ForecastTable {
     max-width: 480px;
   }
@@ -587,6 +609,10 @@ table .upperRow {
 }
 
 @media (max-width: 419px) {
+  .modelInfo {
+    display: none;
+  }
+
   table .windDirection {
     flex-direction: column;
     font-size: 1em;
@@ -694,4 +720,20 @@ table .waves svg {
 table .wavesSecondCol {
   display: flex;
   display: flex;
+}
+
+table .modelInfo {
+  height: 30px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.7;
+}
+
+table .modelInfo span {
+  font-size: 0.7em;
+  font-weight: 800;
+  margin-top: -5px;
+  margin-left: 2px;
 }
