@@ -15,7 +15,7 @@ const WaveForecastCol = ({ timeframe, settings }) => {
           ) && '0.7',
         backgroundColor: timeframe.waveHeight
           ? getColorGrade(timeframe.waveHeight, 'wave')
-          : 'white',
+          : '#F3F3F3',
       }}
     >
       {timeframe.waveHeight ? (

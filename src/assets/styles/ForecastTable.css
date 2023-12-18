@@ -29,7 +29,7 @@ table .upperRow {
 @media (prefers-color-scheme: light) {
   table .modelInfo {
     color: #242424;
-    background-color: #4b5c6b;
+    background-color: #DDD;
   }
 
   table tr .lowerRow {

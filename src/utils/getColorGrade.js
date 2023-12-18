@@ -62,9 +62,9 @@ const colorScaleTemp = [
   '#84445A',
 ];
 
-const colorScaleRain = ['#ffffff', '#3F93E2', '#304164'];
+const colorScaleRain = ['#E3F3F3', '#3F93E2', '#304164'];
 
-const colorScaleWave = ['#ffffff', '#3F93E2', '#304164'];
+const colorScaleWave = ['#E3F3F3', '#2F63B2', '#203154'];
 
 const getColorGradeWindDark = chroma
   .scale(colorScaleWindDark)

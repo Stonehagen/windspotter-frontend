@@ -30,7 +30,7 @@ const WeatherForecastCol = ({ timeframe, settings }) => {
           backgroundColor:
             timeframe.rain >= 0.1
               ? getColorGrade(timeframe.rain, 'rain')
-              : 'white',
+              : '#F3F3F3',
         }}
       >
         <WeatherIcon
