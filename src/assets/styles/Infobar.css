@@ -98,6 +98,7 @@
 .infoBar .spotInfos {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -112,6 +113,7 @@ infoBar .spotInfos div:last-child {
   align-items: center;
   gap: 5px;
   justify-self: flex-end;
+  width: 32px;
 }
 
 .infoBar .backBtn {
@@ -121,4 +123,5 @@ infoBar .spotInfos div:last-child {
   align-items: center;
   gap: 5px;
   justify-self: flex-end;
+  width: 32px;
 }

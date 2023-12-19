@@ -36,7 +36,7 @@ const LandingPage = ({ user, logout }) => {
           WIND<span>PREDICTION</span> FOR <span>SURFERS</span>
         </h2>
       </div>
-      {user ? (
+      {/* {user ? (
         <>
           <div className="Links">
             {user.memberStatus === 'admin' ||
@@ -59,7 +59,7 @@ const LandingPage = ({ user, logout }) => {
             REGISTER<span>NOW</span>
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

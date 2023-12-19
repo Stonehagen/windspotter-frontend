@@ -61,6 +61,7 @@ const App = () => {
         email: res.data.email,
         id: res.data._id,
         memberStatus: res.data.memberStatus,
+        favorites: res.data.favorites,
       }),
     );
   };
@@ -90,6 +91,8 @@ const App = () => {
               settings={settings}
               setSettings={setSettings}
               mode={mode}
+              user={user}
+              setUser={setUser}
             />
           }
         />

@@ -8,7 +8,7 @@ import ForecastTables from '../features/forecastTable/ForecastTables';
 import ForecastOverview from '../features/forecastOverview/ForecastOverview';
 import Infobar from '../features/infobar/Infobar';
 
-const Forecast = ({ settings, setSettings, mode }) => {
+const Forecast = ({ settings, setSettings, mode, user, setUser }) => {
   const { spotName } = useParams();
   const [spot, setSpot] = useState(null);
   const [forecastArray, setForecastArray] = useState([]);
@@ -30,6 +30,7 @@ const Forecast = ({ settings, setSettings, mode }) => {
         setForecastArray(forecastArr);
         setDays([...new Set(forecastArr.map((timeframe) => timeframe.day))]);
         setSpot({
+          _id: res.data.spot._id,
           name: res.data.spot.name,
           lat: res.data.spot.lat,
           lon: res.data.spot.lon,
@@ -51,6 +52,8 @@ const Forecast = ({ settings, setSettings, mode }) => {
             spot={spot}
             forecastArray={forecastArray}
             days={days}
+            user={user}
+            setUser={setUser}
           />
           <ForecastTables
             forecast={forecastArray}

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../assets/styles/Infobar.css';
 import AddBookmark from '../../assets/icons/AddBookmark.svg?react';
 import RemoveBookmark from '../../assets/icons/RemoveBookmark.svg?react';
 import ForecastOverview from '../forecastOverview/ForecastOverview';
+import axios from 'axios';
 
-const Infobar = ({ spot, forecastArray, days }) => {
-  const bookmarked = false;
+const Infobar = ({ spot, forecastArray, days, user, setUser }) => {
+  const [bookmarked, setBookmarked] = useState(
+    user ? user.favorites.includes(spot._id) : false,
+  );
   const decimalToDMS = (decimal) => {
     const degrees = Math.trunc(decimal);
     const minutes = Math.trunc((decimal - degrees) * 60);
@@ -21,10 +24,29 @@ const Infobar = ({ spot, forecastArray, days }) => {
     }
   };
 
+  const addBookmark = () => {
+    axios
+      .post(`${import.meta.env.VITE_API_BACKENDSERVER}/user/addFavorite`, {
+        spotId: spot._id,
+      })
+      .then((res) => {
+        setBookmarked(res.data.user.favorites.includes(spot._id));
+        setUser({
+          email: res.data.user.email,
+          id: res.data.user._id,
+          memberStatus: res.data.user.memberStatus,
+          favorites: res.data.user.favorites,
+        });
+      })
+      .catch((err) => console.log(err));
+    // need a redirect to main page if an error occurs
+  };
+  //addFavorite
+
   return (
     <div className="infoBar">
       <div className="infoHeader">
-        <div className="backBtn">-</div>
+        <div className="backBtn"></div>
         <div className="forecastInfo">
           <h3>{spot.name}</h3>
           <div className="spotInfos">
@@ -39,10 +61,14 @@ const Infobar = ({ spot, forecastArray, days }) => {
           </div>
         </div>
         <div className="addBookmark">
-          {bookmarked === true ? (
-            <RemoveBookmark className='Icon'/>
+          {user ? (
+            bookmarked === true ? (
+              <RemoveBookmark className="Icon" onClick={() => addBookmark()} />
+            ) : (
+              <AddBookmark className="Icon" onClick={() => addBookmark()} />
+            )
           ) : (
-            <AddBookmark className='Icon' />
+            <></>
           )}
         </div>
       </div>
