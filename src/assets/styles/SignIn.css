@@ -46,11 +46,14 @@
 }
 
 .SignIn form .messages {
+  max-width: 276px;
   height: 80px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  color: red;
+  color: rgb(247, 96, 40);
+  font-size: 1.1em;
+  text-align: left;
 }
 
 .SignIn form .errorMessage {

@@ -16,6 +16,7 @@ import Search from './pages/Search';
 import Info from './pages/Info';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import Dashboard from './pages/Dashboard';
 
 const App = () => {
   const [user, setUser] = useState();
@@ -39,11 +40,12 @@ const App = () => {
 
   setAxiosHeader();
 
-  const login = (email, username, id) => {
+  const login = ({ username, email, _id, memberStatus }) => {
     setUser({
+      id: _id,
       username,
       email,
-      id,
+      memberStatus,
     });
   };
 
@@ -73,7 +75,7 @@ const App = () => {
     if (!user && token) {
       getUser();
     }
-  }, [user, token]);
+  }, [user]);
 
   return (
     <BrowserRouter basename="/">
@@ -88,6 +90,7 @@ const App = () => {
         <Route path="/info" element={<Info />} />
         <Route path="/sign-up" element={<SignUp user={user} />} />
         <Route path="/sign-in" element={<SignIn login={login} user={user} />} />
+        <Route path="/adm-dashboard" element={<Dashboard  user={user}/>} />
         <Route path="*" element={<LandingPage />} />
       </Routes>
       <NavBar mode={mode} />

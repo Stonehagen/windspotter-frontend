@@ -35,23 +35,25 @@ const SignIn = ({ user, login }) => {
       .then((res) => {
         if (res.data.error) {
           setErrors(res.data.error);
+          return;
         } else {
-          saveJWTinCookie(res.data.token);
-          setAuthToken(res.data.token);
-          login(res.data.user.email, res.data.user.username, res.data.user._id);
+          const token = res.data.token;
+          saveJWTinCookie(token);
+          setAuthToken(token);
+          login(res.data.user);
+          navigate('/');
         }
       })
-      .catch((err) =>
-        setErrors(err.response.data.error ? err.response.data.error : []),
-      )
-      .finally(() => navigate('/'));
+      .catch((err) =>{
+        setErrors(err.response.data.errors ? err.response.data.errors : [])
+      })
   };
 
   useEffect(() => {
     if (user) {
       navigate('/');
     }
-  });
+  }, [user]);
 
   return (
     <div className="SignIn">

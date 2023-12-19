@@ -1,0 +1,19 @@
+.Dashboard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.Dashboard .DashboardTitle {
+  width: 100%;
+  justify-self: flex-start;
+  font-weight: 100;
+}
+
+.Dashboard .DashboardTitle span {
+  font-weight: 600;
+}

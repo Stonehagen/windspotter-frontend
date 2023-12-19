@@ -8,6 +8,11 @@ const LandingPage = ({ user, logout }) => {
 
   const navigate = useNavigate();
 
+  const loggingOut = () => {
+    logout();
+    navigate('/');
+  };
+
   const getSpots = async () => {
     axios
       .get(`${import.meta.env.VITE_API_BACKENDSERVER}/spot/list`)
@@ -31,7 +36,7 @@ const LandingPage = ({ user, logout }) => {
           WIND<span>PREDICTION</span> FOR <span>SURFERS</span>
         </h2>
       </div>
-      {/* {user ? (
+      {user ? (
         <>
           <div className="Links">
             {user.memberStatus === 'admin' ||
@@ -40,7 +45,7 @@ const LandingPage = ({ user, logout }) => {
                 DASH<span>BOARD</span>
               </button>
             ) : null}
-            <button id='LogoutBtn' type="button" onClick={() => logout()}>
+            <button id="LogoutBtn" type="button" onClick={() => loggingOut()}>
               LOG<span>OUT</span>
             </button>
           </div>
@@ -54,7 +59,7 @@ const LandingPage = ({ user, logout }) => {
             REGISTER<span>NOW</span>
           </button>
         </div>
-      )} */}
+      )}
     </div>
   );
 };
