@@ -242,6 +242,13 @@ table .upperRow {
 }
 
 @media (min-width: 1000px) {
+  table .modelInfo {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
   .ForecastTable {
     width: 100%;
     max-width: 2000px;
@@ -381,6 +388,7 @@ table .upperRow {
 }
 
 @media (max-width: 999px) {
+
   table tbody {
     display: flex;
     flex-direction: column;
@@ -575,7 +583,7 @@ table .upperRow {
 }
 
 @media (min-width: 420px) and (max-width: 999px) {
-  .modelInfo {
+  table .modelInfo {
     display: none;
   }
 
@@ -611,7 +619,7 @@ table .upperRow {
 }
 
 @media (max-width: 419px) {
-  .modelInfo {
+  table .modelInfo {
     display: none;
   }
 
@@ -728,10 +736,6 @@ table .modelInfo {
   height: 42px;
   gap: 7px;
   font-weight: 300;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   opacity: 0.7;
 }
 
