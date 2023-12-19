@@ -85,12 +85,18 @@ const App = () => {
         <Route path="/search" element={<Search />} />
         <Route
           path="/forecast/:spotName"
-          element={<Forecast settings={settings} setSettings={setSettings} />}
+          element={
+            <Forecast
+              settings={settings}
+              setSettings={setSettings}
+              mode={mode}
+            />
+          }
         />
         <Route path="/info" element={<Info />} />
         <Route path="/sign-up" element={<SignUp user={user} />} />
         <Route path="/sign-in" element={<SignIn login={login} user={user} />} />
-        <Route path="/adm-dashboard" element={<Dashboard  user={user}/>} />
+        <Route path="/adm-dashboard" element={<Dashboard user={user} />} />
         <Route path="*" element={<LandingPage />} />
       </Routes>
       <NavBar mode={mode} />

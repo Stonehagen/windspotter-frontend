@@ -1,0 +1,124 @@
+@media (prefers-color-scheme: dark) {
+  .infoBar {
+    color: rgb(255, 255, 255);
+    background: linear-gradient(
+      to bottom,
+      #242424 96%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .Icon {
+    stroke: rgb(255, 255, 255);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .infoBar {
+    color: #242424;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .Icon {
+    stroke: #242424;
+  }
+}
+
+@media (min-width: 1000px) {
+  .infoBar {
+    max-width: 2000px;
+    padding-bottom: 5px;
+  }
+}
+
+@media (min-width: 420px) and (max-width: 999px) {
+  .infoBar {
+    padding-bottom: 2px;
+  }
+}
+
+@media (max-width: 419px) {
+  .infoBar .spotInfos {
+    display: none;
+  }
+
+  .infoBar {
+    max-width: 480px;
+    padding-bottom: 2px;
+  }
+}
+
+.infoBar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  position: sticky;
+  top: 0;
+  align-items: center;
+}
+
+.Icon:hover {
+  cursor: pointer;
+  stroke: #ffaa00;
+}
+
+.infoBar .infoHeader {
+  display: flex;
+  flex-direction: row;
+  max-width: 1200px;
+  width: calc(100% - 10px);
+  justify-content: space-between;
+}
+
+.infoBar .forecastInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infoBar .forecastInfo h3 {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: 400;
+  line-height: 30px;
+  flex: 1;
+  margin-top: 5px;
+}
+
+.infoBar .spotInfos {
+  font-weight: 200;
+  font-style: italic;
+}
+
+.infoBar .spotInfos span {
+  font-weight: 300;
+}
+
+.infoBar .spotInfos {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+infoBar .spotInfos div:last-child {
+  font-weight: 400;
+}
+
+.infoBar .addBookmark {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  justify-self: flex-end;
+}
+
+.infoBar .backBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  justify-self: flex-end;
+}

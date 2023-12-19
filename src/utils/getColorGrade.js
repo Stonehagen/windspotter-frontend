@@ -62,9 +62,17 @@ const colorScaleTemp = [
   '#84445A',
 ];
 
-const colorScaleRain = ['#E3F3F3', '#3F93E2', '#304164'];
+const colorScaleRainLight = ['#F9F9F9', '#3F70E2', '#9060C4'];
+const colorScaleRainDark = ['#333', '#3F69E2', '#9059C4'];
 
-const colorScaleWave = ['#E3F3F3', '#2F63B2', '#203154'];
+const colorScaleWaveLight = [
+  '#F9F9F9',
+  '#008577',
+  '#468500',
+  '#867600',
+  '#BB6000',
+];
+const colorScaleWaveDark = ['#333', '#008477', '#488400', '#867500', '#BB5900'];
 
 const getColorGradeWindDark = chroma
   .scale(colorScaleWindDark)
@@ -114,9 +122,19 @@ const getColorGradeTemp = chroma
   .scale(colorScaleTemp)
   .domain([minTemperature, maxTemperature]);
 
-const getColorGradeRain = chroma.scale(colorScaleRain).domain([0, maxRain]);
+const getColorGradeRainLight = chroma
+  .scale(colorScaleRainLight)
+  .domain([0, maxRain]);
+const getColorGradeRainDark = chroma
+  .scale(colorScaleRainDark)
+  .domain([0, maxRain]);
 
-const getColorGradeWave = chroma.scale(colorScaleWave).domain([0, maxWave]);
+const getColorGradeWaveLight = chroma
+  .scale(colorScaleWaveLight)
+  .domain([0, maxWave]);
+const getColorGradeWaveDark = chroma
+  .scale(colorScaleWaveDark)
+  .domain([0, maxWave]);
 
 export const getColorGrade = (value, type) => {
   switch (type) {
@@ -126,10 +144,14 @@ export const getColorGrade = (value, type) => {
       return chroma(getColorGradeWindDark(value)).rgb();
     case 'temp':
       return getColorGradeTemp(value);
-    case 'rain':
-      return getColorGradeRain(value);
-    case 'wave':
-      return getColorGradeWave(value);
+    case 'rainL':
+      return getColorGradeRainLight(value);
+    case 'rainD':
+      return getColorGradeRainDark(value);
+    case 'waveL':
+      return getColorGradeWaveLight(value);
+    case 'waveD':
+      return getColorGradeWaveDark(value);
     default:
       return false;
   }

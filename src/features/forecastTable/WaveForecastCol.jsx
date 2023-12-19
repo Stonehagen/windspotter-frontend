@@ -2,7 +2,7 @@ import WindDir from '../../assets/icons/WindDir.svg?react';
 import { checkNightTime } from '../../utils/checkNightTime';
 import { getColorGrade } from '../../utils/getColorGrade';
 
-const WaveForecastCol = ({ timeframe, settings }) => {
+const WaveForecastCol = ({ timeframe, settings, mode }) => {
   return (
     <div
       className="waves"
@@ -14,8 +14,11 @@ const WaveForecastCol = ({ timeframe, settings }) => {
             settings.nightEnd,
           ) && '0.7',
         backgroundColor: timeframe.waveHeight
-          ? getColorGrade(timeframe.waveHeight, 'wave')
-          : '#F3F3F3',
+          ? getColorGrade(
+              timeframe.waveHeight,
+              `wave${mode == 'dark' ? 'D' : 'L'}`,
+            )
+          : mode == 'dark' ? '#333' : '#F9F9F9',
       }}
     >
       {timeframe.waveHeight ? (
@@ -30,6 +33,7 @@ const WaveForecastCol = ({ timeframe, settings }) => {
               <span className="wavesPeriodUnit">s</span>
             </div>
             <WindDir
+              className="waveDir"
               style={{
                 transform: `rotate(${timeframe.waveDir + 180}deg)`,
               }}

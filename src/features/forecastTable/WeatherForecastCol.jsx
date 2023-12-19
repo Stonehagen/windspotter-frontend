@@ -3,7 +3,7 @@ import { getColorGrade } from '../../utils/getColorGrade';
 import RainDrops from './RainDrops';
 import WeatherIcon from './WeatherIcon';
 
-const WeatherForecastCol = ({ timeframe, settings }) => {
+const WeatherForecastCol = ({ timeframe, settings, mode }) => {
   return (
     <div
       className="weather"
@@ -29,8 +29,13 @@ const WeatherForecastCol = ({ timeframe, settings }) => {
         style={{
           backgroundColor:
             timeframe.rain >= 0.1
-              ? getColorGrade(timeframe.rain, 'rain')
-              : '#F3F3F3',
+              ? getColorGrade(
+                  timeframe.rain,
+                  `rain${mode == 'dark' ? 'D' : 'L'}`,
+                )
+              : mode == 'dark'
+              ? '#333'
+              : '#F9F9F9',
         }}
       >
         <WeatherIcon

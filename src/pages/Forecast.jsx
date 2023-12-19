@@ -6,27 +6,13 @@ import '../assets/styles/Forecast.css';
 
 import ForecastTables from '../features/forecastTable/ForecastTables';
 import ForecastOverview from '../features/forecastOverview/ForecastOverview';
+import Infobar from '../features/infobar/Infobar';
 
-const Forecast = ({ settings, setSettings }) => {
+const Forecast = ({ settings, setSettings, mode }) => {
   const { spotName } = useParams();
   const [spot, setSpot] = useState(null);
   const [forecastArray, setForecastArray] = useState([]);
   const [days, setDays] = useState([]);
-
-  const decimalToDMS = (decimal) => {
-    const degrees = Math.trunc(decimal);
-    const minutes = Math.trunc((decimal - degrees) * 60);
-    const seconds = Math.trunc(((decimal - degrees) * 60 - minutes) * 60);
-    return `${degrees}° ${minutes}' ${seconds}" `;
-  };
-
-  const getDirection = (decimal, latOrLon) => {
-    if (latOrLon === 'lat') {
-      return decimal > 0 ? 'N' : 'S';
-    } else {
-      return decimal > 0 ? 'E' : 'W';
-    }
-  };
 
   const getSpot = async () => {
     axios
@@ -61,27 +47,17 @@ const Forecast = ({ settings, setSettings }) => {
     <div className="Forecast">
       {spot && forecastArray && days ? (
         <>
-          <div className="infoBar">
-            <div className="forecastInfo">
-              <h3>{spot.name}</h3>
-              <div className="spotInfos">
-                <div>
-                  {decimalToDMS(spot.lat)}
-                  <span>{getDirection(spot.lat, 'lat')}</span>
-                </div>
-                <div>
-                  {decimalToDMS(spot.lon)}
-                  <span>{getDirection(spot.lon, 'lon')}</span>
-                </div>
-              </div>
-            </div>
-            <ForecastOverview forecast={forecastArray} days={days} />
-          </div>
+          <Infobar
+            spot={spot}
+            forecastArray={forecastArray}
+            days={days}
+          />
           <ForecastTables
             forecast={forecastArray}
             days={days}
             settings={settings}
             setSettings={setSettings}
+            mode={mode}
           />
         </>
       ) : (

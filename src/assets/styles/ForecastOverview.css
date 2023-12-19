@@ -1,0 +1,89 @@
+@media (min-width: 1000px) {
+  .ForecastOverview {
+    height: 80px;
+    width: calc(100% - 40px);
+  }
+
+  .OverviewChart {
+    height: 60px;
+  }
+}
+
+@media (min-width: 420px) and (max-width: 999px) {
+  .ForecastOverview {
+    height: 50px;
+    width: calc(100% - 20px);
+  }
+
+  .OverviewChart {
+    height: 30px;
+  }
+}
+
+@media (max-width: 419px) {
+  .ForecastOverview {
+    height: 50px;
+    width: 100%;
+  }
+
+  .OverviewChart {
+    height: 30px;
+  }
+}
+
+.ForecastOverview {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  padding: 0 0 5px 0;
+  box-shadow: 5px 2px 5px -5px #24242424;
+}
+
+.ForecastOverviewDay {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: 400;
+  font-size: 0.7em;
+  gap: 2px;
+  overflow: hidden;
+  border-radius: 5px 5px 0 0;
+}
+
+.ForecastOverviewDay:first-child {
+  border-left: none;
+  border-radius: 5px 5px 0 5px;
+}
+
+.ForecastOverviewDay:last-child {
+  border-radius: 5px 5px 5px 0;
+}
+
+.ForecastOverviewDay:hover {
+  background-color: rgb(130, 130, 130);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ForecastOverviewDay.active {
+  background-color: rgba(130, 130, 130, 0.25);
+  opacity: 1;
+  font-weight: 600;
+}
+
+.OverviewChart {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.OverviewBar {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-end;
+}

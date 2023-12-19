@@ -60,9 +60,7 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
           className="wind"
           style={{
             scale:
-              getWindSpeed(timeframe.ws, settings.windUnit) > 99
-                ? '0.7'
-                : '1',
+              getWindSpeed(timeframe.ws, settings.windUnit) > 99 ? '0.7' : '1',
           }}
         >
           {getWindSpeed(timeframe.ws, settings.windUnit)}
@@ -77,7 +75,10 @@ const WindForecastCol = ({ timeframe, settings, setSettings }) => {
         <div className="windUnitDesktop">{settings.windUnit}</div>
       </div>
       <div className="windDirection">
-        <WindDir style={{ transform: `rotate(${timeframe.dir + 180}deg)` }} />
+        <WindDir
+          className="windDir"
+          style={{ transform: `rotate(${timeframe.dir + 180}deg)` }}
+        />
         <div className="windDirInfo">
           <div className="windDirText">{getWindDirection(timeframe.dir)}</div>
           <div className="windDirNumber">{timeframe.dir.toFixed(0)}˚</div>

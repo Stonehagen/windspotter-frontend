@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import ForecastTableRow from './ForecastTableRow';
 
-const DailyForecastTable = ({ dayArray, index, settings, setSettings }) => {
+const DailyForecastTable = ({ dayArray, index, settings, setSettings, mode }) => {
   const getPrettyDate = (time) => {
     return moment(time).format('dddd, DD.MM.YY');
   };
@@ -30,6 +30,7 @@ const DailyForecastTable = ({ dayArray, index, settings, setSettings }) => {
                 settings={settings}
                 setSettings={setSettings}
                 key={index}
+                mode={mode}
               />
             ))}
           </tbody>

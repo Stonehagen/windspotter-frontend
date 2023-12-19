@@ -7,7 +7,7 @@ import WeatherForecastCol from './WeatherForecastCol';
 import WaveForecastCol from './WaveForecastCol';
 import WindMeter from './WindMeter';
 
-const ForecastTableRow = ({ timeframe, settings, setSettings }) => {
+const ForecastTableRow = ({ timeframe, settings, setSettings, mode }) => {
   const modelHour = moment(timeframe.modelTime).format('HH');
   const toggleNight = () => {
     setSettings({ ...settings, displayNight: !settings.displayNight });
@@ -39,14 +39,25 @@ const ForecastTableRow = ({ timeframe, settings, setSettings }) => {
             settings={settings}
             setSettings={setSettings}
           />
-          <WeatherForecastCol timeframe={timeframe} settings={settings} />
-          <WaveForecastCol timeframe={timeframe} settings={settings} />
+          <WeatherForecastCol
+            timeframe={timeframe}
+            settings={settings}
+            mode={mode}
+          />
+          <WaveForecastCol
+            timeframe={timeframe}
+            settings={settings}
+            mode={mode}
+          />
           <div className="modelInfo">
             <div>
               {timeframe.model.split(' ')[0]}
               <span>{timeframe.model.split(' ')[1]}</span>
             </div>
-            <div>{+modelHour}<span>00</span></div>
+            <div>
+              {+modelHour}
+              <span>00</span>
+            </div>
           </div>
         </div>
         <div className="lowerRow">

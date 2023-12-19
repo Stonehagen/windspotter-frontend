@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { getColorGrade } from '../../utils/getColorGrade';
+import '../../assets/styles/ForecastOverview.css';
 
 const ForecastOverview = ({ forecast, days }) => {
   const highestWindSpeed = Math.max(
@@ -68,7 +69,7 @@ const ForecastOverview = ({ forecast, days }) => {
       {forecast ? (
         <div className="ForecastOverview">
           {days.map((day, index) => {
-            if (index > 10) return null;
+            if (index > 13) return null;
             return (
               <div
                 className="ForecastOverviewDay"

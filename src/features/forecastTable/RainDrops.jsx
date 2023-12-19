@@ -7,7 +7,7 @@ export default ({ rain }) => {
     <>
       {raindrops.map((drop, index) => {
         if (rain >= drop) {
-          return <RainDrop key={index} />;
+          return <RainDrop key={index} className='rainDropImg'/>;
         }
         return;
       })}
