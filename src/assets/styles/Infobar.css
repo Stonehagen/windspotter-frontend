@@ -89,6 +89,9 @@
 .infoBar .spotInfos {
   font-weight: 200;
   font-style: italic;
+  font-size: 0.8em;
+  margin-top: -5px;
+  margin-bottom: 5px;
 }
 
 .infoBar .spotInfos span {
