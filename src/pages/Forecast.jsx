@@ -5,7 +5,6 @@ import { useGenerateForecastArray } from '../hooks/useGenerateForecastArray';
 import '../assets/styles/Forecast.css';
 
 import ForecastTables from '../features/forecastTable/ForecastTables';
-import ForecastOverview from '../features/forecastOverview/ForecastOverview';
 import Infobar from '../features/infobar/Infobar';
 
 const Forecast = ({ settings, setSettings, mode, user, setUser }) => {

@@ -14,24 +14,28 @@ import Map from './pages/Map';
 import NavBar from './features/navbar/NavBar';
 import Search from './pages/Search';
 import Info from './pages/Info';
+import SettingsPage from './pages/Settings';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 
 const App = () => {
   const [user, setUser] = useState();
-  const [mode, setMode] = useState(
-    window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light',
-  );
   const [settings, setSettings] = useState({
     windUnit: 'kts',
     displayNight: false,
     nightEnd: 7,
     nightStart: 21,
+    mode: 'light',
   });
+  const [prefersColorScheme, setPrefersColorScheme] = useState(
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light',
+  );
+  const [mode, setMode] = useState(null);
   const [cookies, removeCookie] = useCookies(['jwt_token']);
+
   const token = getAuthToken(cookies);
 
   if (token) {
@@ -67,23 +71,24 @@ const App = () => {
   };
 
   useEffect(() => {
-    window
-      .matchMedia('(prefers-color-scheme: dark)')
-      .addEventListener('change', (event) => {
-        const colorScheme = event.matches ? 'dark' : 'light';
-        setMode(colorScheme);
-      });
+    if (settings.mode !== 'auto' && settings.mode !== mode) {
+      setMode(settings.mode);
+      document.documentElement.setAttribute('data-theme', settings.mode);
+    } else if (settings.mode === 'auto') {
+      setMode(prefersColorScheme);
+      document.documentElement.setAttribute('data-theme', prefersColorScheme);
+    }
     if (!user && token) {
       getUser();
     }
-  }, [user]);
+  }, [user, settings, mode]);
 
   return (
     <BrowserRouter basename="/">
       <Routes>
-        <Route path="/" element={<LandingPage user={user} logout={logout} />} />
+        <Route path="/" element={<LandingPage user={user} />} />
         <Route path="/map" element={<Map />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/search" element={<Search user={user} />} />
         <Route
           path="/forecast/:spotName"
           element={
@@ -100,9 +105,20 @@ const App = () => {
         <Route path="/sign-up" element={<SignUp user={user} />} />
         <Route path="/sign-in" element={<SignIn login={login} user={user} />} />
         <Route path="/adm-dashboard" element={<Dashboard user={user} />} />
+        <Route
+          path="/settings"
+          element={
+            <SettingsPage
+              user={user}
+              logout={logout}
+              settings={settings}
+              setSettings={setSettings}
+            />
+          }
+        />
         <Route path="*" element={<LandingPage />} />
       </Routes>
-      <NavBar mode={mode} />
+      <NavBar />
     </BrowserRouter>
   );
 };

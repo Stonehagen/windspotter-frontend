@@ -1,86 +1,39 @@
-import MapDark from '../../assets/icons/MapDark.svg?react';
-import MapLight from '../../assets/icons/MapLight.svg?react';
-import MapActive from '../../assets/icons/MapActive.svg?react';
-import WindDark from '../../assets/icons/WindDark.svg?react';
-import WindLight from '../../assets/icons/WindLight.svg?react';
-import WindActive from '../../assets/icons/WindActive.svg?react';
-import HomeDark from '../../assets/icons/HomeDark.svg?react';
-import HomeLight from '../../assets/icons/HomeLight.svg?react';
-import HomeActive from '../../assets/icons/HomeActive.svg?react';
-import InfoDark from '../../assets/icons/InfoDark.svg?react';
-import InfoLight from '../../assets/icons/InfoLight.svg?react';
-import InfoActive from '../../assets/icons/InfoActive.svg?react';
+import Map from '../../assets/icons/Map.svg?react';
+import Wind from '../../assets/icons/Wind.svg?react';
+import Home from '../../assets/icons/Home.svg?react';
+import Settings from '../../assets/icons/Settings.svg?react';
 
 import '../../assets/styles/NavBar.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-const NavBar = ({ mode }) => {
+const NavBar = () => {
   const [path, setPath] = useState(window.location.pathname);
-  const [active, setActive] = useState(path);
 
   useEffect(() => {}, [path]);
 
   return (
     <div className="navbar">
-      <div
-        className="navbarHome"
-        onMouseOver={() => setActive('/')}
-        onMouseOut={() => setActive(path)}
-      >
+      <div className="navbarHome">
         <Link to="/" onClick={() => setPath('/')}>
-          {active === '/' ? (
-            <HomeActive />
-          ) : mode === 'dark' ? (
-            <HomeLight />
-          ) : (
-            <HomeDark />
-          )}
+          <Home className={`NavIcon ${path == '/' ? 'active' : ''}`} />
         </Link>
       </div>
-      <div
-        className="navbarMap"
-        onMouseOver={() => setActive('/map')}
-        onMouseOut={() => setActive(path)}
-      >
+      <div className="navbarMap">
         <Link to="/map" onClick={() => setPath('/map')}>
-          {active === '/map' ? (
-            <MapActive />
-          ) : mode === 'dark' ? (
-            <MapLight />
-          ) : (
-            <MapDark />
-          )}
+          <Map className={`NavIcon ${path == '/map' ? 'active' : ''}`} />
         </Link>
       </div>
-      <div
-        className="navbarForecast"
-        onMouseOver={() => setActive('/search')}
-        onMouseOut={() => setActive(path)}
-      >
+      <div className="navbarForecast">
         <Link to="/search" onClick={() => setPath('/search')}>
-          {active === '/search' ? (
-            <WindActive />
-          ) : mode === 'dark' ? (
-            <WindLight />
-          ) : (
-            <WindDark />
-          )}
+          <Wind className={`NavIcon ${path == '/search' ? 'active' : ''}`} />
         </Link>
       </div>
-      <div
-        className="navbarInfo"
-        onMouseOver={() => setActive('/info')}
-        onMouseOut={() => setActive(path)}
-      >
-        <Link to="/info" onClick={() => setPath('/info')}>
-          {active === '/info' ? (
-            <InfoActive />
-          ) : mode === 'dark' ? (
-            <InfoLight />
-          ) : (
-            <InfoDark />
-          )}
+      <div className="navbarInfo">
+        <Link to="/settings" onClick={() => setPath('/settings')}>
+          <Settings
+            className={`NavIcon ${path == '/settings' ? 'active' : ''}`}
+          />
         </Link>
       </div>
     </div>

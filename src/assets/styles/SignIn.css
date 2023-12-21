@@ -31,10 +31,10 @@
 }
 
 .SignIn form input {
-  background-color: rgba(255, 255, 255, 0.87);
+  background-color: var(--main-bg-color);
   font-size: 1.2em;
-  color: black;
-  border: 1px solid #242424;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
   border-radius: 5px;
   width: 276px;
   height: 40px;
@@ -90,9 +90,9 @@
 }
 
 .SignIn button {
-  background-color: rgba(255, 255, 255, 0.87);
-  color: black;
-  border: 1px solid #242424;
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
   border-radius: 5px;
   width: 140px;
   height: 40px;
@@ -113,6 +113,8 @@
 
 .SignIn button:first-child {
   background-color: #ffaa00;
+  color: #242424;
+  border: 1px solid #242424;
 }
 
 .SignIn button:first-child:hover {

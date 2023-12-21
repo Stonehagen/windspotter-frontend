@@ -1,29 +1,3 @@
-@media (prefers-color-scheme: dark) {
-  .infoBar {
-    color: rgb(255, 255, 255);
-    background: linear-gradient(
-      to bottom,
-      #242424 96%,
-      rgba(255, 255, 255, 0) 100%
-    );
-  }
-
-  .Icon {
-    stroke: rgb(255, 255, 255);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .infoBar {
-    color: #242424;
-    background-color: rgb(255, 255, 255);
-  }
-
-  .Icon {
-    stroke: #242424;
-  }
-}
-
 @media (min-width: 1000px) {
   .infoBar {
     max-width: 2000px;
@@ -56,9 +30,19 @@
   position: sticky;
   top: 0;
   align-items: center;
+  border-bottom: 1px solid var(--lighter-bg-color);
+  color: var(--main-color);
+  background-color: var(--main-bg-color);
 }
 
-.Icon:hover {
+.infoBar .Icon {
+  stroke: var(--main-color);
+  width: 30px;
+  height: 30px;
+  transition: fill 0.2s ease-in-out;
+}
+
+.infoBar .Icon:hover {
   cursor: pointer;
   stroke: #ffaa00;
 }

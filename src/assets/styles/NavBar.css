@@ -1,16 +1,6 @@
-@media (prefers-color-scheme: light) {
-  .navbar {
-    background-color: #ffffff;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .navbar {
-    background-color: #242424;
-  }
-}
-
 .navbar {
+  background-color: var(--main-bg-color);
+  border-top: 1px solid var(--lighter-bg-color);
   display: flex;
   flex-direction: row;
   gap: 50px;
@@ -20,10 +10,25 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  box-shadow: 5px 2px 5px 5px #24242424;
 }
 .navbar div {
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+.navbar .NavIcon {
+  fill: var(--icon-color);
+  height: 30px;
+  width: 30px;
+  transition: fill 0.2s ease-in-out;
+}
+
+.navbar .NavIcon:hover {
+  fill: #ffaa00;
+  cursor: pointer;
+}
+
+.navbar .NavIcon.active {
+  fill: #ffaa00;
 }

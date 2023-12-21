@@ -3,87 +3,6 @@ table .upperRow {
   container-name: forecastCol;
 }
 
-@media (prefers-color-scheme: dark) {
-  table .modelInfo {
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #333;
-  }
-
-  table .time div {
-    color: rgba(255, 255, 255, 0.87);
-  }
-
-  table tr .lowerRow {
-    background-color: #242424;
-  }
-
-  table tr .lowerRow .windMeter {
-    border-right: 3px solid #242424;
-  }
-
-  table tr .lowerRow .windMaxMeter {
-    border-top: 2px solid #242424;
-  }
-
-  table .weather .clouds {
-    color: rgba(255, 255, 255, 0.7)
-  }
-
-  table .waves {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  table .waves .waveDir {
-    fill: rgba(255, 255, 255, 0.7);
-  }
-
-  table .rainDropImg {
-    fill: rgba(255, 255, 255, 0.7);
-  }
-
-  table .weather .WeatherIcon {
-    fill: rgba(255, 255, 255, 0.5);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  table .modelInfo {
-    color: #242424;
-    background-color: #DDD;
-  }
-
-  table tr .lowerRow {
-    background-color: #ffffff;
-  }
-
-  table tr .lowerRow .windMeter {
-    border-right: 3px solid #ffffff;
-  }
-
-  table tr .lowerRow .windMaxMeter {
-    border-top: 2px solid #ffffff;
-  }
-  table .weather .clouds {
-    color: #242424;
-  }
-
-  table .waves {
-    color: #242424;
-  }
-
-  table .waves .waveDir {
-    fill: #242424;
-  }
-
-  table .rainDropImg {
-    fill: #242424;
-  }
-
-  table .weather .WeatherIcon {
-    fill: #242424AA;
-  }
-}
-
 @container forecastCol (max-width: 59.99px) {
   table .modelInfo {
     font-size: 0.6em;
@@ -296,7 +215,7 @@ table .upperRow {
   .tableHeading {
     padding: 30px 0 10px 0;
     font-weight: 300;
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 
   table tbody {
@@ -623,7 +542,7 @@ table .upperRow {
 
   .tableHeading {
     padding: 10px 0 5px 0;
-    font-weight: 200;
+    font-weight: 400;
   }
 }
 
@@ -707,8 +626,17 @@ table .upperRow {
   flex: 1;
 }
 
+table tr .lowerRow {
+  background-color: var(--main-bg-color);
+}
+
 table tr .lowerRow .windMeter {
   height: 100%;
+  border-right: 3px solid var(--main-bg-color);
+}
+
+table tr .lowerRow .windMaxMeter {
+  border-top: 2px solid var(--main-bg-color);
 }
 
 table tr .time {
@@ -717,6 +645,7 @@ table tr .time {
   flex-direction: column;
   justify-content: center;
   border-radius: 5px;
+  color: var(--lighter-color);
 }
 
 table tr .time:hover {
@@ -739,6 +668,14 @@ table .weather .temp span {
   padding-top: 3px;
 }
 
+table .weather .WeatherIcon {
+  fill: var(--lighter-color);
+}
+
+table .weather .clouds {
+  color: var(--lighter-color);
+}
+
 table .weather .clouds svg {
   padding: 3px 0 0 0;
 }
@@ -749,7 +686,8 @@ table .weather .clouds .rain {
   margin-top: -2px;
 }
 
-table .weather .clouds .rain svg {
+table .weather .clouds .rain .rainDropImg {
+  fill: var(--lighter-color);
   rotate: 15deg;
 }
 
@@ -764,6 +702,10 @@ table .weather .clouds .rain .rainText span {
   font-size: 0.8em;
   font-weight: 400;
   padding-left: 0.5px;
+}
+
+table .waves {
+  color: var(--lighter-color);
 }
 
 table .waves span {
@@ -781,7 +723,13 @@ table .wavesSecondCol {
   display: flex;
 }
 
+table .waves .waveDir {
+  fill: var(--lighter-color);
+}
+
 table .modelInfo {
+  color: var(--lighter-color);
+  background-color: var(--lighter-bg-color);
   height: 42px;
   gap: 7px;
   font-weight: 300;

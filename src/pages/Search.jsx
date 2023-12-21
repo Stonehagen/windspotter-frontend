@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../assets/styles/Search.css';
 
-const Search = () => {
+const Search = ({ user }) => {
   const [spots, setSpots] = useState([]);
 
   const getSpots = async () => {
@@ -19,7 +19,7 @@ const Search = () => {
   }, []);
 
   return (
-    <>
+    <div className="search">
       <div className="Spotlist">
         <h3 className="LogoSub">
           SELECT<span>SPOT</span>
@@ -34,7 +34,7 @@ const Search = () => {
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

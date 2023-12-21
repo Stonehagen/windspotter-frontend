@@ -1,0 +1,56 @@
+@media (max-width: 499px) {
+  .UserLandingpage .Logo {
+    font-size: 3.5em;
+  }
+  .UserLandingpage .LogoSub {
+    font-size: 1em;
+  }
+}
+
+@media (min-width: 500px) {
+  .UserLandingpage .Logo {
+    font-size: 5em;
+  }
+  .UserLandingpage .LogoSub {
+    font-size: 1.5em;
+  }
+}
+
+.UserLandingpage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.UserLandingpage .LogoWrapper {
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.UserLandingpage .Logo {
+  width: 100%;
+  justify-self: flex-start;
+  color: rgb(152, 237, 100);
+  margin: 0;
+  padding: 0;
+}
+
+.UserLandingpage .Logo span {
+  font-weight: 100;
+}
+
+.UserLandingpage .LogoSub {
+  font-weight: 200;
+  margin: 0;
+  color: #ffaa00;
+}
+
+.UserLandingpage .LogoSub span {
+  font-weight: 600;
+}
+

@@ -1,0 +1,103 @@
+.Settings {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Settings .Title {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.Settings .Links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  height: 100%;
+}
+
+.Settings .Links button {
+  width: calc(100% - 20px);
+  max-width: 400px;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: none;
+  padding-left: 20px;
+  font-size: 1.1em;
+  background-color: var(--lighter-bg-color);
+  color: var(--main-color);
+}
+
+.Settings .Links svg {
+  fill: var(--main-color);
+}
+
+.Settings .SettingsGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.Settings .SettingsItem {
+  width: calc(100% - 20px);
+  max-width: 400px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--lighter-bg-color)
+}
+
+.SettingsItem label {
+  padding-left: 22px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1em;
+  font-weight: 400;
+  color: var(--main-color);
+}
+
+.SettingsGroup label svg {
+  width: 22px;
+}
+
+.SettingsGroup select {
+  background-color: #BBB;
+  color: #242424;
+  margin-right: 10px;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1em;
+  font-weight: 600;
+  padding-left: 10px;
+}
+
+.Settings .Links button:hover {
+  background-color: #ffaa00;
+  cursor: pointer;
+}
+
+.Settings .Links button svg {
+  width: 25px;
+}
