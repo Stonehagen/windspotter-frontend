@@ -7,7 +7,7 @@ import WindSpeed from '../assets/icons/WindSpeed.svg?react';
 import About from '../assets/icons/About.svg?react';
 import SignOut from '../assets/icons/SignOut.svg?react';
 
-const SettingsPage = ({ user, logout, settings, setSettings }) => {
+const SettingsPage = ({ user, logout, settings, setSettings, setPath }) => {
   const navigate = useNavigate();
 
   const loggingOut = () => {
@@ -20,7 +20,13 @@ const SettingsPage = ({ user, logout, settings, setSettings }) => {
       <div className="Links">
         {user ? (
           user.memberStatus === 'admin' || user.memberStatus === 'creator' ? (
-            <button type="button" onClick={() => navigate('/adm-dashboard')}>
+            <button
+              type="button"
+              onClick={() => {
+                setPath('/adm-dashboard');
+                navigate('/adm-dashboard');
+              }}
+            >
               <Dashboard />
               Dashboard
             </button>
@@ -65,7 +71,13 @@ const SettingsPage = ({ user, logout, settings, setSettings }) => {
             </select>
           </div>
         </div>
-        <button type="button" onClick={() => navigate('/info')}>
+        <button
+          type="button"
+          onClick={() => {
+            setPath('/info');
+            navigate('/info');
+          }}
+        >
           <About />
           About
         </button>

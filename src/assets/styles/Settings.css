@@ -41,8 +41,29 @@
   color: var(--main-color);
 }
 
+.Settings .Links button:last-of-type {
+  margin-top: 20px;
+  color: var(--red-color);
+}
+
+.Settings .Links button:last-of-type:hover {
+  color: var(--main-color);
+}
+
+.Settings .Links button:last-of-type svg {
+  fill: var(--red-color);
+}
+
+.Settings .Links button:last-of-type:hover svg {
+  fill: var(--main-color);
+}
+
 .Settings .Links svg {
   fill: var(--main-color);
+}
+
+.Settings .SettingsGroup:first-of-type {
+  margin-top: 20px;
 }
 
 .Settings .SettingsGroup {
@@ -51,6 +72,10 @@
   align-items: center;
   width: 100%;
   gap: 10px;
+}
+
+.Settings .SettingsGroup:last-of-type {
+  margin-bottom: 20px;
 }
 
 .Settings .SettingsItem {
@@ -62,7 +87,7 @@
   align-items: center;
   border-radius: 10px;
   border: none;
-  background-color: var(--lighter-bg-color)
+  background-color: var(--lighter-bg-color);
 }
 
 .SettingsItem label {
@@ -81,7 +106,7 @@
 }
 
 .SettingsGroup select {
-  background-color: #BBB;
+  background-color: #bbb;
   color: #242424;
   margin-right: 10px;
   width: 100px;

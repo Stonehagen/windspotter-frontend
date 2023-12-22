@@ -20,6 +20,7 @@ import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 
 const App = () => {
+  const [mode, setMode] = useState(null);
   const [user, setUser] = useState();
   const [settings, setSettings] = useState({
     windUnit: 'kts',
@@ -33,7 +34,7 @@ const App = () => {
       ? 'dark'
       : 'light',
   );
-  const [mode, setMode] = useState(null);
+  const [path, setPath] = useState(window.location.pathname);
   const [cookies, removeCookie] = useCookies(['jwt_token']);
 
   const token = getAuthToken(cookies);
@@ -113,12 +114,13 @@ const App = () => {
               logout={logout}
               settings={settings}
               setSettings={setSettings}
+              setPath={setPath}
             />
           }
         />
         <Route path="*" element={<LandingPage />} />
       </Routes>
-      <NavBar />
+      <NavBar path={path} setPath={setPath} />
     </BrowserRouter>
   );
 };

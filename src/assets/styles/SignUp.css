@@ -50,7 +50,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  color: red;
+  color: var(--red-color);
 }
 
 .SignUp form .errorMessage {

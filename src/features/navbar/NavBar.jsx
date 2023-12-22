@@ -7,9 +7,7 @@ import '../../assets/styles/NavBar.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-const NavBar = () => {
-  const [path, setPath] = useState(window.location.pathname);
-
+const NavBar = ({ path, setPath }) => {
   useEffect(() => {}, [path]);
 
   return (
