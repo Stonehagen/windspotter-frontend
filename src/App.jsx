@@ -87,9 +87,15 @@ const App = () => {
   return (
     <BrowserRouter basename="/">
       <Routes>
-        <Route path="/" element={<LandingPage user={user} />} />
+        <Route
+          path="/"
+          element={<LandingPage user={user} setPath={setPath} />}
+        />
         <Route path="/map" element={<Map />} />
-        <Route path="/search" element={<Search user={user} />} />
+        <Route
+          path="/search"
+          element={<Search user={user} setPath={setPath} />}
+        />
         <Route
           path="/forecast/:spotName"
           element={

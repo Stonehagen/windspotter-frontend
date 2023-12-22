@@ -3,8 +3,10 @@ import '../assets/styles/LandingPage.css';
 import { useNavigate } from 'react-router-dom';
 
 import UserLandingPage from '../features/userLandingPage/UserLandingPage';
+import SignUp from '../assets/icons/SignUp.svg?react';
+import SignIn from '../assets/icons/SignIn.svg?react';
 
-const LandingPage = ({ user }) => {
+const LandingPage = ({ user, setPath }) => {
   const navigate = useNavigate();
 
   return (
@@ -22,11 +24,25 @@ const LandingPage = ({ user }) => {
             </h2>
           </div>
           <div className="Register">
-            <button type="button" onClick={() => navigate('/sign-in')}>
-              LOG<span>IN</span>
+            <button
+              type="button"
+              onClick={() => {
+                setPath('/sign-in');
+                navigate('/sign-in');
+              }}
+            >
+              <SignIn />
+              Log In
             </button>
-            <button type="button" onClick={() => navigate('/sign-up')}>
-              REGISTER<span>NOW</span>
+            <button
+              type="button"
+              onClick={() => {
+                setPath('/sign-up');
+                navigate('/sign-up');
+              }}
+            >
+              <SignUp />
+              Register Now
             </button>
           </div>
         </>

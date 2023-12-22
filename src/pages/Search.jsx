@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../assets/styles/Search.css';
 
-const Search = ({ user }) => {
+const Search = ({ user , setPath}) => {
   const [spots, setSpots] = useState([]);
 
   const getSpots = async () => {
@@ -29,6 +29,9 @@ const Search = ({ user }) => {
             key={spot._id}
             to={`/forecast/${spot.searchName}`}
             className="spotLink"
+            onClick={() => {
+              setPath(`/forecast/${spot.searchName}`);
+            }}
           >
             <div>{spot.name}</div>
           </Link>

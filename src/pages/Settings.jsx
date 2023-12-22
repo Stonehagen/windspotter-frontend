@@ -100,11 +100,23 @@ const SettingsPage = ({ user, logout, settings, setSettings, setPath }) => {
           </button>
         ) : (
           <div className="Register">
-            <button type="button" onClick={() => navigate('/sign-in')}>
+            <button
+              type="button"
+              onClick={() => {
+                setPath('/sign-in');
+                navigate('/sign-in');
+              }}
+            >
               <SignIn />
               Log In
             </button>
-            <button type="button" onClick={() => navigate('/sign-up')}>
+            <button
+              type="button"
+              onClick={() => {
+                setPath('/sign-up');
+                navigate('/sign-up');
+              }}
+            >
               <SignUp />
               Register now
             </button>
