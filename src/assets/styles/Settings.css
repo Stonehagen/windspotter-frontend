@@ -25,7 +25,17 @@
   height: 100%;
 }
 
-.Settings .Links button {
+.Settings .Content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  height: 100%;
+}
+
+.Settings button {
   width: calc(100% - 20px);
   max-width: 400px;
   height: 50px;
@@ -41,24 +51,33 @@
   color: var(--main-color);
 }
 
-.Settings .Links button:last-of-type {
-  margin-top: 20px;
+.Settings .Register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.Settings .logoutBtn {
+  margin-bottom: 20px;
   color: var(--red-color);
 }
 
-.Settings .Links button:last-of-type:hover {
+.Settings .logoutBtn:hover {
   color: var(--main-color);
 }
 
-.Settings .Links button:last-of-type svg {
+.Settings .logoutBtn svg {
   fill: var(--red-color);
 }
 
-.Settings .Links button:last-of-type:hover svg {
+.Settings .logoutBtn:hover svg {
   fill: var(--main-color);
 }
 
-.Settings .Links svg {
+.Settings svg {
   fill: var(--main-color);
 }
 
@@ -114,15 +133,24 @@
   border-radius: 5px;
   border: none;
   font-size: 1em;
-  font-weight: 600;
+  font-weight: 400;
   padding-left: 10px;
 }
 
-.Settings .Links button:hover {
+.SettingsGroup select:hover {
+  cursor: pointer;
+  background-color: #ffaa00;
+}
+
+.SettingsGroup select:focus {
+  outline: none;
+}
+
+.Settings button:hover {
   background-color: #ffaa00;
   cursor: pointer;
 }
 
-.Settings .Links button svg {
+.Settings button svg {
   width: 25px;
 }
