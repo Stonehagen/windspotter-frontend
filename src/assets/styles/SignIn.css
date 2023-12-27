@@ -70,7 +70,7 @@
 
 .SignIn form input:focus {
   outline: none;
-  border: 2px solid #ffaa00;
+  border: 2px solid var(--yellow-color);
   margin: 0;
 }
 
@@ -107,18 +107,18 @@
 }
 
 .SignIn button:hover {
-  background-color: rgb(152, 237, 100);
+  background-color: var(--green-color);
   cursor: pointer;
 }
 
 .SignIn button:first-child {
-  background-color: #ffaa00;
+  background-color: var(--yellow-color);
   color: #242424;
   border: 1px solid #242424;
 }
 
 .SignIn button:first-child:hover {
-  background-color: rgb(152, 237, 100);
+  background-color: var(--green-color);
 }
 
 .SignIn .forgotPassword {

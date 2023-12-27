@@ -44,7 +44,7 @@
 
 .infoBar .Icon:hover {
   cursor: pointer;
-  stroke: #ffaa00;
+  stroke: var(--yellow-color);
 }
 
 .infoBar .infoHeader {

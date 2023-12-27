@@ -650,7 +650,7 @@ table tr .time {
 
 table tr .time:hover {
   cursor: pointer;
-  background-color: #ffaa00;
+  background-color: var(--yellow-color);
 }
 
 table .windSpeeds:hover {

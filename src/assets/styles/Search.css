@@ -29,20 +29,19 @@
 
 .spotLink {
   text-decoration: none;
-  font-weight: 200;
+  font-weight: 300;
   line-height: 40px;
 }
 
 .spotLink div {
-  background-color: rgba(255, 255, 255, 0.87);
-  color: black;
-  border: 1px solid #242424;
+  background-color: var(--lighter-bg-color);
+  color: var(--main-color);
   border-radius: 5px;
   width: 290px;
   height: 40px;
 }
 
 .spotLink div:hover {
-  background-color: rgb(152, 237, 100);
+  background-color: var(--yellow-color);
   font-weight: 400;
 }

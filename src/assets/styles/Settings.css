@@ -144,7 +144,7 @@
 
 .SettingsGroup select:hover {
   cursor: pointer;
-  background-color: #ffaa00;
+  background-color: var(--yellow-color);
 }
 
 .SettingsGroup select:focus {
@@ -152,6 +152,6 @@
 }
 
 .Settings button:hover {
-  background-color: #ffaa00;
+  background-color: var(--yellow-color);
   cursor: pointer;
 }

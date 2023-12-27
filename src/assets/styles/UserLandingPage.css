@@ -35,7 +35,7 @@
 .UserLandingpage .Logo {
   width: 100%;
   justify-self: flex-start;
-  color: rgb(152, 237, 100);
+  color: var(--green-color);
   margin: 0;
   padding: 0;
 }
@@ -47,7 +47,7 @@
 .UserLandingpage .LogoSub {
   font-weight: 200;
   margin: 0;
-  color: #ffaa00;
+  color: var(--yellow-color);
 }
 
 .UserLandingpage .LogoSub span {

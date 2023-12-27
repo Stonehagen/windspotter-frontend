@@ -25,10 +25,10 @@
 }
 
 .navbar .NavIcon:hover {
-  fill: #ffaa00;
+  fill: var(--yellow-color);
   cursor: pointer;
 }
 
 .navbar .NavIcon.active {
-  fill: #ffaa00;
+  fill: var(--yellow-color);
 }

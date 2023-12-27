@@ -44,7 +44,7 @@
 .landingpage .Logo {
   width: 100%;
   justify-self: flex-start;
-  color: rgb(152, 237, 100);
+  color: var(--green-color);
   margin-bottom: 0;
 }
 
@@ -55,7 +55,7 @@
 .landingpage .LogoSub {
   font-weight: 200;
   margin-top: 0;
-  color: #ffaa00;
+  color: var(--yellow-color);
 }
 
 .landingpage .LogoSub span {
@@ -69,14 +69,6 @@
   flex-direction: column;
   gap: 5px;
   margin-bottom: 20px;
-}
-
-.landingpage .Register button:last-child {
-  background-color: #ffaa00;
-}
-
-.landingpage .Register button:last-child:hover {
-  background-color: rgb(152, 237, 100);
 }
 
 .landingpage button {
@@ -101,7 +93,7 @@
 }
 
 .landingpage button:hover {
-  background-color: rgb(152, 237, 100);
+  background-color: var(--yellow-color);
   cursor: pointer;
 }
 
@@ -130,7 +122,7 @@
 }
 
 .landingpage .Links button:hover {
-  background-color: rgb(152, 237, 100);
+  background-color: var(--green-color);
   cursor: pointer;
 }
 
