@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { setAuthToken } from '../utils/authToken';
 import '../assets/styles/SignIn.css';
 
-const SignIn = ({ user, login }) => {
-  const [email, setEmail] = useState('');
+const SetPassword = ({ user, login }) => {
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errors, setErrors] = useState([]);
   const [cookie, setCookie] = useCookies(['jwt_token']);
 
@@ -19,17 +19,16 @@ const SignIn = ({ user, login }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email.length < 1) {
-      setErrors([{ msg: 'please provide an email' }]);
-      return;
-    }
     if (password.length < 1) {
       setErrors([{ msg: 'please provide a password' }]);
       return;
     }
+    if (password !== passwordConfirm) {
+      setErrors([{ msg: 'passwords do not match' }]);
+      return;
+    }
     axios
       .post(`${import.meta.env.VITE_API_BACKENDSERVER}/user/sign-in`, {
-        email,
         password,
       })
       .then((res) => {
@@ -60,21 +59,10 @@ const SignIn = ({ user, login }) => {
       <form onSubmit={handleSubmit}>
         <div className="SignIn-form-grp">
           <h3>
-            LOG<span>IN</span>
+            RESET<span>PASSWORD</span>
           </h3>
           <div className="formGroup">
-            <label htmlFor="email">Email</label>
-            <input
-              name="email"
-              value={email}
-              id="email"
-              placeholder="email"
-              type="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="formGroup">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">New Password</label>
             <input
               name="password"
               value={password}
@@ -82,6 +70,17 @@ const SignIn = ({ user, login }) => {
               placeholder="password"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label htmlFor="password">Confirm New Password</label>
+            <input
+              name="passwordConfirm"
+              value={passwordConfirm}
+              id="passwordConfirm"
+              placeholder="password"
+              type="password"
+              onChange={(e) => setPasswordConfirm(e.target.value)}
             />
           </div>
           <div className="messages">
@@ -93,16 +92,10 @@ const SignIn = ({ user, login }) => {
               );
             })}
           </div>
-          <div className="forgotPassword">
-            <a href="/reset-password">Forgot your Password?</a>
-          </div>
         </div>
         <div className="SignIn-btn-grp">
           <button type="submit">
             SEND<span>IT</span>
-          </button>
-          <button type="button" onClick={() => navigate('/sign-up')}>
-            REGISTER
           </button>
         </div>
       </form>
@@ -110,4 +103,4 @@ const SignIn = ({ user, login }) => {
   );
 };
 
-export default SignIn;
+export default SetPassword;

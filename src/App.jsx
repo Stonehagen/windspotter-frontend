@@ -18,6 +18,9 @@ import SettingsPage from './pages/Settings';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
+import EmailVerification from './pages/EmailVerification';
+import ResetPassword from './pages/ResetPassword';
+import SetPassword from './pages/SetPassword';
 
 const App = () => {
   const [mode, setMode] = useState(null);
@@ -45,12 +48,24 @@ const App = () => {
 
   setAxiosHeader();
 
-  const login = ({ username, email, _id, memberStatus }) => {
+  const login = ({
+    username,
+    email,
+    _id,
+    memberStatus,
+    windUnits,
+    colorMode,
+  }) => {
     setUser({
       id: _id,
       username,
       email,
       memberStatus,
+    });
+    setSettings({
+      ...settings,
+      windUnits,
+      mode: colorMode,
     });
   };
 
@@ -124,6 +139,9 @@ const App = () => {
             />
           }
         />
+        <Route path="/verify/:token" element={<EmailVerification />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/reset-password/:token" element={<SetPassword />} />
         <Route path="*" element={<LandingPage />} />
       </Routes>
       <NavBar path={path} setPath={setPath} />

@@ -1,21 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
-import { setAuthToken } from '../utils/authToken';
 import '../assets/styles/SignIn.css';
 
-const SignIn = ({ user, login }) => {
+const ResetPassword = ({ user, login }) => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
-  const [cookie, setCookie] = useCookies(['jwt_token']);
 
   const navigate = useNavigate();
-
-  const saveJWTinCookie = (token) => {
-    setCookie('jwt_token', token, { maxAge: 60 * 24 * 60 * 60 * 1000 });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,25 +15,16 @@ const SignIn = ({ user, login }) => {
       setErrors([{ msg: 'please provide an email' }]);
       return;
     }
-    if (password.length < 1) {
-      setErrors([{ msg: 'please provide a password' }]);
-      return;
-    }
     axios
-      .post(`${import.meta.env.VITE_API_BACKENDSERVER}/user/sign-in`, {
+      .get(`${import.meta.env.VITE_API_BACKENDSERVER}/user/resetPassword`, {
         email,
-        password,
       })
       .then((res) => {
         if (res.data.error) {
           setErrors(res.data.error);
           return;
         } else {
-          const token = res.data.token;
-          saveJWTinCookie(token);
-          setAuthToken(token);
-          login(res.data.user);
-          navigate('/');
+          navigate('/sign-in');
         }
       })
       .catch((err) => {
@@ -60,7 +43,7 @@ const SignIn = ({ user, login }) => {
       <form onSubmit={handleSubmit}>
         <div className="SignIn-form-grp">
           <h3>
-            LOG<span>IN</span>
+            RESET<span>PASSWORD</span>
           </h3>
           <div className="formGroup">
             <label htmlFor="email">Email</label>
@@ -73,17 +56,6 @@ const SignIn = ({ user, login }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="formGroup">
-            <label htmlFor="password">Password</label>
-            <input
-              name="password"
-              value={password}
-              id="password"
-              placeholder="password"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
           <div className="messages">
             {errors.map((error, index) => {
               return (
@@ -93,16 +65,13 @@ const SignIn = ({ user, login }) => {
               );
             })}
           </div>
-          <div className="forgotPassword">
-            <a href="/reset-password">Forgot your Password?</a>
-          </div>
         </div>
         <div className="SignIn-btn-grp">
           <button type="submit">
             SEND<span>IT</span>
           </button>
-          <button type="button" onClick={() => navigate('/sign-up')}>
-            REGISTER
+          <button type="button" onClick={() => navigate('/sign-in')}>
+            LOG<span>IN</span>
           </button>
         </div>
       </form>
@@ -110,4 +79,4 @@ const SignIn = ({ user, login }) => {
   );
 };
 
-export default SignIn;
+export default ResetPassword;
