@@ -10,7 +10,7 @@ import WindSpeed from '../assets/icons/WindSpeed.svg?react';
 import About from '../assets/icons/About.svg?react';
 import SignOut from '../assets/icons/SignOut.svg?react';
 
-const SettingsPage = ({ user, logout, settings, setSettings, setPath }) => {
+const SettingsPage = ({ user, logout, settings, updateSettings, setPath }) => {
   const navigate = useNavigate();
 
 
@@ -49,7 +49,7 @@ const SettingsPage = ({ user, logout, settings, setSettings, setPath }) => {
                 id="windUnit"
                 value={settings.windUnit}
                 onChange={(e) =>
-                  setSettings({ ...settings, windUnit: e.target.value })
+                  updateSettings({ ...settings, windUnit: e.target.value })
                 }
               >
                 <option value="kts">Kts</option>
