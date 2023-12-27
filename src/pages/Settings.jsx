@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import SignUp from '../assets/icons/SignUp.svg?react';
 import SignIn from '../assets/icons/SignIn.svg?react';
-import ColorMode from '../assets/icons/colorMode.svg?react';
+import ColorMode from '../assets/icons/ColorMode.svg?react';
 import Dashboard from '../assets/icons/Dashboard.svg?react';
 import WindSpeed from '../assets/icons/WindSpeed.svg?react';
 import About from '../assets/icons/About.svg?react';
