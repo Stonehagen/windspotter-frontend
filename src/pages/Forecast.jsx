@@ -7,7 +7,7 @@ import '../assets/styles/Forecast.css';
 import ForecastTables from '../features/forecastTable/ForecastTables';
 import Infobar from '../features/infobar/Infobar';
 
-const Forecast = ({ settings, setSettings, mode, user, setUser }) => {
+const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
   const { spotName } = useParams();
   const [spot, setSpot] = useState(null);
   const [forecastArray, setForecastArray] = useState([]);
@@ -58,7 +58,7 @@ const Forecast = ({ settings, setSettings, mode, user, setUser }) => {
             forecast={forecastArray}
             days={days}
             settings={settings}
-            setSettings={setSettings}
+            updateSettings={updateSettings}
             mode={mode}
           />
         </>

@@ -3,7 +3,7 @@ import '../../assets/styles/ForecastTable.css';
 
 import DailyForecastTable from './DailyForecastTable';
 
-const ForecastTables = ({ forecast, days, settings, setSettings, mode }) => {
+const ForecastTables = ({ forecast, days, settings, updateSettings, mode }) => {
   const createTables = (forecast) => {
     if (!forecast) {
       return (
@@ -23,7 +23,7 @@ const ForecastTables = ({ forecast, days, settings, setSettings, mode }) => {
         <DailyForecastTable
           dayArray={dayArray}
           settings={settings}
-          setSettings={setSettings}
+          updateSettings={updateSettings}
           key={index}
           mode={mode}
         />

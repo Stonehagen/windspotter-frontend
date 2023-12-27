@@ -25,13 +25,17 @@ import SetPassword from './pages/SetPassword';
 const App = () => {
   const [mode, setMode] = useState(null);
   const [user, setUser] = useState();
-  const [settings, setSettings] = useState({
-    windUnit: 'kts',
-    displayNight: false,
-    nightEnd: 7,
-    nightStart: 21,
-    mode: 'light',
-  });
+  const [settings, setSettings] = useState(
+    localStorage.getItem('settings')
+      ? JSON.parse(localStorage.getItem('settings'))
+      : {
+          windUnit: 'kts',
+          displayNight: false,
+          nightEnd: 7,
+          nightStart: 21,
+          mode: 'light',
+        },
+  );
   const [prefersColorScheme, setPrefersColorScheme] = useState(
     window.matchMedia('(prefers-color-scheme: dark)').matches
       ? 'dark'
@@ -41,6 +45,20 @@ const App = () => {
   const [cookies, removeCookie] = useCookies(['jwt_token']);
 
   const token = getAuthToken(cookies);
+
+  const updateSettings = (settings) => {
+    setSettings(settings);
+    localStorage.setItem('settings', JSON.stringify(settings));
+    if (user) {
+      axios
+        .put(
+          `${import.meta.env.VITE_API_BACKENDSERVER}/user/updateSettings`,
+          settings,
+        )
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    }
+  };
 
   if (token) {
     setAuthToken(token);
@@ -116,7 +134,7 @@ const App = () => {
           element={
             <Forecast
               settings={settings}
-              setSettings={setSettings}
+              updateSettings={updateSettings}
               mode={mode}
               user={user}
               setUser={setUser}
@@ -135,6 +153,7 @@ const App = () => {
               logout={logout}
               settings={settings}
               setSettings={setSettings}
+              updateSettings={updateSettings}
               setPath={setPath}
             />
           }

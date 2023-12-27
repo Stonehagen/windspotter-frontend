@@ -13,6 +13,11 @@ import SignOut from '../assets/icons/SignOut.svg?react';
 const SettingsPage = ({ user, logout, settings, setSettings, setPath }) => {
   const navigate = useNavigate();
 
+  const updateSettings = (settings) => {
+    setSettings(settings);
+    localStorage.setItem('settings', JSON.stringify(settings));
+  }
+
   const loggingOut = () => {
     logout();
     navigate('/');
@@ -69,7 +74,7 @@ const SettingsPage = ({ user, logout, settings, setSettings, setPath }) => {
                 id="colorMode"
                 value={settings.mode}
                 onChange={(e) =>
-                  setSettings({ ...settings, mode: e.target.value })
+                  updateSettings({ ...settings, mode: e.target.value })
                 }
               >
                 <option value="dark">Dark</option>

@@ -7,10 +7,10 @@ import WeatherForecastCol from './WeatherForecastCol';
 import WaveForecastCol from './WaveForecastCol';
 import WindMeter from './WindMeter';
 
-const ForecastTableRow = ({ timeframe, settings, setSettings, mode }) => {
+const ForecastTableRow = ({ timeframe, settings, updateSettings, mode }) => {
   const modelHour = moment(timeframe.modelTime).format('HH');
   const toggleNight = () => {
-    setSettings({ ...settings, displayNight: !settings.displayNight });
+    updateSettings({ ...settings, displayNight: !settings.displayNight });
   };
 
   return (
@@ -37,7 +37,7 @@ const ForecastTableRow = ({ timeframe, settings, setSettings, mode }) => {
           <WindForecastCol
             timeframe={timeframe}
             settings={settings}
-            setSettings={setSettings}
+            updateSettings={updateSettings}
           />
           <WeatherForecastCol
             timeframe={timeframe}

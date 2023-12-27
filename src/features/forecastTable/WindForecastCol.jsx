@@ -10,17 +10,17 @@ const getWindowDimensions = () => {
   return width;
 };
 
-const WindForecastCol = ({ timeframe, settings, setSettings }) => {
+const WindForecastCol = ({ timeframe, settings, updateSettings }) => {
   const [windowWidth, setWindowWidth] = useState(getWindowDimensions());
   const changeWindUnit = () => {
     if (settings.windUnit === 'mps') {
-      setSettings({ ...settings, windUnit: 'kph' });
+      updateSettings({ ...settings, windUnit: 'kph' });
     } else if (settings.windUnit === 'kph') {
-      setSettings({ ...settings, windUnit: 'bft' });
+      updateSettings({ ...settings, windUnit: 'bft' });
     } else if (settings.windUnit === 'bft') {
-      setSettings({ ...settings, windUnit: 'kts' });
+      updateSettings({ ...settings, windUnit: 'kts' });
     } else if (settings.windUnit === 'kts') {
-      setSettings({ ...settings, windUnit: 'mps' });
+      updateSettings({ ...settings, windUnit: 'mps' });
     }
   };
 

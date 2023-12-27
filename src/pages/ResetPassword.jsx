@@ -16,20 +16,15 @@ const ResetPassword = ({ user, login }) => {
       return;
     }
     axios
-      .get(`${import.meta.env.VITE_API_BACKENDSERVER}/user/resetPassword`, {
+      .post(`${import.meta.env.VITE_API_BACKENDSERVER}/user/resetPasswordReq`, {
         email,
       })
       .then((res) => {
-        if (res.data.error) {
-          setErrors(res.data.error);
-          return;
-        } else {
-          navigate('/sign-in');
-        }
-      })
-      .catch((err) => {
-        setErrors(err.response.data.errors ? err.response.data.errors : []);
-      });
+        navigate('/sign-in');
+      }).catch((err) => {
+        navigate('/sign-in');
+      }
+      );
   };
 
   useEffect(() => {

@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { setAuthToken } from '../utils/authToken';
 import '../assets/styles/SignIn.css';
 
 const SetPassword = ({ user, login }) => {
+  const { token } = useParams();
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errors, setErrors] = useState([]);
@@ -28,18 +29,15 @@ const SetPassword = ({ user, login }) => {
       return;
     }
     axios
-      .post(`${import.meta.env.VITE_API_BACKENDSERVER}/user/sign-in`, {
+      .post(`${import.meta.env.VITE_API_BACKENDSERVER}/user/resetPassword`, {
         password,
+        token,
       })
       .then((res) => {
         if (res.data.error) {
           setErrors(res.data.error);
           return;
         } else {
-          const token = res.data.token;
-          saveJWTinCookie(token);
-          setAuthToken(token);
-          login(res.data.user);
           navigate('/');
         }
       })
