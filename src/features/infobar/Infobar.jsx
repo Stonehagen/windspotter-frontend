@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const Infobar = ({ spot, forecastArray, days, user, setUser }) => {
   const [bookmarked, setBookmarked] = useState(
-    user ? user.favorites.includes(spot._id) : false,
+    user ? (user.favorites ? user.favorites.includes(spot._id) : false) : false,
   );
   const decimalToDMS = (decimal) => {
     const degrees = Math.trunc(decimal);

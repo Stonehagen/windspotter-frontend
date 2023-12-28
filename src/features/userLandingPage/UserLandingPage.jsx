@@ -10,10 +10,10 @@ const UserLandingPage = ({ user }) => {
           WIND<span>MATE</span>
         </h1>
         <h2 className="LogoSub">
-          WIND<span>PREDICTION</span> FOR <span>SURFERS</span>
+          WIND<span>PREDICTION</span> FOR{' '}
+          <span>{user ? user.username.toUpperCase() : 'SURFERS'}</span>
         </h2>
       </div>
-
       <>
         {user.favorites ? (
           <Favorites user={user} />

@@ -98,6 +98,7 @@ const App = () => {
       setUser({
         email: res.data.email,
         id: res.data._id,
+        username: res.data.username,
         memberStatus: res.data.memberStatus,
         favorites: res.data.favorites,
       }),
