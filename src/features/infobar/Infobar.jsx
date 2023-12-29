@@ -31,12 +31,11 @@ const Infobar = ({ spot, forecastArray, days, user, setUser }) => {
       })
       .then((res) => {
         setBookmarked(res.data.user.favorites.includes(spot._id));
-        setUser({
-          email: res.data.user.email,
-          id: res.data.user._id,
-          memberStatus: res.data.user.memberStatus,
-          favorites: res.data.user.favorites,
-        });
+        setUser(
+          res.data.user
+            ? { ...user, favorites: res.data.user.favorites }
+            : null,
+        );
       })
       .catch((err) => console.log(err));
     // need a redirect to main page if an error occurs

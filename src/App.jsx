@@ -42,7 +42,7 @@ const App = () => {
       : 'light',
   );
   const [path, setPath] = useState(window.location.pathname);
-  const [cookies, removeCookie] = useCookies(['jwt_token']);
+  const [cookies, , setCookie, removeCookie] = useCookies(['jwt_token']);
 
   const token = getAuthToken(cookies);
 
@@ -55,7 +55,6 @@ const App = () => {
           `${import.meta.env.VITE_API_BACKENDSERVER}/user/updateSettings`,
           settings,
         )
-        .then((res) => console.log(res))
         .catch((err) => console.log(err));
     }
   };
@@ -66,19 +65,15 @@ const App = () => {
 
   setAxiosHeader();
 
-  const login = ({
-    username,
-    email,
-    _id,
-    memberStatus,
-    windUnits,
-    colorMode,
-  }) => {
+  const login = (user) => {
     setUser({
-      id: _id,
-      username,
-      email,
-      memberStatus,
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      memberStatus: user.memberStatus,
+      windUnits: user.windUnits,
+      favorites: user.favorites,
+      colorMode: user.colorMode,
     });
     setSettings({
       ...settings,
@@ -101,6 +96,8 @@ const App = () => {
         username: res.data.username,
         memberStatus: res.data.memberStatus,
         favorites: res.data.favorites,
+        windUnits: res.data.windUnits,
+        colorMode: res.data.colorMode,
       }),
     );
   };
@@ -144,7 +141,17 @@ const App = () => {
         />
         <Route path="/info" element={<Info />} />
         <Route path="/sign-up" element={<SignUp user={user} />} />
-        <Route path="/sign-in" element={<SignIn login={login} user={user} />} />
+        <Route
+          path="/sign-in"
+          element={
+            <SignIn
+              login={login}
+              user={user}
+              cookies={cookies}
+              setCookie={setCookie}
+            />
+          }
+        />
         <Route path="/adm-dashboard" element={<Dashboard user={user} />} />
         <Route
           path="/settings"

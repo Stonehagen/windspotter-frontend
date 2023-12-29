@@ -5,11 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { setAuthToken } from '../utils/authToken';
 import '../assets/styles/SignIn.css';
 
-const SignIn = ({ user, login }) => {
+const SignIn = ({ user, login, cookies, setCookie }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
-  const [cookie, setCookie] = useCookies(['jwt_token']);
 
   const navigate = useNavigate();
 
