@@ -42,7 +42,7 @@ const App = () => {
       : 'light',
   );
   const [path, setPath] = useState(window.location.pathname);
-  const [cookies, , setCookie, removeCookie] = useCookies(['jwt_token']);
+  const [cookies, setCookie, removeCookie] = useCookies(['jwt_token']);
 
   const token = getAuthToken(cookies);
 

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import { setAuthToken } from '../utils/authToken';
 import '../assets/styles/SignIn.css';
@@ -44,7 +43,13 @@ const SignIn = ({ user, login, cookies, setCookie }) => {
         }
       })
       .catch((err) => {
-        setErrors(err.response.data.errors ? err.response.data.errors : []);
+        setErrors(
+          err.response
+            ? err.response.data.errors
+              ? err.response.data.errors
+              : []
+            : [],
+        );
       });
   };
 
