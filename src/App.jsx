@@ -7,7 +7,9 @@ import { setAxiosHeader } from './utils/setAxiosHeader';
 import './assets/styles/App.css';
 import 'maplibre-gl';
 import '@maplibre/maplibre-gl-leaflet';
+import CookieConsent from 'react-cookie-consent';
 
+// COMPONENTS
 import Forecast from './pages/Forecast';
 import LandingPage from './pages/LandingPage';
 import Map from './pages/Map';
@@ -117,6 +119,33 @@ const App = () => {
 
   return (
     <BrowserRouter basename="/">
+      <CookieConsent
+        location="top"
+        buttonText="Accept"
+        cookieName="cookieConsent"
+        expires={150}
+        style={{
+          background: 'var(--lighter-bg-color)',
+          color: 'var(--main-color)',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderBottom: '1px solid var(--main-bg-color)',
+          boxShadow: '0px 0px 10px 5px var(--main-bg-color)',
+        }}
+        buttonStyle={{
+          background: 'var(--yellow-color)',
+          fontSize: '1em',
+          margin: '10px',
+          borderRadius: '5px',
+          width: '100px',
+          height: '30px',
+          fontWeight: '400',
+          fontFamily: 'var(--main-font)',
+        }}
+        
+      >
+        This website uses cookies to enhance the user experience.
+      </CookieConsent>
       <Routes>
         <Route
           path="/"

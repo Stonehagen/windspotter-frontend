@@ -20,6 +20,7 @@
 
 :root {
   --red-color: rgb(255, 20, 20);
+  --main-font: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
 
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

@@ -8,3 +8,7 @@
   flex-direction: column;
   height: 100%;
 }
+
+.CookieConsent div:first-of-type {
+  width: 100%;
+}
