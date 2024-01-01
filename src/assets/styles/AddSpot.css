@@ -1,0 +1,48 @@
+.windDirections {
+  position: relative;
+  border: 0.5px solid var(--icon-color);
+  padding: 0;
+  margin: 1em auto;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
+}
+
+.windDirections li {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  transform-origin: 0% 100%;
+  border-left: 1px dashed var(--icon-color);
+}
+
+.windDirections .selected {
+  background-color: var(--yellow-color);
+}
+
+.windDirections .selected:hover {
+  background-color: var(--lighter-bg-color);
+}
+
+.windDirections li:hover .text {
+  font-weight: bold !important;
+}
+
+.windDirections .text {
+  position: absolute;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  text-align: center;
+  transform: skewY(67.5deg) rotate(11.25deg);
+}
+
+.windDirections li:hover {
+  background-color: var(--yellow-color);
+  cursor: pointer;
+}

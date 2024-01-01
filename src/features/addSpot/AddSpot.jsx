@@ -8,10 +8,29 @@ const AddSpot = ({ user }) => {
   const [searchName, setSearchName] = useState('');
   const [spotLat, setSpotLat] = useState('');
   const [spotLng, setSpotLng] = useState('');
-  const [windDirections, setWindDirections] = useState([]);
+  const [windDirections, setWindDirections] = useState(Array(16).fill(false));
   const [errors, setErrors] = useState([
     { msg: 'please enter a valid spot name' },
   ]);
+
+  const windDirectionsList = [
+    'N',
+    'NNE',
+    'NE',
+    'ENE',
+    'E',
+    'ESE',
+    'SE',
+    'SSE',
+    'S',
+    'SSW',
+    'SW',
+    'WSW',
+    'W',
+    'WNW',
+    'NW',
+    'NNW',
+  ];
 
   const navigate = useNavigate();
 
@@ -102,14 +121,44 @@ const AddSpot = ({ user }) => {
           </div>
           <div className="formGroup">
             <label htmlFor="windDirections">WindDirections</label>
-            <input
-              name="windDirections"
-              value={windDirections}
-              id="windDirections"
-              placeholder="windDirections"
-              type="text"
-              onChange={(e) => setWindDirections(e.target.value)}
-            />
+            <ul className="windDirections">
+              {windDirectionsList.map((direction, index) => {
+                const main =
+                  direction === 'N' ||
+                  direction === 'S' ||
+                  direction === 'E' ||
+                  direction === 'W';
+                return (
+                  <li
+                    className={`windDirection ${
+                      windDirections[index] ? 'selected' : ''
+                    }`}
+                    key={index}
+                    style={{
+                      transform: `rotate(${
+                        index * 22.5 - 11.25
+                      }deg) skewY(-67.5deg)`,
+                    }}
+                    onClick={() => {
+                      const newWindDirections = [...windDirections];
+                      newWindDirections[index] = !newWindDirections[index];
+                      setWindDirections(newWindDirections);
+                    }}
+                  >
+                    <div
+                      className="text"
+                      style={{
+                        fontWeight: `${main ? 600 : 200}`,
+                        fontSize: `${main ? 0.8 : 0.5}em`,
+                        paddingTop: `${main ? 0.3 : 1}em`,
+                      }}
+                    >
+                      {direction}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
           <div className="messages">
             {errors.map((error, index) => {
