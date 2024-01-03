@@ -5,7 +5,15 @@ import RemoveBookmark from '../../assets/icons/RemoveBookmark.svg?react';
 import ForecastOverview from '../forecastOverview/ForecastOverview';
 import axios from 'axios';
 
-const Infobar = ({ spot, forecastArray, days, user, setUser }) => {
+import WindDirection from '../windDirection/WindDirection';
+
+const Infobar = ({
+  spot,
+  forecastArray,
+  days,
+  user,
+  setUser,
+}) => {
   const [bookmarked, setBookmarked] = useState(
     user ? (user.favorites ? user.favorites.includes(spot._id) : false) : false,
   );
@@ -47,15 +55,18 @@ const Infobar = ({ spot, forecastArray, days, user, setUser }) => {
       <div className="infoHeader">
         <div className="backBtn"></div>
         <div className="forecastInfo">
-          <h3>{spot.name}</h3>
-          <div className="spotInfos">
-            <div>
-              {decimalToDMS(spot.lat)}
-              <span>{getDirection(spot.lat, 'lat')}</span>
-            </div>
-            <div>
-              {decimalToDMS(spot.lon)}
-              <span>{getDirection(spot.lon, 'lon')}</span>
+          <WindDirection windDirections={spot.windDirections} />
+          <div className="forecastInfoText">
+            <h3>{spot.name}</h3>
+            <div className="spotInfos">
+              <div>
+                {decimalToDMS(spot.lat)}
+                <span>{getDirection(spot.lat, 'lat')}</span>
+              </div>
+              <div>
+                {decimalToDMS(spot.lon)}
+                <span>{getDirection(spot.lon, 'lon')}</span>
+              </div>
             </div>
           </div>
         </div>

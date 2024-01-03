@@ -33,6 +33,7 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
           name: res.data.spot.name,
           lat: res.data.spot.lat,
           lon: res.data.spot.lon,
+          windDirections: res.data.spot.windDirections,
         });
       })
       .catch((err) => console.log(err));

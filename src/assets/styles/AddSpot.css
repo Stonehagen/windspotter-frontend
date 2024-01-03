@@ -10,6 +10,19 @@
   overflow: hidden;
 }
 
+.windDirections.windDirectionsInfo {
+  position: relative;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
+  border: 0.5px solid var(--icon-color);
+}
+
 .windDirections li {
   overflow: hidden;
   position: absolute;
@@ -21,8 +34,12 @@
   border-left: 1px dashed var(--icon-color);
 }
 
+.windDirections.windDirectionsInfo li {
+  border-left: none;
+}
+
 .windDirections .selected {
-  background-color: var(--yellow-color);
+  background-color: var(--icon-color);
 }
 
 .windDirections .selected:hover {
@@ -42,7 +59,27 @@
   transform: skewY(67.5deg) rotate(11.25deg);
 }
 
+.windDirections.windDirectionsInfo .text {
+  font-size: 0.5em;
+  font-weight: bold;
+  margin-top: -1px;
+  color: var(--icon-color);
+}
+
+.windDirections.windDirectionsInfo .selected .text {
+  color: var(--main-bg-color);
+}
+
 .windDirections li:hover {
   background-color: var(--yellow-color);
   cursor: pointer;
+}
+
+.windDirections.windDirectionsInfo li:hover {
+  background-color: var(--main-bg-color);
+  cursor:default;
+}
+
+.windDirections.windDirectionsInfo .selected:hover {
+  background-color: var(--icon-color);
 }

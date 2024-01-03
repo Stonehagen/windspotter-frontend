@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import '../../assets/styles/AddSpot.css';
 
-const AddSpot = ({ user }) => {
+const AddSpot = () => {
   const [spotName, setSpotName] = useState('');
   const [searchName, setSearchName] = useState('');
   const [spotLat, setSpotLat] = useState('');
@@ -31,8 +30,6 @@ const AddSpot = ({ user }) => {
     'NW',
     'NNW',
   ];
-
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
