@@ -7,13 +7,7 @@ import axios from 'axios';
 
 import WindDirection from '../windDirection/WindDirection';
 
-const Infobar = ({
-  spot,
-  forecastArray,
-  days,
-  user,
-  setUser,
-}) => {
+const Infobar = ({ spot, forecastArray, days, user, setUser }) => {
   const [bookmarked, setBookmarked] = useState(
     user ? (user.favorites ? user.favorites.includes(spot._id) : false) : false,
   );
@@ -53,7 +47,9 @@ const Infobar = ({
   return (
     <div className="infoBar">
       <div className="infoHeader">
-        <div className="backBtn"></div>
+        <div className="backBtn">
+          <WindDirection windDirections={spot.windDirections} />
+        </div>
         <div className="forecastInfo">
           <WindDirection windDirections={spot.windDirections} />
           <div className="forecastInfoText">

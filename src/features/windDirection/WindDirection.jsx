@@ -1,6 +1,6 @@
 import '../../assets/styles/AddSpot.css';
 
-const AddSpot = ({ windDirections }) => {
+const WindDirection = ({ windDirections }) => {
   const windDirectionsList = [
     'N',
     'NNE',
@@ -21,27 +21,25 @@ const AddSpot = ({ windDirections }) => {
   ];
 
   return (
-    <div className="AddSpot">
-      <ul className="windDirections windDirectionsInfo">
-        {windDirectionsList.map((direction, index) => {
-          const main = direction === 'N';
-          return (
-            <li
-              className={`windDirection ${
-                windDirections[index] ? 'selected' : ''
-              }`}
-              key={index}
-              style={{
-                transform: `rotate(${index * 22.5 - 11.25}deg) skewY(-67.5deg)`,
-              }}
-            >
-              <div className="text">{main ? direction : ''}</div>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <ul className="windDirections windDirectionsInfo">
+      {windDirectionsList.map((direction, index) => {
+        const main = direction === 'N';
+        return (
+          <li
+            className={`windDirection ${
+              windDirections[index] ? 'selected' : ''
+            }`}
+            key={index}
+            style={{
+              transform: `rotate(${index * 22.5 - 11.25}deg) skewY(-67.5deg)`,
+            }}
+          >
+            <div className="text">{main ? direction : ''}</div>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 
-export default AddSpot;
+export default WindDirection;

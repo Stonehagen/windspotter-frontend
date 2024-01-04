@@ -10,19 +10,38 @@
     gap: 20px;
     justify-content: center;
   }
+
+  .infoBar .backBtn .windDirections {
+    display: none;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 999px) {
+  .infoBar .backBtn {
+    width: 32px;
+  }
+  .infoBar .forecastInfo {
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .infoBar .backBtn .windDirections {
+    display: none;
+  }
+}
+
+@media (min-width: 450px) and (max-width: 800px) {
+  .infoBar .backBtn {
+    padding-left: 20px;
+  }
+  .infoBar .forecastInfo .windDirections {
+    display: none;
+  }
 }
 
 @media (min-width: 420px) and (max-width: 999px) {
   .infoBar {
     padding-bottom: 2px;
-  }
-  .infoBar .backBtn {
-    width: 0px;
-  }
-  .infoBar .forecastInfo {
-    gap: 20px;
-    width: 100%;
-    justify-content: center
   }
 }
 
@@ -36,14 +55,8 @@
     padding-bottom: 2px;
   }
 
-  .infoBar .backBtn {
-    width: 0px;
-  }
-  .infoBar .forecastInfo {
-    gap: 10px;
-    width: 100%;
-    justify-content: space-around;
-    padding: 0 10px;
+  .infoBar .forecastInfo .windDirections {
+    display: none;
   }
 }
 
