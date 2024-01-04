@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../assets/styles/Search.css';
 
-const Search = ({ user , setPath}) => {
+const Search = ({ user, setPath }) => {
   const [spots, setSpots] = useState([]);
 
   const getSpots = async () => {
@@ -20,10 +20,10 @@ const Search = ({ user , setPath}) => {
 
   return (
     <div className="search">
+      <h3 className="LogoSub">
+        SELECT<span>SPOT</span>
+      </h3>
       <div className="Spotlist">
-        <h3 className="LogoSub">
-          SELECT<span>SPOT</span>
-        </h3>
         {spots.map((spot) => (
           <Link
             key={spot._id}
