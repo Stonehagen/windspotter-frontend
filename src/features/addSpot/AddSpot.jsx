@@ -33,8 +33,8 @@ const AddSpot = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (spotName.length < 5) {
-      setErrors([{ msg: 'Spot name must be at least 5 characters long' }]);
+    if (spotName.length < 3) {
+      setErrors([{ msg: 'Spot name must be at least 3 characters long' }]);
       return;
     }
     if (spotName.search(/[a-zA-Z]/) === -1) {
@@ -45,11 +45,11 @@ const AddSpot = () => {
       setErrors([{ msg: 'Spot name must be shorter than 50 characters' }]);
       return;
     }
-    if (spotLat.search(/[0-9]/) === -1) {
+    if (`${spotLat}`.search(/[0-9]/) === -1) {
       setErrors([{ msg: 'please enter a valid latitude' }]);
       return;
     }
-    if (spotLng.search(/[0-9]/) === -1) {
+    if (`${spotLng}`.search(/[0-9]/) === -1) {
       setErrors([{ msg: 'please enter a valid longitude' }]);
       return;
     }
@@ -64,7 +64,14 @@ const AddSpot = () => {
       .then()
       .catch((err) =>
         setErrors(err.response.data.errors ? err.response.data.errors : []),
-      );
+      )
+      .finally(() => {
+        setSpotName('');
+        setSearchName('');
+        setSpotLat(54);
+        setSpotLng(11);
+        setWindDirections(Array(16).fill(false));
+      });
   };
 
   return (
