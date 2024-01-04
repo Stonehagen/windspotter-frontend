@@ -17,14 +17,14 @@ const NavBar = ({ path, setPath }) => {
           <Home className={`NavIcon ${path == '/' ? 'active' : ''}`} />
         </Link>
       </div>
-      <div className="navbarMap">
-        <Link to="/map" onClick={() => setPath('/map')}>
-          <Map className={`NavIcon ${path == '/map' ? 'active' : ''}`} />
-        </Link>
-      </div>
       <div className="navbarForecast">
         <Link to="/search" onClick={() => setPath('/search')}>
           <Wind className={`NavIcon ${path == '/search' ? 'active' : ''}`} />
+        </Link>
+      </div>
+      <div className="navbarMap">
+        <Link to="/map" onClick={() => setPath('/map')}>
+          <Map className={`NavIcon ${path == '/map' ? 'active' : ''}`} />
         </Link>
       </div>
       <div className="navbarInfo">
