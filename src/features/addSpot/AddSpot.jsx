@@ -54,10 +54,12 @@ const AddSpot = () => {
       return;
     }
     axios
-      .post(`${import.meta.env.VITE_API_BACKENDSERVER}/spot/add-spot`, {
-        spotName,
-        spotLat,
-        spotLng,
+      .post(`${import.meta.env.VITE_API_BACKENDSERVER}/spot/add`, {
+        name: spotName,
+        searchName,
+        lat: spotLat,
+        lon: spotLng,
+        windDirections,
       })
       .then()
       .catch((err) =>
@@ -100,7 +102,7 @@ const AddSpot = () => {
               setSpotLng={setSpotLng}
               spotLng={spotLng}
             />
-            <div className='LatLon'>
+            <div className="LatLon">
               <div>Lat: {spotLat.toFixed(5)}</div>
               <div>Lon: {spotLng.toFixed(5)}</div>
             </div>
