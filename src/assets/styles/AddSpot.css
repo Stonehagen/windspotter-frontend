@@ -1,3 +1,123 @@
+.AddSpot {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.AddSpot form {
+  width: calc(100% - 30px);
+  max-width: 1200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.AddSpot form>div {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.AddSpot form>div:last-child {
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.AddSpot .formGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.AddSpot input {
+  background-color: var(--main-bg-color);
+  font-size: 1em;
+  color: var(--main-color);
+  border: 1px solid var(--lighter-color);
+  border-radius: 5px;
+  width: calc(100% - 20px);
+  max-width: 300px;
+  height: 25px;
+  text-decoration: none;
+  font-weight: 200;
+  line-height: 40px;
+  margin: 1px;
+  padding-left: 10px;
+}
+
+.AddSpot label {
+  font-size: 1.2em;
+  font-weight: 400;
+  color: var(--main-color);
+
+}
+
+.AddSpot .MapContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.AddSpot #map {
+  width: 100%;
+  max-width: 1200px;
+  height: 70vh;
+  max-height: 800px;
+  display: flex;
+}
+
+.AddSpot .TitleSub {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  margin: 0 0 20px 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.AddSpot .LatLon {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  font-weight: 300;
+  color: var(--icon-color);
+}
+
+.AddSpot button {
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  width: 140px;
+  height: 40px;
+  text-decoration: none;
+  font-weight: 200;
+  font-size: 1.3em;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.AddSpot button:hover {
+  background-color: var(--yellow-color);
+  cursor: pointer;
+}
+
+.AddSpot form .errorMessage {
+  font-size: 0.75em;
+  color: var(--red-color);
+}
+
 .windDirections {
   position: relative;
   border: 0.5px solid var(--icon-color);
@@ -39,11 +159,7 @@
 }
 
 .windDirections .selected {
-  background-color: var(--icon-color);
-}
-
-.windDirections .selected:hover {
-  background-color: var(--lighter-bg-color);
+  background-color: var(--lighter-color);
 }
 
 .windDirections li:hover .text {
@@ -63,8 +179,13 @@
   font-size: 0.5em;
   font-weight: bold;
   margin-top: -1px;
-  color: var(--icon-color);
+  color: var(--lighter-color);
 }
+
+.windDirections .selected .text {
+  color: var(--main-bg-color);
+}
+
 
 .windDirections.windDirectionsInfo .selected .text {
   color: var(--main-bg-color);
@@ -81,5 +202,5 @@
 }
 
 .windDirections.windDirectionsInfo .selected:hover {
-  background-color: var(--icon-color);
+  background-color: var(--lighter-color);
 }

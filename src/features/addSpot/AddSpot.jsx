@@ -2,15 +2,15 @@ import axios from 'axios';
 import { useState } from 'react';
 import '../../assets/styles/AddSpot.css';
 
+import LatLonPicker from './LatLonPicker';
+
 const AddSpot = () => {
   const [spotName, setSpotName] = useState('');
   const [searchName, setSearchName] = useState('');
-  const [spotLat, setSpotLat] = useState('');
-  const [spotLng, setSpotLng] = useState('');
+  const [spotLat, setSpotLat] = useState(54);
+  const [spotLng, setSpotLng] = useState(11);
   const [windDirections, setWindDirections] = useState(Array(16).fill(false));
-  const [errors, setErrors] = useState([
-    { msg: 'please enter a valid spot name' },
-  ]);
+  const [errors, setErrors] = useState([]);
 
   const windDirectionsList = [
     'N',
@@ -34,15 +34,15 @@ const AddSpot = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (spotName.length < 5) {
-      setErrors([{ msg: 'username must be at least 5 characters long' }]);
+      setErrors([{ msg: 'Spot name must be at least 5 characters long' }]);
       return;
     }
     if (spotName.search(/[a-zA-Z]/) === -1) {
-      setErrors([{ msg: 'spotname must contain at least one letter' }]);
+      setErrors([{ msg: 'Spot name must contain at least one letter' }]);
       return;
     }
-    if (spotName.length > 30) {
-      setErrors([{ msg: 'spotname must be shorter than 30 characters' }]);
+    if (spotName.length > 50) {
+      setErrors([{ msg: 'Spot name must be shorter than 50 characters' }]);
       return;
     }
     if (spotLat.search(/[0-9]/) === -1) {
@@ -68,10 +68,8 @@ const AddSpot = () => {
   return (
     <div className="AddSpot">
       <form onSubmit={handleSubmit}>
-        <div className="SignUp-form-grp">
-          <h3>
-            ADD<span>SPOT</span>
-          </h3>
+        <div>
+          <h3 className="TitleSub">Add a new Spot</h3>
           <div className="formGroup">
             <label htmlFor="spotName">Spotname</label>
             <input
@@ -94,29 +92,20 @@ const AddSpot = () => {
               onChange={(e) => setSearchName(e.target.value)}
             />
           </div>
-          <div className="formGroup">
-            <label htmlFor="spotLat">Latitude</label>
-            <input
-              name="spotLat"
-              value={spotLat}
-              id="spotLat"
-              placeholder="spotLat"
-              type="text"
-              onChange={(e) => setSpotLat(e.target.value)}
+          <div className="MapContainer">
+            <label>Pick a Spot Location</label>
+            <LatLonPicker
+              setSpotLat={setSpotLat}
+              spotLat={spotLat}
+              setSpotLng={setSpotLng}
+              spotLng={spotLng}
             />
+            <div className='LatLon'>
+              <div>Lat: {spotLat.toFixed(5)}</div>
+              <div>Lon: {spotLng.toFixed(5)}</div>
+            </div>
           </div>
-          <div className="formGroup">
-            <label htmlFor="spotLng">Longitude</label>
-            <input
-              name="spotLng"
-              value={spotLng}
-              id="spotLng"
-              placeholder="spotLng"
-              type="text"
-              onChange={(e) => setSpotLng(e.target.value)}
-            />
-          </div>
-          <div className="formGroup">
+          <div>
             <label htmlFor="windDirections">WindDirections</label>
             <ul className="windDirections">
               {windDirectionsList.map((direction, index) => {
@@ -167,10 +156,8 @@ const AddSpot = () => {
             })}
           </div>
         </div>
-        <div className="SignUp-btn-grp">
-          <button type="submit">
-            SEND<span>IT</span>
-          </button>
+        <div>
+          <button type="submit">Add Spot</button>
         </div>
       </form>
     </div>

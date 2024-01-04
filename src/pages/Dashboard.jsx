@@ -25,10 +25,8 @@ const Dashboard = ({ user }) => {
     <></>
   ) : (
     <div className="Dashboard">
-      <h2 className="DashboardTitle">
-        DASH<span>BOARD</span>
-        <AddSpot user={user} />
-      </h2>
+      <h2 className="Title">Admin Dashboard</h2>
+      <AddSpot user={user} />
     </div>
   );
 };
