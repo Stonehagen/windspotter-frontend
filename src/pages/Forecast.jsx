@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useGenerateForecastArray } from '../hooks/useGenerateForecastArray';
 import '../assets/styles/Forecast.css';
 
 import ForecastTables from '../features/forecastTable/ForecastTables';
@@ -21,13 +20,10 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
         }/spot/name/${spotName}/forecast`,
       )
       .then((res) => {
-        const forecastArr = useGenerateForecastArray(
-          res.data.spot.forecast,
-          settings.nightEnd,
-          res.data.spot.forecastModels,
-        );
-        setForecastArray(forecastArr);
-        setDays([...new Set(forecastArr.map((timeframe) => timeframe.day))]);
+        setForecastArray(res.data.spot.forecast);
+        setDays([
+          ...new Set(res.data.spot.forecast.map((timeframe) => timeframe.day)),
+        ]);
         setSpot({
           _id: res.data.spot._id,
           name: res.data.spot.name,
