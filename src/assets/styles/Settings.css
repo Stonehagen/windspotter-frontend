@@ -123,6 +123,7 @@
   flex-direction: row;
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .SettingsItem .weightInput input {

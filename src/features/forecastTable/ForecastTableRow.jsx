@@ -8,7 +8,7 @@ import WeatherForecastCol from './WeatherForecastCol';
 import WaveForecastCol from './WaveForecastCol';
 import WindMeter from './WindMeter';
 
-import Kite from '../../assets/icons/kite.svg?react';
+import Kite from '../../assets/icons/Kite.svg?react';
 
 const ForecastTableRow = ({ timeframe, settings, updateSettings, mode }) => {
   const modelHour = moment(timeframe.modelTime).format('HH');
