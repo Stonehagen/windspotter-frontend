@@ -36,6 +36,7 @@ const App = () => {
           nightEnd: 7,
           nightStart: 21,
           mode: 'light',
+          weigth: 75,
         },
   );
   const [prefersColorScheme, setPrefersColorScheme] = useState(
@@ -55,7 +56,7 @@ const App = () => {
       axios
         .put(
           `${import.meta.env.VITE_API_BACKENDSERVER}/user/updateSettings`,
-          settings,
+          {settings},
         )
         .catch((err) => console.log(err));
     }
@@ -76,11 +77,13 @@ const App = () => {
       windUnits: user.windUnits,
       favorites: user.favorites,
       colorMode: user.colorMode,
+      weigth: user.weigth,
     });
     setSettings({
       ...settings,
-      windUnits,
-      mode: colorMode,
+      windUnits: user.windUnits,
+      mode: user.colorMode,
+      weigth: user.weigth,
     });
   };
 

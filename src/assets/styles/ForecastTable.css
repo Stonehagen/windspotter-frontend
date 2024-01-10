@@ -552,7 +552,7 @@ table .upperRow {
   }
 
   .ForecastTable {
-    max-width: 480px;
+    max-width: 515px;
   }
 
   table .windDirection {
@@ -611,6 +611,10 @@ table .upperRow {
     flex-direction: row;
     margin-right: -10px;
   }
+
+  .ForecastTable .kiteSize {
+    display: none;
+  }
 }
 
 .ForecastTable {
@@ -624,6 +628,30 @@ table .upperRow {
   flex-direction: column;
   align-items: center;
   flex: 1;
+}
+
+.ForecastTable .kiteSize {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  font-weight: 200;
+  color: var(--main-color);
+  font-size: 1em;
+  background-color: var(--lighter-bg-color);
+  min-width: 35px;
+}
+
+.ForecastTable .kiteSize span {
+  font-weight: 400;
+  color: var(--lighter-color);
+  font-size: 0.8em;
+  padding-left: 2px;
+}
+
+.ForecastTable .kiteSize svg {
+  fill: var(--lighter-color);
 }
 
 table tr .lowerRow {

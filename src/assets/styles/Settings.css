@@ -112,6 +112,25 @@
   background-color: var(--lighter-bg-color);
 }
 
+.SettingsItem .massUnit {
+  color: var(--lighter-color);
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+
+.SettingsItem .weightInput {
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.SettingsItem .weightInput input {
+  margin-right: 10px;
+  width: 50px;
+  font-size: 1.2em;
+}
+
 .SettingsItem label {
   padding-left: 22px;
   display: flex;
@@ -140,6 +159,30 @@
   font-size: 1em;
   font-weight: 400;
   padding-left: 10px;
+}
+
+.SettingsGroup input {
+  background-color: #bbb;
+  color: #242424;
+  margin-right: 10px;
+  width: 57px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1em;
+  font-weight: 400;
+  padding-left: 10px;
+  text-align: center;
+}
+
+.SettingsGroup input:hover {
+  cursor: pointer;
+  background-color: var(--yellow-color);
+}
+
+.SettingsGroup input:focus {
+  outline: none
+
 }
 
 .SettingsGroup select:hover {

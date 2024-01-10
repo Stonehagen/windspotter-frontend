@@ -13,8 +13,6 @@ import SignOut from '../assets/icons/SignOut.svg?react';
 const SettingsPage = ({ user, logout, settings, updateSettings, setPath }) => {
   const navigate = useNavigate();
 
-
-
   const loggingOut = () => {
     logout();
     navigate('/');
@@ -38,6 +36,27 @@ const SettingsPage = ({ user, logout, settings, updateSettings, setPath }) => {
               </button>
             ) : null
           ) : null}
+          <div className="SettingsGroup">
+            <div className="SettingsItem">
+              <label htmlFor="weight">
+                <Dashboard />
+                Rider Weight
+              </label>
+              <div className='weightInput'>
+                <input
+                  type="number"
+                  name="weight"
+                  id="weight"
+                  value={settings.weight}
+                  placeholder="80"
+                  onChange={(e) =>
+                    updateSettings({ ...settings, weight: e.target.value })
+                  }
+                />
+                <div className='massUnit'>KG</div>
+              </div>
+            </div>
+          </div>
           <div className="SettingsGroup">
             <div className="SettingsItem">
               <label htmlFor="windUnit">
