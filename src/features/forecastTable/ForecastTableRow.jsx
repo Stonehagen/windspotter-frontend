@@ -69,7 +69,7 @@ const ForecastTableRow = ({ timeframe, settings, updateSettings, mode }) => {
           >
             <Kite />
             <div>
-              {kiteSize > 17 ? `-` : `${kiteSize}`}
+              {kiteSize > 17 || !kiteSize ? `-` : `${kiteSize}`}
               <span>{kiteSize > 17 ? '' : 'm'}</span>
             </div>
           </div>
