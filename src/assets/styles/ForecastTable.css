@@ -612,9 +612,20 @@ table .upperRow {
     margin-right: -10px;
   }
 
+}
+
+@media (min-width: 420px) {
+  ForecastTable .kiteSize {
+    display: flex;
+  }
+  
+}
+
+@media (max-width: 359px) {
   .ForecastTable .kiteSize {
     display: none;
   }
+  
 }
 
 .ForecastTable {
@@ -631,7 +642,6 @@ table .upperRow {
 }
 
 .ForecastTable .kiteSize {
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
