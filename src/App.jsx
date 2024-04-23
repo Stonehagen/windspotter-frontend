@@ -12,7 +12,6 @@ import CookieConsent from 'react-cookie-consent';
 // COMPONENTS
 import Forecast from './pages/Forecast';
 import LandingPage from './pages/LandingPage';
-import Map from './pages/Map';
 import NavBar from './features/navbar/NavBar';
 import Search from './pages/Search';
 import Info from './pages/Info';
@@ -36,7 +35,7 @@ const App = () => {
           nightEnd: 7,
           nightStart: 21,
           mode: 'light',
-          weigth: 75,
+          weight: 75,
         },
   );
   const [prefersColorScheme, setPrefersColorScheme] = useState(
@@ -154,7 +153,6 @@ const App = () => {
           path="/"
           element={<LandingPage user={user} setPath={setPath} />}
         />
-        <Route path="/map" element={<Map />} />
         <Route
           path="/search"
           element={<Search user={user} setPath={setPath} />}

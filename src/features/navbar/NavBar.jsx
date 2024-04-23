@@ -1,4 +1,4 @@
-import Map from '../../assets/icons/Map.svg?react';
+import Wand from '../../assets/icons/Wand.svg?react';
 import Wind from '../../assets/icons/Wind.svg?react';
 import Home from '../../assets/icons/Home.svg?react';
 import Settings from '../../assets/icons/Settings.svg?react';
@@ -22,11 +22,11 @@ const NavBar = ({ path, setPath }) => {
           <Wind className={`NavIcon ${path == '/search' ? 'active' : ''}`} />
         </Link>
       </div>
-      <div className="navbarMap">
-        <Link to="/map" onClick={() => setPath('/map')}>
-          <Map className={`NavIcon ${path == '/map' ? 'active' : ''}`} />
+       {/* <div className="navbarWand">
+        <Link to="/mate" onClick={() => setPath('/mate')}>
+          <Wand className={`NavIcon ${path == '/mate' ? 'active' : ''}`} />
         </Link>
-      </div>
+      </div> */}
       <div className="navbarInfo">
         <Link to="/settings" onClick={() => setPath('/settings')}>
           <Settings
