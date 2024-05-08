@@ -81,7 +81,7 @@ const WindForecastCol = ({ timeframe, settings, updateSettings }) => {
         />
         <div className="windDirInfo">
           <div className="windDirText">{getWindDirection(timeframe.dir)}</div>
-          <div className="windDirNumber">{timeframe.dir.toFixed(0)}˚</div>
+          <div className="windDirNumber">{timeframe.dir? timeframe.dir.toFixed(0) : '-'}˚</div>
         </div>
       </div>
     </div>

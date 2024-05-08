@@ -22,11 +22,11 @@ const NavBar = ({ path, setPath }) => {
           <Wind className={`NavIcon ${path == '/search' ? 'active' : ''}`} />
         </Link>
       </div>
-       {/* <div className="navbarWand">
+      <div className="navbarWand">
         <Link to="/mate" onClick={() => setPath('/mate')}>
           <Wand className={`NavIcon ${path == '/mate' ? 'active' : ''}`} />
         </Link>
-      </div> */}
+      </div>
       <div className="navbarInfo">
         <Link to="/settings" onClick={() => setPath('/settings')}>
           <Settings

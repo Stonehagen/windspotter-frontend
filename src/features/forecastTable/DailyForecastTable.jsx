@@ -24,7 +24,10 @@ const DailyForecastTable = ({ dayArray, index, settings, updateSettings, mode })
             </tr>
           </thead>
           <tbody>
-            {dayArray.map((timeframe, index) => (
+            {dayArray.filter((timeframe)=> {
+               return timeframe.dir !== null;
+            }).map((timeframe, index) => (
+
               <ForecastTableRow
                 timeframe={timeframe}
                 settings={settings}

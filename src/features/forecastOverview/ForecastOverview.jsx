@@ -23,7 +23,7 @@ const ForecastOverview = ({ forecast, days }) => {
           {moment(dayData[0].time).format('dd')}
         </div>
         <div className="OverviewChart">
-          {dayData.map((timeframe, index) => {
+          {dayData.filter((timeframe) => { return timeframe.dir !== null }).map((timeframe, index) => {
             const heightWind = (timeframe.ws / timeframe.wsMax) * 100;
             const heightWindMax = 100 - heightWind;
             const heightOverviewBar =

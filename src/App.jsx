@@ -22,6 +22,7 @@ import Dashboard from './pages/Dashboard';
 import EmailVerification from './pages/EmailVerification';
 import ResetPassword from './pages/ResetPassword';
 import SetPassword from './pages/SetPassword';
+import Mate from './pages/Mate';
 
 const App = () => {
   const [mode, setMode] = useState(null);
@@ -169,6 +170,7 @@ const App = () => {
             />
           }
         />
+        <Route path="/mate" element={<Mate user={user} />} />
         <Route path="/info" element={<Info />} />
         <Route path="/sign-up" element={<SignUp user={user} />} />
         <Route
