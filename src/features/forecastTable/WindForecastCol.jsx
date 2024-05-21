@@ -47,7 +47,7 @@ const WindForecastCol = ({ timeframe, settings, updateSettings, nightStart, nigh
             ? `linear-gradient(to top, ${getColorGrade(
                 timeframe.ws,
                 'wind',
-              )} 60%, ${getColorGrade(timeframe.wsMax, 'wind')} 80%)`
+              )} 70%, ${getColorGrade(timeframe.wsMax, 'wind')} 92%)`
             : `linear-gradient(to right, ${getColorGrade(
                 timeframe.ws,
                 'wind',
