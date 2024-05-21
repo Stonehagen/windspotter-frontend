@@ -9,6 +9,26 @@
   padding-bottom: 50px;
 }
 
+
+.Forecast .spotInfos {
+  font-weight: 200;
+  font-style: italic;
+  font-size: 1em;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.Forecast .spotInfos span {
+  font-weight: 400;
+}
+
+.Forecast .spotInfos {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
 .Loading {
   display: flex;
   flex-direction: row;
@@ -22,3 +42,4 @@
 .Loading span {
   font-weight: 600;
 }
+

@@ -12,6 +12,21 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
   const [forecastArray, setForecastArray] = useState([]);
   const [days, setDays] = useState([]);
 
+  const decimalToDMS = (decimal) => {
+    const degrees = Math.trunc(decimal);
+    const minutes = Math.trunc((decimal - degrees) * 60);
+    const seconds = Math.trunc(((decimal - degrees) * 60 - minutes) * 60);
+    return `${degrees}° ${minutes}' ${seconds}" `;
+  };
+
+  const getDirection = (decimal, latOrLon) => {
+    if (latOrLon === 'lat') {
+      return decimal > 0 ? 'N' : 'S';
+    } else {
+      return decimal > 0 ? 'E' : 'W';
+    }
+  };
+
   const getSpot = async () => {
     axios
       .get(
@@ -27,10 +42,13 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
         setSpot({
           _id: res.data.spot._id,
           name: res.data.spot.name,
+          sunrise: res.data.spot.sunrise,
+          sunset: res.data.spot.sunset,
           lat: res.data.spot.lat,
           lon: res.data.spot.lon,
           windDirections: res.data.spot.windDirections,
         });
+        console.log(res.data.spot);
       })
       .catch((err) => console.log(err));
     // need a redirect to main page if an error occurs
@@ -58,6 +76,16 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
             updateSettings={updateSettings}
             mode={mode}
           />
+          <div className="spotInfos">
+            <div>
+              {decimalToDMS(spot.lat)}
+              <span>{getDirection(spot.lat, 'lat')}</span>
+            </div>
+            <div>
+              {decimalToDMS(spot.lon)}
+              <span>{getDirection(spot.lon, 'lon')}</span>
+            </div>
+          </div>
         </>
       ) : (
         <div className="Loading">

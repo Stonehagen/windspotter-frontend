@@ -124,19 +124,32 @@
   margin-bottom: 5px;
 }
 
-.infoBar .spotInfos span {
-  font-weight: 300;
+.infoBar .spotInfos {
+  display: flex;
 }
 
-.infoBar .spotInfos {
+.infoBar .sunriseSunset {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
 }
 
-infoBar .spotInfos div:last-child {
-  font-weight: 400;
+.infoBar .sunriseSunset .Icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--main-bg-color);
+  stroke:  var(--main-color)
+}
+
+.infoBar .sunriseSunset div {
+  font-weight: 200;
+  font-style: italic;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 .infoBar .addBookmark {
@@ -151,7 +164,7 @@ infoBar .spotInfos div:last-child {
 
 .infoBar .backBtn {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 5px;
