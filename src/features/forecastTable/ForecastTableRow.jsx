@@ -84,7 +84,7 @@ const ForecastTableRow = ({ timeframe, settings, updateSettings, mode, sunRise, 
           </div>
           <div className="modelInfo">
             <div>
-              {timeframe.model.split(' ')[0]}
+              {timeframe.model === 'gfsAWS' ? 'GFS' : timeframe.model.toUpperCase()}
               <span>{timeframe.model.split(' ')[1]}</span>
             </div>
             <div>
