@@ -2,7 +2,7 @@ import WindDir from '../../assets/icons/WindDir.svg?react';
 import { checkNightTime } from '../../utils/checkNightTime';
 import { getColorGrade } from '../../utils/getColorGrade';
 
-const WaveForecastCol = ({ timeframe, settings, mode }) => {
+const WaveForecastCol = ({ timeframe, settings, mode, nightStart, nightEnd  }) => {
   return (
     <div
       className="waves"
@@ -10,8 +10,8 @@ const WaveForecastCol = ({ timeframe, settings, mode }) => {
         opacity:
           checkNightTime(
             timeframe.time,
-            settings.nightStart,
-            settings.nightEnd,
+            nightStart,
+            nightEnd,
           ) && '0.7',
         backgroundColor: timeframe.waveHeight
           ? getColorGrade(

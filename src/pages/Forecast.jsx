@@ -75,6 +75,8 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
             settings={settings}
             updateSettings={updateSettings}
             mode={mode}
+            sunRise={spot.sunrise}
+            sunSet={spot.sunset}
           />
           <div className="spotInfos">
             <div>

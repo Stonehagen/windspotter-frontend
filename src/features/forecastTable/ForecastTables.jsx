@@ -3,7 +3,7 @@ import '../../assets/styles/ForecastTable.css';
 
 import DailyForecastTable from './DailyForecastTable';
 
-const ForecastTables = ({ forecast, days, settings, updateSettings, mode }) => {
+const ForecastTables = ({ forecast, days, settings, updateSettings, mode, sunRise, sunSet }) => {
   const createTables = (forecast) => {
     if (!forecast) {
       return (
@@ -26,6 +26,8 @@ const ForecastTables = ({ forecast, days, settings, updateSettings, mode }) => {
           updateSettings={updateSettings}
           key={index}
           mode={mode}
+          sunRise={sunRise}
+          sunSet={sunSet}
         />
       );
     });

@@ -33,8 +33,6 @@ const App = () => {
       : {
           windUnit: 'kts',
           displayNight: false,
-          nightEnd: 7,
-          nightStart: 21,
           mode: 'light',
           weight: 75,
         },

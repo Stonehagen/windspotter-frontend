@@ -3,7 +3,7 @@ import { getColorGrade } from '../../utils/getColorGrade';
 import RainDrops from './RainDrops';
 import WeatherIcon from './WeatherIcon';
 
-const WeatherForecastCol = ({ timeframe, settings, mode }) => {
+const WeatherForecastCol = ({ timeframe, settings, mode, nightStart, nightEnd  }) => {
   return (
     <div
       className="weather"
@@ -11,8 +11,8 @@ const WeatherForecastCol = ({ timeframe, settings, mode }) => {
         opacity:
           checkNightTime(
             timeframe.time,
-            settings.nightStart,
-            settings.nightEnd,
+            nightStart,
+            nightEnd,
           ) && '0.7',
       }}
     >
@@ -42,8 +42,8 @@ const WeatherForecastCol = ({ timeframe, settings, mode }) => {
           cloudCover={timeframe.clouds}
           night={checkNightTime(
             timeframe.time,
-            settings.nightStart,
-            settings.nightEnd,
+            nightStart,
+            nightEnd,
           )}
         />
         <div className="rain">

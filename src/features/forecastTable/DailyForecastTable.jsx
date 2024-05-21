@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import ForecastTableRow from './ForecastTableRow';
 
-const DailyForecastTable = ({ dayArray, index, settings, updateSettings, mode }) => {
+const DailyForecastTable = ({ dayArray, index, settings, updateSettings, mode, sunRise, sunSet }) => {
   const getPrettyDate = (time) => {
     return moment(time).format('dddd, DD.MM.YY');
   };
@@ -25,7 +25,7 @@ const DailyForecastTable = ({ dayArray, index, settings, updateSettings, mode })
           </thead>
           <tbody>
             {dayArray.filter((timeframe)=> {
-               return timeframe.dir !== null;
+              return timeframe.dir !== null;
             }).map((timeframe, index) => (
 
               <ForecastTableRow
@@ -34,6 +34,8 @@ const DailyForecastTable = ({ dayArray, index, settings, updateSettings, mode })
                 updateSettings={updateSettings}
                 key={index}
                 mode={mode}
+                sunRise={sunRise}
+                sunSet={sunSet}
               />
             ))}
           </tbody>

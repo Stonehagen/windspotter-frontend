@@ -10,7 +10,7 @@ const getWindowDimensions = () => {
   return width;
 };
 
-const WindForecastCol = ({ timeframe, settings, updateSettings }) => {
+const WindForecastCol = ({ timeframe, settings, updateSettings, nightStart, nightEnd }) => {
   const [windowWidth, setWindowWidth] = useState(getWindowDimensions());
   const changeWindUnit = () => {
     if (settings.windUnit === 'mps') {
@@ -39,8 +39,8 @@ const WindForecastCol = ({ timeframe, settings, updateSettings }) => {
         opacity:
           checkNightTime(
             timeframe.time,
-            settings.nightStart,
-            settings.nightEnd,
+            nightStart,
+            nightEnd,
           ) && '0.7',
         background: `${
           windowWidth >= 1000
