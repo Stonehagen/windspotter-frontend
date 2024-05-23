@@ -1,0 +1,92 @@
+.SpotCharts {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.SpotCharts .spot {
+  display: flex;
+  flex-direction: row;
+  height: 68px;
+  min-width: 320px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.SpotCharts .spot:hover {
+  background-color: var(--lighter-bg-color);
+  cursor: pointer;
+}
+
+.SpotCharts .spot .spotIndex {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  color: var(--lighter-color);
+}
+
+.SpotCharts .spot .spotIndex div {
+  opacity: 0.7;
+  width: 18px;
+  font-size: 0.9em;
+  rotate: -90deg;
+}
+
+.SpotCharts .spot .spotInfo {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--lighter-bg-color);
+  border-radius: 10px 10px 0 10px;
+  overflow: hidden;
+  width: 100%;
+  color: #213547;
+}
+
+.SpotCharts .spot .spotName {
+  width: 100%;
+  font-size: 1.2em;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+.SpotCharts .spot .wind {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 20px;
+}  
+
+.SpotCharts .spot .wind .base {
+  font-size: 3.2em;
+  font-weight: 600;
+  align-self: flex-end;
+  padding: 0;
+  margin-bottom: -10px;
+  width: 70px;
+}
+
+.SpotCharts .spot .wind .base span {
+  font-size: 0.5em;
+  font-weight: 100;
+  margin-left: 2px;
+}
+
+.SpotCharts .spot .wind .gust {
+  font-size: 1.5em;
+  align-self: flex-start;
+  width: 24px;
+}
+
+.SpotCharts .spot .wind .gust span {
+  font-size: 0.5em;
+  font-weight: 200;
+  margin-left: 2px;
+}

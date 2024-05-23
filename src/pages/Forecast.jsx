@@ -48,7 +48,6 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
           lon: res.data.spot.lon,
           windDirections: res.data.spot.windDirections,
         });
-        console.log(res.data.spot);
       })
       .catch((err) => console.log(err));
     // need a redirect to main page if an error occurs

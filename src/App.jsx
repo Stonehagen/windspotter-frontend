@@ -52,10 +52,9 @@ const App = () => {
     localStorage.setItem('settings', JSON.stringify(settings));
     if (user) {
       axios
-        .put(
-          `${import.meta.env.VITE_API_BACKENDSERVER}/user/updateSettings`,
-          {settings},
-        )
+        .put(`${import.meta.env.VITE_API_BACKENDSERVER}/user/updateSettings`, {
+          settings,
+        })
         .catch((err) => console.log(err));
     }
   };
@@ -143,7 +142,6 @@ const App = () => {
           fontWeight: '400',
           fontFamily: 'var(--main-font)',
         }}
-        
       >
         This website uses cookies to enhance the user experience.
       </CookieConsent>
@@ -168,7 +166,7 @@ const App = () => {
             />
           }
         />
-        <Route path="/mate" element={<Mate user={user} />} />
+        <Route path="/mate" element={<Mate user={user} setPath={setPath} />} />
         <Route path="/info" element={<Info />} />
         <Route path="/sign-up" element={<SignUp user={user} />} />
         <Route
