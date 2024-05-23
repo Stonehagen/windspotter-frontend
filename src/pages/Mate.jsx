@@ -5,14 +5,24 @@ import '../assets/styles/Mate.css';
 import { getWindDirection } from '../utils/getWindDirection';
 import SpotCharts from '../features/spotCharts/SpotCharts';
 
-const Mate = ({ user, setPath }) => {
-  const [spotCharts, setSpotCharts] = useState([]);
-  const [day, setDay] = useState('');
-  const [hourStart, setHourStart] = useState(14);
-  const [hourEnd, setHourEnd] = useState(21);
-  const [minWindSpeedKts, setMinWindSpeedKts] = useState(11);
-  const [maxWindSpeedKts, setMaxWindSpeedKts] = useState(35);
-  const [checkWindDirections, setCheckWindDirections] = useState(true);
+const Mate = ({
+  user,
+  setPath,
+  spotCharts,
+  setSpotCharts,
+  day,
+  setDay,
+  hourStart,
+  setHourStart,
+  hourEnd,
+  setHourEnd,
+  minWindSpeedKts,
+  setMinWindSpeedKts,
+  maxWindSpeedKts,
+  setMaxWindSpeedKts,
+  checkWindDirections,
+  setCheckWindDirections,
+}) => {
   const [status, setStatus] = useState('');
 
   const ktToMs = 0.514444;
@@ -183,7 +193,7 @@ const Mate = ({ user, setPath }) => {
             </div>
           </div>
           <div className="formGroup wind">
-            <label htmlFor="minWindSpeedKts">Min Wind Speed (kt)</label>
+            <label htmlFor="minWindSpeedKts">Min Wind Speed (kts)</label>
             <input
               name="minWindSpeedKts"
               id="minWindSpeedKts"
@@ -193,7 +203,7 @@ const Mate = ({ user, setPath }) => {
             />
           </div>
           <div className="formGroup wind">
-            <label htmlFor="maxWindSpeedKts">Max Wind Speed (kt)</label>
+            <label htmlFor="maxWindSpeedKts">Max Wind Speed (kts)</label>
             <input
               name="maxWindSpeedKts"
               id="maxWindSpeedKts"

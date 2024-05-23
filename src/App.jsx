@@ -43,6 +43,15 @@ const App = () => {
       : 'light',
   );
   const [path, setPath] = useState(window.location.pathname);
+
+  const [day, setDay] = useState('');
+  const [hourStart, setHourStart] = useState(14);
+  const [hourEnd, setHourEnd] = useState(21);
+  const [minWindSpeedKts, setMinWindSpeedKts] = useState(11);
+  const [maxWindSpeedKts, setMaxWindSpeedKts] = useState(35);
+  const [checkWindDirections, setCheckWindDirections] = useState(true);
+  const [spotCharts, setSpotCharts] = useState([]);
+
   const [cookies, setCookie, removeCookie] = useCookies(['jwt_token']);
 
   const token = getAuthToken(cookies);
@@ -166,7 +175,29 @@ const App = () => {
             />
           }
         />
-        <Route path="/mate" element={<Mate user={user} setPath={setPath} />} />
+        <Route
+          path="/mate"
+          element={
+            <Mate
+              user={user}
+              setPath={setPath}
+              spotCharts={spotCharts}
+              day={day}
+              setDay={setDay}
+              hourStart={hourStart}
+              setHourStart={setHourStart}
+              hourEnd={hourEnd}
+              setHourEnd={setHourEnd}
+              minWindSpeedKts={minWindSpeedKts}
+              setMinWindSpeedKts={setMinWindSpeedKts}
+              maxWindSpeedKts={maxWindSpeedKts}
+              setMaxWindSpeedKts={setMaxWindSpeedKts}
+              checkWindDirections={checkWindDirections}
+              setCheckWindDirections={setCheckWindDirections}
+              setSpotCharts={setSpotCharts}
+            />
+          }
+        />
         <Route path="/info" element={<Info />} />
         <Route path="/sign-up" element={<SignUp user={user} />} />
         <Route
