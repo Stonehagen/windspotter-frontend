@@ -44,12 +44,14 @@ const App = () => {
   );
   const [path, setPath] = useState(window.location.pathname);
 
-  const [day, setDay] = useState('');
-  const [hourStart, setHourStart] = useState(14);
-  const [hourEnd, setHourEnd] = useState(21);
-  const [minWindSpeedKts, setMinWindSpeedKts] = useState(11);
-  const [maxWindSpeedKts, setMaxWindSpeedKts] = useState(35);
-  const [checkWindDirections, setCheckWindDirections] = useState(true);
+  const [searchSettings, setSearchSettings] = useState({
+    day: new Date().toISOString(),
+    hourStart: 14,
+    hourEnd: 21,
+    minWindSpeedKts: 11,
+    maxWindSpeedKts: 35,
+    checkWindDirections: true,
+  });
   const [spotCharts, setSpotCharts] = useState([]);
 
   const [cookies, setCookie, removeCookie] = useCookies(['jwt_token']);
@@ -182,19 +184,9 @@ const App = () => {
               user={user}
               setPath={setPath}
               spotCharts={spotCharts}
-              day={day}
-              setDay={setDay}
-              hourStart={hourStart}
-              setHourStart={setHourStart}
-              hourEnd={hourEnd}
-              setHourEnd={setHourEnd}
-              minWindSpeedKts={minWindSpeedKts}
-              setMinWindSpeedKts={setMinWindSpeedKts}
-              maxWindSpeedKts={maxWindSpeedKts}
-              setMaxWindSpeedKts={setMaxWindSpeedKts}
-              checkWindDirections={checkWindDirections}
-              setCheckWindDirections={setCheckWindDirections}
               setSpotCharts={setSpotCharts}
+              searchSettings={searchSettings}
+              setSearchSettings={setSearchSettings}
             />
           }
         />

@@ -1,7 +1,7 @@
 .SpotCharts {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
   max-width: 400px;
   width: 100%;
 }
@@ -9,11 +9,11 @@
 .SpotCharts .spot {
   display: flex;
   flex-direction: row;
-  height: 68px;
+  height: 73px;
   min-width: 320px;
   width: 100%;
-  border-radius: 10px;
 }
+
 
 .SpotCharts .spot:hover {
   background-color: var(--lighter-bg-color);
@@ -38,12 +38,45 @@
 
 .SpotCharts .spot .spotInfo {
   display: flex;
-  flex-direction: row;
-  background-color: var(--lighter-bg-color);
-  border-radius: 10px 10px 0 10px;
+  flex-direction: column;
+  border-radius: 10px 10px 10px 10px;
   overflow: hidden;
   width: 100%;
   color: #213547;
+  gap: 3px;
+}
+
+.SpotCharts .spot .upperRow {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  width: 100%;
+}
+
+.SpotCharts .spot .lowerRow {
+  display: flex;
+  flex-direction: row;
+  height: 15px;
+  width: 100%;
+  background-color: var(--lighter-bg-color);
+  align-items: center;
+  gap: 1px;
+}
+
+.SpotCharts .spot .lowerRow .hour {
+  color: var(--lighter-bg-color);
+  font-size: 0.6em;
+  flex: 1;
+  line-height: 10px;
+  border-radius: 2px;
+}
+
+.SpotCharts .spot .lowerRow .hour:first-of-type {
+  margin-left: 5px;
+}
+
+.SpotCharts .spot .lowerRow .hour:last-of-type {
+  margin-right: 5px;
 }
 
 .SpotCharts .spot .spotName {

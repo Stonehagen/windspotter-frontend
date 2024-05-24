@@ -10,22 +10,26 @@ const Mate = ({
   setPath,
   spotCharts,
   setSpotCharts,
-  day,
-  setDay,
-  hourStart,
-  setHourStart,
-  hourEnd,
-  setHourEnd,
-  minWindSpeedKts,
-  setMinWindSpeedKts,
-  maxWindSpeedKts,
-  setMaxWindSpeedKts,
-  checkWindDirections,
-  setCheckWindDirections,
+  searchSettings,
+  setSearchSettings,
 }) => {
   const [status, setStatus] = useState('');
+  const [maxWindSpeedKts, setMaxWindSpeedKts] = useState(0);
 
   const ktToMs = 0.514444;
+
+  const updateSearchSettings = (newSettings) => {
+    setSearchSettings({ ...searchSettings, ...newSettings });
+  };
+
+  const getWindScore = (windspeed) => {
+    const windscore =
+      ((windspeed / ktToMs - searchSettings.minWindSpeedKts) /
+        (maxWindSpeedKts - searchSettings.minWindSpeedKts)) *
+        0.7 +
+      0.3;
+    return windscore;
+  };
 
   const windDirectionsList = [
     'N',
@@ -56,7 +60,7 @@ const Mate = ({
   const getSpot = async () => {
     axios
       .post(`${import.meta.env.VITE_API_BACKENDSERVER}/spot/day`, {
-        day: day != '' ? new Date(day).toISOString() : new Date().toISOString(),
+        day: searchSettings.day,
       })
       .then((res) => {
         // remove the lightforecast for the spots that are before the sunrise or after the sunset
@@ -70,27 +74,34 @@ const Mate = ({
           sunset.setFullYear(1970, 0, 1);
           return {
             ...spot,
-            lightForecast: spot.lightForecast.filter((forecast) => {
-              const time = new Date(forecast.time);
-              time.setFullYear(1970, 0, 1);
-              const isRightWindDirection = checkWindDirections
-                ? windDirectionsList.some((direction, index) => {
-                    return (
-                      spot.windDirections[index] &&
-                      getWindDirection(forecast.dir) === direction
-                    );
-                  })
-                : true;
-              return (
-                time >= sunrise &&
-                time <= sunset &&
-                time.getHours() >= hourStart &&
-                time.getHours() <= hourEnd &&
-                forecast.ws >= minWindSpeedKts * ktToMs &&
-                forecast.ws <= maxWindSpeedKts * ktToMs &&
-                isRightWindDirection
-              );
-            }),
+            lightForecast: spot.lightForecast
+              .filter((forecast) => {
+                const time = new Date(forecast.time);
+                time.setFullYear(1970, 0, 1);
+                const isRightWindDirection = searchSettings.checkWindDirections
+                  ? windDirectionsList.some((direction, index) => {
+                      return (
+                        spot.windDirections[index] &&
+                        getWindDirection(forecast.dir) === direction
+                      );
+                    })
+                  : true;
+                return (
+                  time >= sunrise &&
+                  time <= sunset &&
+                  time.getHours() >= searchSettings.hourStart &&
+                  time.getHours() <= searchSettings.hourEnd &&
+                  forecast.ws >= searchSettings.minWindSpeedKts * ktToMs &&
+                  forecast.ws <= searchSettings.maxWindSpeedKts * ktToMs &&
+                  isRightWindDirection
+                );
+              })
+              .map((forecast) => {
+                return {
+                  ...forecast,
+                  hour: new Date(forecast.time).getHours(),
+                };
+              }),
           };
         });
 
@@ -126,6 +137,9 @@ const Mate = ({
 
         rankedSpots.sort((a, b) => b.windSpeedSum - a.windSpeedSum);
         setSpotCharts(rankedSpots);
+        setMaxWindSpeedKts(
+          Math.max(...rankedSpots.map((spot) => spot.maxWind), 0),
+        );
         if (rankedSpots.length === 0) {
           setStatus('No spots found');
         }
@@ -146,8 +160,8 @@ const Mate = ({
             <select
               name="day"
               id="day"
-              value={day}
-              onChange={(e) => setDay(e.target.value)}
+              value={searchSettings.day}
+              onChange={(e) => updateSearchSettings({ day: e.target.value })}
             >
               {[...Array(7).keys()].map((day) => {
                 const date = new Date();
@@ -166,8 +180,10 @@ const Mate = ({
               <select
                 name="hourStart"
                 id="hourStart"
-                value={hourStart}
-                onChange={(e) => setHourStart(e.target.value)}
+                value={searchSettings.hourStart}
+                onChange={(e) =>
+                  updateSearchSettings({ hourStart: e.target.value })
+                }
               >
                 {[...Array(23).keys()].map((hour) => (
                   <option key={hour} value={hour}>
@@ -181,8 +197,10 @@ const Mate = ({
               <select
                 name="hourEnd"
                 id="hourEnd"
-                value={hourEnd}
-                onChange={(e) => setHourEnd(e.target.value)}
+                value={searchSettings.hourEnd}
+                onChange={(e) =>
+                  updateSearchSettings({ hourEnd: e.target.value })
+                }
               >
                 {[...Array(23).keys()].map((hour) => (
                   <option key={hour} value={hour + 1}>
@@ -198,8 +216,10 @@ const Mate = ({
               name="minWindSpeedKts"
               id="minWindSpeedKts"
               type="number"
-              value={minWindSpeedKts}
-              onChange={(e) => setMinWindSpeedKts(e.target.value)}
+              value={searchSettings.minWindSpeedKts}
+              onChange={(e) =>
+                updateSearchSettings({ minWindSpeedKts: e.target.value })
+              }
             />
           </div>
           <div className="formGroup wind">
@@ -208,8 +228,10 @@ const Mate = ({
               name="maxWindSpeedKts"
               id="maxWindSpeedKts"
               type="number"
-              value={maxWindSpeedKts}
-              onChange={(e) => setMaxWindSpeedKts(e.target.value)}
+              value={searchSettings.maxWindSpeedKts}
+              onChange={(e) =>
+                updateSearchSettings({ maxWindSpeedKts: e.target.value })
+              }
             />
           </div>
           <div className="formGroup dir">
@@ -218,8 +240,10 @@ const Mate = ({
               name="checkWindDirections"
               id="checkWindDirections"
               type="checkbox"
-              checked={checkWindDirections}
-              onChange={(e) => setCheckWindDirections(e.target.checked)}
+              checked={searchSettings.checkWindDirections}
+              onChange={(e) =>
+                updateSearchSettings({ checkWindDirections: e.target.checked })
+              }
             />
           </div>
         </div>
@@ -230,7 +254,11 @@ const Mate = ({
         </div>
       </form>
       {spotCharts && spotCharts.length > 0 ? (
-        <SpotCharts spotCharts={spotCharts} user={user} setPath={setPath} />
+        <SpotCharts
+          spotCharts={spotCharts}
+          setPath={setPath}
+          getWindScore={getWindScore}
+        />
       ) : (
         <div>{status}</div>
       )}
