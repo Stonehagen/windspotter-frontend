@@ -109,7 +109,10 @@ const Mate = ({
         const rankedSpots = filteredSpots
           .map((spot) => {
             const windSpeedSum = spot.lightForecast.reduce(
-              (sum, forecast) => sum + forecast.ws / ktToMs,
+              (sum, forecast) =>
+                sum +
+                (forecast.ws / ktToMs - searchSettings.minWindSpeedKts + 0.1) *
+                  1.5,
               0,
             );
             const minWind = Math.min(
