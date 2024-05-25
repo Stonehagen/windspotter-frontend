@@ -43,11 +43,11 @@
   color: var(--main-color);
   border: 1px solid var(--main-color);
   border-radius: 5px;
-  width: 45px;
+  width: 60px;
   height: 44px;
   text-decoration: none;
   font-weight: 200;
-  font-size: 1.3em;
+  font-size: 1em;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
