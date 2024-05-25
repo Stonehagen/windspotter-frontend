@@ -5,6 +5,7 @@ import '../assets/styles/Search.css';
 
 const Search = ({ user, setPath }) => {
   const [spots, setSpots] = useState([]);
+  const [searchName, setSearchName] = useState('');
 
   const getSpots = async () => {
     axios
@@ -12,6 +13,22 @@ const Search = ({ user, setPath }) => {
       .then((res) => setSpots(res.data.spots))
       .catch((err) => console.log(err));
     // need a redirect to main page if an error occurs
+  };
+
+  const searchSpot = async (searchName) => {
+    axios
+      .get(
+        `${import.meta.env.VITE_API_BACKENDSERVER}/spot/search/${searchName}`,
+      )
+      .then((res) => {
+        setSpots(res.data.spots);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const submitSearch = (e) => {
+    e.preventDefault();
+    searchSpot(searchName);
   };
 
   useEffect(() => {
@@ -23,6 +40,17 @@ const Search = ({ user, setPath }) => {
       <h3 className="LogoSub">
         SELECT<span>SPOT</span>
       </h3>
+      <form className="searchForm" onSubmit={submitSearch}>
+        <div className="formGroup">
+          <input
+            type="text"
+            placeholder="search spot..."
+            value={searchName}
+            onChange={(e) => setSearchName(e.target.value)}
+          />
+          <button type="submit">GO</button>
+        </div>
+      </form>
       <div className="Spotlist">
         {spots.map((spot) => (
           <Link

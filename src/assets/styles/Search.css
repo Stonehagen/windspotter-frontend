@@ -1,20 +1,64 @@
 .search {
-  height: 100%;
+  height: calc(100% - 80px);
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: auto;
   padding-bottom: 20px;
+}
+
+.search form {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  width: 320px;
+}
+
+.search .formGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding: 0 15px;
+  width: 100%;
+}
+
+.search form input {
+  background-color: var(--main-bg-color);
+  font-size: 1.2em;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  height: 40px;
+  text-decoration: none;
+  font-weight: 200;
+  line-height: 40px;
+  padding-left: 10px;
+  width: 100%;
+}
+
+.search form button {
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  width: 45px;
+  height: 44px;
+  text-decoration: none;
+  font-weight: 200;
+  font-size: 1.3em;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .Spotlist {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
   gap: 5px;
+  overflow: auto;
+  height: 100%;
 }
 
 .search h3 {
