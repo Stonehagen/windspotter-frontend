@@ -51,6 +51,18 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+
+.search form input:focus {
+  outline: none;
+  border: 2px solid var(--yellow-color);
+  margin: 0;
+}
+
+.search button:hover {
+  background-color: var(--yellow-color);
+  cursor: pointer;
+}
+
 .Spotlist {
   display: flex;
   flex-direction: column;
