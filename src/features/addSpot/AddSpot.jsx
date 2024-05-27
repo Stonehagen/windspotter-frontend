@@ -80,23 +80,23 @@ const AddSpot = () => {
         <div>
           <h3 className="TitleSub">Add a new Spot</h3>
           <div className="formGroup">
-            <label htmlFor="spotName">Spotname</label>
+            <label htmlFor="spotName">Spot Name</label>
             <input
               name="spotName"
               value={spotName}
               id="spotName"
-              placeholder="spotName"
+              placeholder="Spot Name"
               type="text"
               onChange={(e) => setSpotName(e.target.value)}
             />
           </div>
           <div className="formGroup">
-            <label htmlFor="searchName">Searchname</label>
+            <label htmlFor="searchName">Search Name</label>
             <input
               name="searchName"
               value={searchName}
               id="searchName"
-              placeholder="searchName"
+              placeholder="Search Name"
               type="text"
               onChange={(e) => setSearchName(e.target.value)}
             />

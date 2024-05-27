@@ -28,8 +28,8 @@
   background-color: var(--main-bg-color);
   font-size: 1.2em;
   color: var(--main-color);
-  border: 1px solid var(--main-color);
-  border-radius: 5px;
+  border: 1px solid var(--lighter-bg-color);
+  border-radius: 19px;
   height: 38px;
   text-decoration: none;
   font-weight: 200;
@@ -40,15 +40,16 @@
 
 .search form button {
   margin: 0;
-  background-color: var(--main-bg-color);
+  background-color: var(--lighter-bg-color);
   color: var(--main-color);
-  border: 1px solid var(--main-color);
-  border-radius: 5px;
-  width: 50px;
+  border: 1px solid var(--lighter-bg-color);
+  border-radius: 20px;
+  min-width: 40px;
+  max-width: 40px;
   height: 40px;
   text-decoration: none;
   font-weight: 200;
-  font-size: 1em;
+  font-size: 0.9em;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
@@ -61,6 +62,7 @@
 
 .search button:hover {
   background-color: var(--yellow-color);
+  border: 1px solid var(--yellow-color);
   cursor: pointer;
 }
 
@@ -93,7 +95,7 @@
 .spotLink div {
   background-color: var(--lighter-bg-color);
   color: var(--main-color);
-  border-radius: 5px;
+  border-radius: 20px;
   width: 290px;
   height: 40px;
 }
