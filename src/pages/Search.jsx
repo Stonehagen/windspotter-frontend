@@ -28,6 +28,7 @@ const Search = ({ user, setPath }) => {
 
   const submitSearch = (e) => {
     e.preventDefault();
+    if (searchName === '') return getSpots();
     searchSpot(searchName);
   };
 
