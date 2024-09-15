@@ -56,7 +56,7 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
 
   useEffect(() => {
     getSpot();
-  }, []);
+  });
 
   return (
     <div className="Forecast">
