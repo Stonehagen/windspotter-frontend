@@ -23,11 +23,52 @@
 }
 
 .Forecast .spotInfos {
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Forecast .spotInfos h4 {
+  margin: 10px 0 3px 0;
+  font-style: normal;
+}
+
+.Forecast .spotInfos .spotInfosLocation {
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 10px;
 }
+
+.Forecast .spotInfos .spotInfosUpdates {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.Forecast .spotInfos .spotInfosUpdates .spotInfosUpdatesRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 5px;
+}
+
+.Forecast .spotInfos .spotInfosUpdates .spotInfosUpdatesRow span{
+  font-style: normal;
+  font-weight: 200;
+}
+
+.Forecast .spotInfos .spotInfosUpdates .spotInfosUpdatesModel {
+  min-width: 105px;
+  text-align: left;
+  font-style: normal;
+  font-weight: 400;
+}
+
 
 .Loading {
   display: flex;

@@ -12,6 +12,7 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
   const [spot, setSpot] = useState(null);
   const [forecastArray, setForecastArray] = useState([]);
   const [days, setDays] = useState([]);
+  const [updateTimes, setUpdateTimes] = useState(null);
 
   const decimalToDMS = (decimal) => {
     const degrees = Math.trunc(decimal);
@@ -28,35 +29,59 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
     }
   };
 
-  const getSpot = async () => {
-    axios
-      .get(
-        `${
-          import.meta.env.VITE_API_BACKENDSERVER
-        }/spot/name/${spotName}/forecast`,
-      )
-      .then((res) => {
-        setForecastArray(res.data.spot.forecast);
-        setDays([
-          ...new Set(res.data.spot.forecast.map((timeframe) => timeframe.day)),
-        ]);
-        setSpot({
-          _id: res.data.spot._id,
-          name: res.data.spot.name,
-          sunrise: res.data.spot.sunrise,
-          sunset: res.data.spot.sunset,
-          lat: res.data.spot.lat,
-          lon: res.data.spot.lon,
-          windDirections: res.data.spot.windDirections,
-        });
-      })
-      .catch((err) => console.log(err));
-    // need a redirect to main page if an error occurs
+  const getUpdateTimes = (fCastArry) => {
+    const getTime = (time) => {
+      const date = new Date(time);
+      return `${date.getDate().toString().padStart(2, '0')}.${
+        date.getMonth().toString().padStart(2, '0')}. ${
+        date.getHours().toString().padStart(2, '0')}:${
+        date.getMinutes().toString().padStart(2, '0')}`;
+    };
+
+    const updateTimes = fCastArry.reduce((acc, curr) => {
+      if (!acc[curr.model]) {
+        acc[curr.model] = getTime(curr.modelTime);
+      }
+      return acc;
+    }
+    , {});
+    console.log(updateTimes);
+
+    setUpdateTimes(updateTimes);
   };
 
+
   useEffect(() => {
+    const getSpot = async () => {
+      axios
+        .get(
+          `${
+            import.meta.env.VITE_API_BACKENDSERVER
+          }/spot/name/${spotName}/forecast`,
+        )
+        .then((res) => {
+          setForecastArray(res.data.spot.forecast);
+          getUpdateTimes(res.data.spot.forecast);
+          setDays([
+            ...new Set(res.data.spot.forecast.map((timeframe) => timeframe.day)),
+          ]);
+          setSpot({
+            _id: res.data.spot._id,
+            name: res.data.spot.name,
+            sunrise: res.data.spot.sunrise,
+            sunset: res.data.spot.sunset,
+            lat: res.data.spot.lat,
+            lon: res.data.spot.lon,
+            windDirections: res.data.spot.windDirections,
+          });
+        })
+        .catch((err) => console.log(err));
+      // need a redirect to main page if an error occurs
+    };
+
+    
     getSpot();
-  });
+  }, [spotName]);
 
   return (
     <div className="Forecast">
@@ -79,13 +104,27 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
             sunSet={spot.sunset}
           />
           <div className="spotInfos">
-            <div>
-              {decimalToDMS(spot.lat)}
-              <span>{getDirection(spot.lat, 'lat')}</span>
+            <h4>Last Model Updates</h4>
+            <div className='spotInfosUpdates'>
+              {updateTimes? (
+                Object.keys(updateTimes).map((key) => (
+                  <div key={key} className='spotInfosUpdatesRow'>
+                    <div className='spotInfosUpdatesModel'>{key === 'gfsAWS' ? 'GFS' : key.toUpperCase()}:</div>
+                    <span>{updateTimes[key]}</span>
+                  </div>
+                ))
+              ) : ''}
             </div>
-            <div>
-              {decimalToDMS(spot.lon)}
-              <span>{getDirection(spot.lon, 'lon')}</span>
+            <h4>Spot Location</h4>
+            <div className='spotInfosLocation'>
+              <div>
+                {decimalToDMS(spot.lat)}
+                <span>{getDirection(spot.lat, 'lat')}</span>
+              </div>
+              <div>
+                {decimalToDMS(spot.lon)}
+                <span>{getDirection(spot.lon, 'lon')}</span>
+              </div>
             </div>
           </div>
         </>
