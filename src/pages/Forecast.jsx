@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import '../assets/styles/Forecast.css';
 
 import ForecastTables from '../features/forecastTable/ForecastTables';
@@ -95,6 +96,13 @@ const Forecast = ({ settings, updateSettings, mode, user, setUser }) => {
       )}
     </div>
   );
+};
+Forecast.propTypes = {
+  settings: PropTypes.object.isRequired,
+  updateSettings: PropTypes.func.isRequired,
+  mode: PropTypes.string,
+  user: PropTypes.object,
+  setUser: PropTypes.func.isRequired,
 };
 
 export default Forecast;

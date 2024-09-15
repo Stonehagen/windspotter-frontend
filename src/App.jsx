@@ -25,7 +25,7 @@ import SetPassword from './pages/SetPassword';
 import Mate from './pages/Mate';
 
 const App = () => {
-  const [mode, setMode] = useState(null);
+  const [mode, setMode] = useState();
   const [user, setUser] = useState();
   const [settings, setSettings] = useState(
     localStorage.getItem('settings')
