@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import '../../assets/styles/Infobar.css';
 import AddBookmark from '../../assets/icons/AddBookmark.svg?react';
 import RemoveBookmark from '../../assets/icons/RemoveBookmark.svg?react';
@@ -77,6 +78,13 @@ const Infobar = ({ spot, forecastArray, days, user, setUser }) => {
       <ForecastOverview forecast={forecastArray} days={days} />
     </div>
   );
+};
+Infobar.propTypes = {
+  spot: PropTypes.object.isRequired,
+  forecastArray: PropTypes.array.isRequired,
+  days: PropTypes.array.isRequired,
+  user: PropTypes.object,
+  setUser: PropTypes.func.isRequired,
 };
 
 export default Infobar;
