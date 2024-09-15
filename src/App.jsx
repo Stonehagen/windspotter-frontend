@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
@@ -37,7 +37,7 @@ const App = () => {
           weight: 75,
         },
   );
-  const [prefersColorScheme, setPrefersColorScheme] = useState(
+  const [prefersColorScheme] = useState(
     window.matchMedia('(prefers-color-scheme: dark)').matches
       ? 'dark'
       : 'light',
@@ -126,7 +126,7 @@ const App = () => {
     if (!user && token) {
       getUser();
     }
-  }, [user, settings, mode]);
+  }, [user, settings, mode, prefersColorScheme, token]);
 
   return (
     <BrowserRouter basename="/">
