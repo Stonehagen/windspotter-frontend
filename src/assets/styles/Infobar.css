@@ -105,7 +105,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  max-width: calc(100vw - 60px);
+  max-width: calc(100vw - 100px);
 }
 
 .infoBar .forecastInfo h3 {
