@@ -7,23 +7,29 @@ const manifestForPlugIn = {
   registerType:'prompt',
   includeAssests:['favicon.ico', "apple-touc-icon.png", "masked-icon.svg"],
   manifest:{
-    name:"Windmate",
-    short_name:"Windmate",
-    description:"I am a Windforecast App",
+    name:"React-vite-app",
+    short_name:"react-vite-app",
+    description:"I am a simple vite app",
     icons:[{
-      src: '/windmate192.png',
+      src: '/android-chrome-192x192.png',
       sizes:'192x192',
       type:'image/png',
       purpose:'favicon'
     },
     {
-      src:'/windmate512.png',
+      src:'/android-chrome-512x512.png',
       sizes:'512x512',
       type:'image/png',
       purpose:'favicon'
     },
     {
-      src: '/windmate512.png',
+      src: '/apple-touch-icon.png',
+      sizes:'180x180',
+      type:'image/png',
+      purpose:'apple touch icon',
+    },
+    {
+      src: '/maskable_icon.png',
       sizes:'512x512',
       type:'image/png',
       purpose:'any maskable',
