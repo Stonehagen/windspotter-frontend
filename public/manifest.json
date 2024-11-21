@@ -1,0 +1,26 @@
+{
+  "name": "Windmate",
+  "short_name": "Windmate",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "description": "An App to get you the best Windforecast.",
+"icons": [
+    {
+      "src": "/windmate.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/windmate192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/windmate512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
