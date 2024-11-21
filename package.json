@@ -45,6 +45,8 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "ts-jest": "^29.1.1",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-pwa": "^0.21.0",
+    "workbox-window": "^7.3.0"
   }
 }
