@@ -26,6 +26,9 @@ const manifestForPlugin = {
       },
     ],
   },
+  workbox: {
+    dontCacheBustURLsMatching: /.\.(?:png|jpg|jpeg|svg)$/,
+  },
 };
 
 // https://vitejs.dev/config/
